@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1FE36F721EADA651003E5325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F711EADA651003E5325 /* AppDelegate.swift */; };
-		1FE36F741EADA651003E5325 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F731EADA651003E5325 /* FirstViewController.swift */; };
-		1FE36F761EADA651003E5325 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F751EADA651003E5325 /* SecondViewController.swift */; };
+		1FE36F741EADA651003E5325 /* JournalEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */; };
+		1FE36F761EADA651003E5325 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F751EADA651003E5325 /* TripsViewController.swift */; };
 		1FE36F791EADA651003E5325 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FE36F771EADA651003E5325 /* Main.storyboard */; };
 		1FE36F7B1EADA651003E5325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FE36F7A1EADA651003E5325 /* Assets.xcassets */; };
 		1FE36F7E1EADA651003E5325 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FE36F7C1EADA651003E5325 /* LaunchScreen.storyboard */; };
 		1FE36F891EADA651003E5325 /* TripLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F881EADA651003E5325 /* TripLogTests.swift */; };
 		1FE36F941EADA651003E5325 /* TripLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F931EADA651003E5325 /* TripLogUITests.swift */; };
+		1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +38,8 @@
 /* Begin PBXFileReference section */
 		1FE36F6E1EADA651003E5325 /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE36F711EADA651003E5325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1FE36F731EADA651003E5325 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		1FE36F751EADA651003E5325 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntriesViewController.swift; sourceTree = "<group>"; };
+		1FE36F751EADA651003E5325 /* TripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		1FE36F781EADA651003E5325 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FE36F7A1EADA651003E5325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FE36F7D1EADA651003E5325 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		1FE36F8F1EADA651003E5325 /* TripLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE36F931EADA651003E5325 /* TripLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogUITests.swift; sourceTree = "<group>"; };
 		1FE36F951EADA651003E5325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalEntriesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +102,10 @@
 			isa = PBXGroup;
 			children = (
 				1FE36F711EADA651003E5325 /* AppDelegate.swift */,
-				1FE36F731EADA651003E5325 /* FirstViewController.swift */,
-				1FE36F751EADA651003E5325 /* SecondViewController.swift */,
+				1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */,
+				1FE36F751EADA651003E5325 /* TripsViewController.swift */,
 				1FE36F771EADA651003E5325 /* Main.storyboard */,
+				1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */,
 				1FE36F7A1EADA651003E5325 /* Assets.xcassets */,
 				1FE36F7C1EADA651003E5325 /* LaunchScreen.storyboard */,
 				1FE36F7F1EADA651003E5325 /* Info.plist */,
@@ -262,9 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FE36F761EADA651003E5325 /* SecondViewController.swift in Sources */,
+				1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */,
+				1FE36F761EADA651003E5325 /* TripsViewController.swift in Sources */,
 				1FE36F721EADA651003E5325 /* AppDelegate.swift in Sources */,
-				1FE36F741EADA651003E5325 /* FirstViewController.swift in Sources */,
+				1FE36F741EADA651003E5325 /* JournalEntriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

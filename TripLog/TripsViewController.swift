@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  SecondViewController.swift
 //  TripLog
 //
 //  Created by Lyra Ding on 4/23/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class TripsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
