@@ -16,6 +16,7 @@
 		1FE36F891EADA651003E5325 /* TripLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F881EADA651003E5325 /* TripLogTests.swift */; };
 		1FE36F941EADA651003E5325 /* TripLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F931EADA651003E5325 /* TripLogUITests.swift */; };
 		1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */; };
+		1FE36FA41EAE80CD003E5325 /* NewJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		1FE36F931EADA651003E5325 /* TripLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogUITests.swift; sourceTree = "<group>"; };
 		1FE36F951EADA651003E5325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalEntriesTableViewCell.swift; sourceTree = "<group>"; };
+		1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewJournalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */,
 				1FE36F751EADA651003E5325 /* TripsViewController.swift */,
 				1FE36F771EADA651003E5325 /* Main.storyboard */,
+				1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */,
 				1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */,
 				1FE36F7A1EADA651003E5325 /* Assets.xcassets */,
 				1FE36F7C1EADA651003E5325 /* LaunchScreen.storyboard */,
@@ -199,6 +202,7 @@
 				TargetAttributes = {
 					1FE36F6D1EADA651003E5325 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = NCMLUGS6E6;
 						ProvisioningStyle = Automatic;
 					};
 					1FE36F831EADA651003E5325 = {
@@ -266,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */,
+				1FE36FA41EAE80CD003E5325 /* NewJournalViewController.swift in Sources */,
 				1FE36F761EADA651003E5325 /* TripsViewController.swift in Sources */,
 				1FE36F721EADA651003E5325 /* AppDelegate.swift in Sources */,
 				1FE36F741EADA651003E5325 /* JournalEntriesViewController.swift in Sources */,
@@ -422,7 +427,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NCMLUGS6E6;
 				INFOPLIST_FILE = TripLog/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cs466.TripLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -434,7 +441,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NCMLUGS6E6;
 				INFOPLIST_FILE = TripLog/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cs466.TripLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -515,6 +524,7 @@
 				1FE36F9A1EADA651003E5325 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1FE36F9B1EADA651003E5325 /* Build configuration list for PBXNativeTarget "TripLogTests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +533,7 @@
 				1FE36F9D1EADA651003E5325 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1FE36F9E1EADA651003E5325 /* Build configuration list for PBXNativeTarget "TripLogUITests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +542,7 @@
 				1FE36FA01EADA651003E5325 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
