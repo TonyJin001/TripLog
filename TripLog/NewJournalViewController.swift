@@ -13,6 +13,10 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
     @IBOutlet weak var journalTextView: UITextView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
+    var callback : ((String,String,String,String)->Void)?
 
     
     override func viewDidLoad() {
@@ -81,14 +85,24 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
         dismiss(animated: true, completion: nil)
     }
     
-    /*
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        guard let button = sender as? UIBarButtonItem, button === saveButton else{
+            print("The save button was not pressed")
+            return
+        }
+        
+        let text = journalTextView.text ?? ""
+        let date = dateTextField.text ?? ""
+        let location = locationTextField.text ?? ""
+        
+        
+        if callback != nil{
+            callback!(text, date, location,"TripName")
+        }
     }
-    */
 
 }

@@ -213,7 +213,10 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cameraButton" destination="Rlq-18-kgE" id="fBS-dy-6hI"/>
+                        <outlet property="dateTextField" destination="Gb8-eP-pNn" id="8ER-N4-af4"/>
                         <outlet property="journalTextView" destination="QgO-Sw-gyA" id="Ve5-P1-MnY"/>
+                        <outlet property="locationTextField" destination="eXj-xz-4mB" id="wGI-mg-Lbd"/>
+                        <outlet property="saveButton" destination="3DH-aT-dw9" id="JPt-mK-8xz"/>
                         <outlet property="uploadButton" destination="EyR-P9-gZa" id="nvN-Kg-7kf"/>
                     </connections>
                 </viewController>
