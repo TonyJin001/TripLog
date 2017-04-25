@@ -203,7 +203,11 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="New Journal Entry" id="4Yx-rn-t9r">
                         <barButtonItem key="backBarButtonItem" title="Journal Entries" id="bYf-xA-0qk"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5f6-41-ThM"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5f6-41-ThM">
+                            <connections>
+                                <action selector="cancelEditing:" destination="Pgc-aW-7tY" id="uXJ-vO-Mxi"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="3DH-aT-dw9"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>

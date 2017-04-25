@@ -13,6 +13,7 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
     @IBOutlet weak var journalTextView: UITextView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,12 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
             
             let attachment = NSTextAttachment()
             attachment.image = image
+            
+            // Scale the image
+            let oldWidth = attachment.image!.size.width
+            let scaleFactor = oldWidth/(journalTextView.frame.size.width-10)
+            attachment.image = UIImage(cgImage: attachment.image!.cgImage!, scale: scaleFactor, orientation:.up)
+            
             //put your NSTextAttachment into and attributedString
             let attString = NSAttributedString(attachment: attachment)
             //add this attributed string to the current position.
@@ -70,7 +77,9 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
         self.dismiss(animated: true, completion: nil)
     }
     
-    
+    @IBAction func cancelEditing(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
     
     /*
     // MARK: - Navigation

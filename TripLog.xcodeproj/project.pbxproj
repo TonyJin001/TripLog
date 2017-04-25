@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F4F38DB1EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F38D91EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld */; };
 		1FE36F721EADA651003E5325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F711EADA651003E5325 /* AppDelegate.swift */; };
 		1FE36F741EADA651003E5325 /* JournalEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */; };
 		1FE36F761EADA651003E5325 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F751EADA651003E5325 /* TripsViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F4F38DA1EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JournalEntryModel.xcdatamodel; sourceTree = "<group>"; };
 		1FE36F6E1EADA651003E5325 /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE36F711EADA651003E5325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntriesViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */,
 				1FE36F751EADA651003E5325 /* TripsViewController.swift */,
 				1FE36F771EADA651003E5325 /* Main.storyboard */,
+				1F4F38D91EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld */,
 				1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */,
 				1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */,
 				1FE36F7A1EADA651003E5325 /* Assets.xcassets */,
@@ -271,6 +274,7 @@
 			files = (
 				1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */,
 				1FE36FA41EAE80CD003E5325 /* NewJournalViewController.swift in Sources */,
+				1F4F38DB1EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld in Sources */,
 				1FE36F761EADA651003E5325 /* TripsViewController.swift in Sources */,
 				1FE36F721EADA651003E5325 /* AppDelegate.swift in Sources */,
 				1FE36F741EADA651003E5325 /* JournalEntriesViewController.swift in Sources */,
@@ -545,6 +549,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1F4F38D91EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1F4F38DA1EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodel */,
+			);
+			currentVersion = 1F4F38DA1EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodel */;
+			path = JournalEntryModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1FE36F661EADA651003E5325 /* Project object */;
 }
