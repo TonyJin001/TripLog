@@ -10,7 +10,7 @@ import UIKit
 
 class NewJournalViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    var type: DetailType = .new
+//    var type: DetailType = .new
 
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
@@ -111,7 +111,7 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
     
 }
 
-enum DetailType{
-    case new
-    case update(String, String, Int16)
-}
+//enum DetailType{
+//    case new
+//    case update(String, String, Int16)
+//}

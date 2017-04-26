@@ -33,6 +33,8 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         // Do any additional setup after loading the view, typically from a nib.
         journalEntriesTableView.delegate = self
         journalEntriesTableView.dataSource = self
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -133,6 +135,18 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         journalEntriesTableView.endUpdates()
     }
     
+    /* Provides the edit functionality (deleteing rows) */
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            guard let journalEntry = self.fetchedResultsController?.object(at: indexPath) as? JournalEntry else{
+                fatalError("Cannot find journal entry")
+            }
+            
+            journalEntries.delete(journalEntry)
+        }
+    }
+    
     // MARK: - Navigation
     
     // prepare to go to the detail view
@@ -148,10 +162,42 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             guard let destination = navController.topViewController as? NewJournalViewController else{
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            destination.type = .new
+//            destination.type = .new
             destination.callback = { (text, date, location, tripName) in
                 self.journalEntries.add(text:text, date:date, location:location, tripName:tripName)
             }
+            
+        case "ViewJournal":
+            
+//            guard let navController = segue.destination as? UINavigationController else {
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
+//            
+//            guard let destination = navController.topViewController as? JournalDetailViewController else {
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
+            
+            guard let destination = segue.destination as? JournalDetailViewController else {
+                fatalError("Unexpected destination")
+            }
+            
+            guard let cell = sender as? JournalEntriesTableViewCell else {
+                fatalError("Unexpected sender: \(sender)")
+            }
+            
+            guard let indexPath = journalEntriesTableView.indexPath(for:cell) else {
+                fatalError("The Selected cell can't be found")
+            }
+            
+            guard let journalEntry = fetchedResultsController?.object(at:indexPath) as? JournalEntry else {
+                fatalError("fetched object was not a JournalEntry")
+            }
+            
+            destination.journalEntryDetails = journalEntry
+            destination.hidesBottomBarWhenPushed = true
+            
+            
+            
 //        case "EditBook":
 //            
 //            guard let destination = segue.destination as? BookDetailViewController else{
