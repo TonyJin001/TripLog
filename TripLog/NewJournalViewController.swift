@@ -9,6 +9,8 @@
 import UIKit
 
 class NewJournalViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    var type: DetailType = .new
 
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
@@ -16,6 +18,8 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var tripNameTextField: UITextField!
+    
     var callback : ((String,String,String,String)->Void)?
 
     
@@ -98,11 +102,16 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
         let text = journalTextView.text ?? ""
         let date = dateTextField.text ?? ""
         let location = locationTextField.text ?? ""
-        
+        let tripName = tripNameTextField.text ?? ""
         
         if callback != nil{
-            callback!(text, date, location,"TripName")
+            callback!(text, date, location,tripName)
         }
     }
+    
+}
 
+enum DetailType{
+    case new
+    case update(String, String, Int16)
 }

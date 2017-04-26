@@ -132,6 +132,61 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         journalEntriesTableView.endUpdates()
     }
+    
+    // MARK: - Navigation
+    
+    // prepare to go to the detail view
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        switch(segue.identifier ?? ""){
+        case "AddJournal":
+            guard let navController = segue.destination as? UINavigationController else{
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            guard let destination = navController.topViewController as? NewJournalViewController else{
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            destination.type = .new
+            destination.callback = { (text, date, location, tripName) in
+                self.journalEntries.add(text:text, date:date, location:location, tripName:tripName)
+            }
+//        case "EditBook":
+//            
+//            guard let destination = segue.destination as? BookDetailViewController else{
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
+//            
+//            guard let cell = sender as? BookListingCell else{
+//                fatalError("Unexpected sender: \(sender)")
+//            }
+//            
+//            guard let indexPath = tableView.indexPath(for: cell) else{
+//                fatalError("The selected cell can't be found")
+//            }
+//            
+//            
+//            guard let book = fetchedResultsController?.object(at: indexPath) as? Book else{
+//                fatalError("fetched object was not a Book")
+//            }
+//            
+//            destination.type = .update(book.title!, book.author!.name!, book.year)
+//            destination.callback = { (title, author, year) in
+//                self.books.update(oldBook: book, title: title, authorName: author, year: year)
+//            }
+            
+            
+        default:
+            fatalError("Unexpeced segue identifier: \(segue.identifier)")
+        }
+        
+    }
+    
+    @IBAction func unwindFromEdit(sender: UIStoryboardSegue){
+        journalEntriesTableView.reloadData()
+    }
+
 
 
 }

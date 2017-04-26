@@ -30,7 +30,8 @@ class JournalEntriesTableViewCell: UITableViewCell {
     
     func configureCell(entry:JournalEntry) {
         journalEntryTextLabel.text = entry.text
-       /// journalEntryDateLabel.text =
+        journalEntryDateLabel.text = entry.date
+        journalEntryTripIndexLabel.text = "#"
         journalEntryTripNameLabel.text = entry.trip?.tripName
     }
 
