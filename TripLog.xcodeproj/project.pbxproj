@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1FE36F721EADA651003E5325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F711EADA651003E5325 /* AppDelegate.swift */; };
 		1FE36F741EADA651003E5325 /* JournalEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */; };
-		1FE36F761EADA651003E5325 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F751EADA651003E5325 /* TripsViewController.swift */; };
 		1FE36F791EADA651003E5325 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FE36F771EADA651003E5325 /* Main.storyboard */; };
 		1FE36F7B1EADA651003E5325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FE36F7A1EADA651003E5325 /* Assets.xcassets */; };
 		1FE36F7E1EADA651003E5325 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FE36F7C1EADA651003E5325 /* LaunchScreen.storyboard */; };
@@ -17,6 +16,12 @@
 		1FE36F941EADA651003E5325 /* TripLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F931EADA651003E5325 /* TripLogUITests.swift */; };
 		1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */; };
 		1FE36FA41EAE80CD003E5325 /* NewJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */; };
+		5D23483A1EB16434009EB07C /* EditTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2348391EB16434009EB07C /* EditTripViewController.swift */; };
+		5D23483C1EB1724A009EB07C /* SingleTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D23483B1EB1724A009EB07C /* SingleTripViewController.swift */; };
+		5D23483E1EB1786E009EB07C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D23483D1EB1786E009EB07C /* MapViewController.swift */; };
+		5D2348401EB18F90009EB07C /* TheFixedTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D23483F1EB18F90009EB07C /* TheFixedTripsViewController.swift */; };
+		5DBFCE7B1EAEE7D80002892C /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBFCE7A1EAEE7D80002892C /* TripTableViewCell.swift */; };
+		5DCD3CC41EAFCF1D00A59DE1 /* NewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD3CC31EAFCF1D00A59DE1 /* NewTripViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +45,6 @@
 		1FE36F6E1EADA651003E5325 /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE36F711EADA651003E5325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntriesViewController.swift; sourceTree = "<group>"; };
-		1FE36F751EADA651003E5325 /* TripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		1FE36F781EADA651003E5325 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FE36F7A1EADA651003E5325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FE36F7D1EADA651003E5325 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +57,12 @@
 		1FE36F951EADA651003E5325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalEntriesTableViewCell.swift; sourceTree = "<group>"; };
 		1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewJournalViewController.swift; sourceTree = "<group>"; };
+		5D2348391EB16434009EB07C /* EditTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTripViewController.swift; sourceTree = "<group>"; };
+		5D23483B1EB1724A009EB07C /* SingleTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTripViewController.swift; sourceTree = "<group>"; };
+		5D23483D1EB1786E009EB07C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		5D23483F1EB18F90009EB07C /* TheFixedTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheFixedTripsViewController.swift; sourceTree = "<group>"; };
+		5DBFCE7A1EAEE7D80002892C /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
+		5DCD3CC31EAFCF1D00A59DE1 /* NewTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTripViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +115,13 @@
 			children = (
 				1FE36F711EADA651003E5325 /* AppDelegate.swift */,
 				1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */,
-				1FE36F751EADA651003E5325 /* TripsViewController.swift */,
 				1FE36F771EADA651003E5325 /* Main.storyboard */,
+				5D23483F1EB18F90009EB07C /* TheFixedTripsViewController.swift */,
+				5D23483D1EB1786E009EB07C /* MapViewController.swift */,
+				5D23483B1EB1724A009EB07C /* SingleTripViewController.swift */,
+				5D2348391EB16434009EB07C /* EditTripViewController.swift */,
+				5DCD3CC31EAFCF1D00A59DE1 /* NewTripViewController.swift */,
+				5DBFCE7A1EAEE7D80002892C /* TripTableViewCell.swift */,
 				1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */,
 				1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */,
 				1FE36F7A1EADA651003E5325 /* Assets.xcassets */,
@@ -269,11 +284,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DBFCE7B1EAEE7D80002892C /* TripTableViewCell.swift in Sources */,
 				1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */,
+				5D23483E1EB1786E009EB07C /* MapViewController.swift in Sources */,
+				5D23483A1EB16434009EB07C /* EditTripViewController.swift in Sources */,
 				1FE36FA41EAE80CD003E5325 /* NewJournalViewController.swift in Sources */,
-				1FE36F761EADA651003E5325 /* TripsViewController.swift in Sources */,
 				1FE36F721EADA651003E5325 /* AppDelegate.swift in Sources */,
+				5D2348401EB18F90009EB07C /* TheFixedTripsViewController.swift in Sources */,
+				5DCD3CC41EAFCF1D00A59DE1 /* NewTripViewController.swift in Sources */,
 				1FE36F741EADA651003E5325 /* JournalEntriesViewController.swift in Sources */,
+				5D23483C1EB1724A009EB07C /* SingleTripViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
