@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="107"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ogn-4c-QqH" id="2nU-j6-Ao5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="106.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="e5o-fY-Vtq">
@@ -127,16 +127,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hap-qm-Mcf">
-                                <rect key="frame" x="26" y="74" width="323" height="20"/>
+                                <rect key="frame" x="16" y="74" width="343" height="20"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date: 12/27/16" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9V-dL-PjB">
-                                        <rect key="frame" x="0.0" y="0.0" width="161.5" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="171.5" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: NYC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsN-p6-6ux">
-                                        <rect key="frame" x="161.5" y="0.0" width="161.5" height="20"/>
+                                        <rect key="frame" x="171.5" y="0.0" width="171.5" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -156,13 +156,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hap-qm-Mcf" firstAttribute="leading" secondItem="IzV-X2-nIQ" secondAttribute="leadingMargin" constant="10" id="6XX-dc-rzb"/>
+                            <constraint firstItem="hap-qm-Mcf" firstAttribute="leading" secondItem="IzV-X2-nIQ" secondAttribute="leadingMargin" id="6XX-dc-rzb"/>
                             <constraint firstItem="2vW-wj-3bn" firstAttribute="top" secondItem="3ON-pw-nCr" secondAttribute="bottom" id="Gj2-5y-DFC"/>
                             <constraint firstItem="3ON-pw-nCr" firstAttribute="leading" secondItem="IzV-X2-nIQ" secondAttribute="leading" constant="10" id="Mwq-I1-YOr"/>
                             <constraint firstAttribute="trailing" secondItem="3ON-pw-nCr" secondAttribute="trailing" constant="10" id="UkX-Uq-hsW"/>
                             <constraint firstItem="3ON-pw-nCr" firstAttribute="top" secondItem="hap-qm-Mcf" secondAttribute="bottom" constant="10" id="YVW-Nz-IZr"/>
                             <constraint firstItem="hap-qm-Mcf" firstAttribute="top" secondItem="wTa-A6-x3s" secondAttribute="bottom" constant="10" id="geN-gD-Zwp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hap-qm-Mcf" secondAttribute="trailing" constant="10" id="xrl-Tx-1Ix"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hap-qm-Mcf" secondAttribute="trailing" id="xrl-Tx-1Ix"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -252,7 +252,7 @@
                                 <rect key="frame" x="10" y="154" width="355" height="459"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sUF-fr-IgY">
                                 <rect key="frame" x="10" y="114" width="355" height="30"/>
@@ -415,7 +415,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.50606594390000004" green="0.86295402489999995" blue="0.67059678489999996" alpha="0.62065048759999997" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TcL-QC-p7Y" firstAttribute="top" secondItem="QgO-Sw-gyA" secondAttribute="bottom" constant="10" id="13i-v5-ciA"/>
                             <constraint firstItem="ytS-jf-ctG" firstAttribute="top" secondItem="D8R-5M-Zfe" secondAttribute="bottom" constant="20" id="EI7-OH-Keg"/>
@@ -556,7 +556,7 @@
                                         <rect key="frame" x="0.0" y="28" width="280" height="107"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J5S-TY-pOE" id="0je-Im-467">
-                                            <rect key="frame" x="0.0" y="0.0" width="280" height="106"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="106.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="cFh-Po-1Kx">
@@ -627,19 +627,18 @@
                                             <action selector="shareButtonClicked:" destination="SeV-PS-vVw" id="lvg-Bk-gZ6"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="62.5" systemItem="fixedSpace" id="MPL-Yn-lQr" userLabel="Share"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bTB-eH-jKK"/>
                                     <barButtonItem title="View Map" id="7i8-tI-bq1">
                                         <connections>
                                             <segue destination="ghe-fi-4hT" kind="show" identifier="Map" id="Jz5-8W-k7G"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="51" systemItem="fixedSpace" id="qfO-gR-gCS"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="1X6-bS-Fnh"/>
                                     <barButtonItem title="Edit Trip" id="gaR-fI-yuW">
                                         <connections>
                                             <segue destination="Idh-kK-l6d" kind="show" identifier="EditTrip" id="tLx-9x-TBu"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="44.5" systemItem="fixedSpace" id="Ohf-w3-R81" userLabel="Edit Trip"/>
                                 </items>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShC-5E-iCU">
@@ -1056,7 +1055,7 @@
         <scene sceneID="Ww4-ov-fpP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yPR-YY-BMK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Trips" id="3hD-N6-5WC"/>
+                    <tabBarItem key="tabBarItem" title="Trips" image="second" id="3hD-N6-5WC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Le6-j9-c34">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1074,9 +1073,10 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
+        <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jo5-pm-HhD"/>
-        <segue reference="CNC-Rr-jgt"/>
+        <segue reference="qgu-Bx-CKy"/>
+        <segue reference="qu8-hy-h17"/>
     </inferredMetricsTieBreakers>
 </document>
