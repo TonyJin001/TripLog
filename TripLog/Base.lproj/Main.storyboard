@@ -622,36 +622,40 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <barButtonItem title="Share" id="xxh-Ie-Cog"/>
-                                    <barButtonItem systemItem="flexibleSpace" id="MPL-Yn-lQr" userLabel="Share"/>
+                                    <barButtonItem title="Share" id="xxh-Ie-Cog">
+                                        <connections>
+                                            <action selector="shareButtonClicked:" destination="SeV-PS-vVw" id="lvg-Bk-gZ6"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="62.5" systemItem="fixedSpace" id="MPL-Yn-lQr" userLabel="Share"/>
                                     <barButtonItem title="View Map" id="7i8-tI-bq1">
                                         <connections>
                                             <segue destination="ghe-fi-4hT" kind="show" identifier="Map" id="Jz5-8W-k7G"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem systemItem="flexibleSpace" id="qfO-gR-gCS"/>
+                                    <barButtonItem width="51" systemItem="fixedSpace" id="qfO-gR-gCS"/>
                                     <barButtonItem title="Edit Trip" id="gaR-fI-yuW">
                                         <connections>
                                             <segue destination="Idh-kK-l6d" kind="show" identifier="EditTrip" id="tLx-9x-TBu"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem systemItem="flexibleSpace" id="Ohf-w3-R81" userLabel="Edit Trip"/>
+                                    <barButtonItem width="44.5" systemItem="fixedSpace" id="Ohf-w3-R81" userLabel="Edit Trip"/>
                                 </items>
                             </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxe-8b-KmX">
-                                <rect key="frame" x="278" y="72" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="View"/>
-                                <connections>
-                                    <segue destination="Wqa-rV-cbl" kind="show" identifier="ToEntryOne" id="Zsi-fW-Xwc"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShC-5E-iCU">
-                                <rect key="frame" x="278" y="125" width="34" height="30"/>
+                                <rect key="frame" x="288" y="121" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="View"/>
                                 <connections>
                                     <segue destination="Wqa-rV-cbl" kind="show" identifier="ToEntryTwo" id="jo5-pm-HhD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxe-8b-KmX">
+                                <rect key="frame" x="288" y="72" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="View"/>
+                                <connections>
+                                    <segue destination="Wqa-rV-cbl" kind="show" identifier="ToEntryOne" id="Zsi-fW-Xwc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -800,13 +804,6 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYO-6j-D8E">
-                                <rect key="frame" x="50" y="134" width="79" height="20.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgX-Cz-upK">
                                 <rect key="frame" x="59" y="266" width="70" height="20.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -824,7 +821,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhl-NI-VuR">
                                 <rect key="frame" x="82" y="482" width="211" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.86295402489999995" green="0.60227042744979786" blue="0.63134195012907768" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Delete Trip">
                                     <color key="titleColor" red="1" green="0.041046944598614132" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -833,8 +830,15 @@
                                     <action selector="DeleteTrip:" destination="RNG-as-hWK" eventType="touchUpInside" id="bCX-SG-3JP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYO-6j-D8E">
+                                <rect key="frame" x="50" y="146" width="79" height="20.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="NYC Trip" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qe5-bw-Vis">
-                                <rect key="frame" x="149" y="129" width="144" height="30"/>
+                                <rect key="frame" x="149" y="141" width="144" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -886,7 +890,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Npd-yk-jmt">
-                                <rect key="frame" x="316" y="90" width="34" height="30"/>
+                                <rect key="frame" x="314" y="78" width="34" height="30"/>
                                 <state key="normal" title="View"/>
                                 <connections>
                                     <segue destination="R8V-MC-LSs" kind="show" identifier="SingleTrip" id="GbC-Jw-xb3"/>
@@ -896,11 +900,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="aiP-kw-5NX" firstAttribute="leading" secondItem="dQZ-Nl-4ml" secondAttribute="leadingMargin" constant="-16" id="7ec-Se-MEs"/>
-                            <constraint firstItem="Npd-yk-jmt" firstAttribute="leading" secondItem="aiP-kw-5NX" secondAttribute="trailing" constant="27" id="QQ7-2B-ZgH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Npd-yk-jmt" secondAttribute="trailing" constant="11" id="Lur-1D-aLv"/>
                             <constraint firstItem="aiP-kw-5NX" firstAttribute="top" secondItem="dQZ-Nl-4ml" secondAttribute="topMargin" id="Uz1-Nh-6wv"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Npd-yk-jmt" secondAttribute="trailing" constant="9" id="b74-kV-1B1"/>
+                            <constraint firstItem="Npd-yk-jmt" firstAttribute="top" secondItem="5tQ-6Q-fBT" secondAttribute="bottom" constant="14" id="aUX-Rs-5GH"/>
                             <constraint firstItem="aMx-FK-OY0" firstAttribute="top" secondItem="aiP-kw-5NX" secondAttribute="bottom" id="bxZ-58-83Y"/>
-                            <constraint firstItem="Npd-yk-jmt" firstAttribute="top" secondItem="5tQ-6Q-fBT" secondAttribute="bottom" constant="26" id="pEh-aV-ym3"/>
+                            <constraint firstItem="Npd-yk-jmt" firstAttribute="leading" secondItem="aiP-kw-5NX" secondAttribute="trailing" constant="25" id="xAX-cQ-gHa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Trips" id="6cA-5u-gj7">

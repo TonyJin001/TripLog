@@ -45,6 +45,24 @@ class SingleTripViewController: UIViewController, UITableViewDataSource, UITable
         return (dummyDataText.count)
     }
     
+
+    @IBAction func shareButtonClicked(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Share", message: "Do you want to share this trip?", preferredStyle: .actionSheet)
+        let shareAction = UIAlertAction(title: "Share", style: .default, handler: {
+            (alert:UIAlertAction!)->Void in
+            print("Share")
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:
+            {
+                (alert: UIAlertAction!) -> Void in
+                print("Cancelled")
+        })
+        alertController.addAction(shareAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+
     
     // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
     // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
