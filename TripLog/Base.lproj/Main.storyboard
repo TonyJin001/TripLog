@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="106" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K0N-Um-D7r">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JournalEntriesTableViewCell" rowHeight="107" id="ogn-4c-QqH" customClass="JournalEntriesTableViewCell" customModule="TripLog" customModuleProvider="target">
@@ -147,7 +147,7 @@
                                 </constraints>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3ON-pw-nCr">
-                                <rect key="frame" x="10" y="104" width="355" height="514"/>
+                                <rect key="frame" x="10" y="104" width="355" height="519"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -165,7 +165,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="hap-qm-Mcf" secondAttribute="trailing" constant="10" id="xrl-Tx-1Ix"/>
                         </constraints>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Share" id="atI-bf-5sP">
+                            <connections>
+                                <action selector="shareButtonClicked:" destination="Wqa-rV-cbl" id="CWG-rs-oQT"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="U2W-S1-e0R">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="bj6-zf-X5E">
                             <connections>
@@ -173,6 +179,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dateLabel" destination="J9V-dL-PjB" id="wSk-v5-SHN"/>
                         <outlet property="editButton" destination="bj6-zf-X5E" id="rIm-wT-lvQ"/>
@@ -284,8 +291,9 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Item" id="uOX-T2-Tcm"/>
-                        <barButtonItem title="Item" id="HVg-EC-umY"/>
+                        <barButtonItem title="Camera" id="uOX-T2-Tcm"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="FuM-SV-FcD"/>
+                        <barButtonItem title="Upload a photo/video" id="HVg-EC-umY"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Edit Journal" id="YOH-NV-Qwm">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QGT-mv-GQv">
@@ -515,7 +523,7 @@
         <!--Journal Entries-->
         <scene sceneID="UFQ-qb-iYX">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="weU-06-GHG" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="weU-06-GHG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Journal Entries" image="first" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sXf-de-ijy">
@@ -523,6 +531,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="YrX-Cn-6VA">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="aOB-Up-r2A"/>
                     </connections>
@@ -556,7 +568,7 @@
         <!--Navigation Controller-->
         <scene sceneID="lfI-ow-NY8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SFY-8B-jV2" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="SFY-8B-jV2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="n2B-Yj-dbp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
