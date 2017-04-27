@@ -131,6 +131,14 @@
 				1FE36F771EADA651003E5325 /* Main.storyboard */,
 				1F4F38E61EB12E2700D015D9 /* EditJournalViewController.swift */,
 				1F4F38D91EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld */,
+				5D23483F1EB18F90009EB07C /* TheFixedTripsViewController.swift */,
+				5D23483D1EB1786E009EB07C /* MapViewController.swift */,
+				5D23483B1EB1724A009EB07C /* SingleTripViewController.swift */,
+				5D2348391EB16434009EB07C /* EditTripViewController.swift */,
+				5DCD3CC31EAFCF1D00A59DE1 /* NewTripViewController.swift */,
+				5DBFCE7A1EAEE7D80002892C /* TripTableViewCell.swift */,
+				1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */,
+				1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */,
 				1FE36F7A1EADA651003E5325 /* Assets.xcassets */,
 				1FE36F7C1EADA651003E5325 /* LaunchScreen.storyboard */,
 				1FE36F7F1EADA651003E5325 /* Info.plist */,
@@ -292,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F4F38E31EAFDA6300D015D9 /* JournalEntryCollection.swift in Sources */,
+				5DBFCE7B1EAEE7D80002892C /* TripTableViewCell.swift in Sources */,
 				1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */,
 				5D23483E1EB1786E009EB07C /* MapViewController.swift in Sources */,
 				5D23483A1EB16434009EB07C /* EditTripViewController.swift in Sources */,

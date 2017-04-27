@@ -23,6 +23,11 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
     var callback : ((String,String,String,String)->Void)?
 
     
+    @IBAction func Cancel(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
     override func viewDidLoad() {
         let currentDateTime = Date() //Calendar code from stackoverflow
         
@@ -30,7 +35,7 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
         formatter.timeStyle = .none
         formatter.dateStyle = .short
         
-        datefield.text = formatter.string(from: currentDateTime)
+        dateTextField.text = formatter.string(from: currentDateTime)
         super.viewDidLoad()
         journalTextView.layer.borderColor = UIColor(red:0.76, green:0.76, blue:0.76, alpha:1.0).cgColor
         journalTextView.layer.borderWidth = 1.0
