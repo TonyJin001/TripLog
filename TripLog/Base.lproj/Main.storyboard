@@ -291,9 +291,17 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Camera" id="uOX-T2-Tcm"/>
+                        <barButtonItem title="Camera" id="uOX-T2-Tcm">
+                            <connections>
+                                <action selector="importImage:" destination="TYM-nd-d0E" id="xVc-ni-OeI"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FuM-SV-FcD"/>
-                        <barButtonItem title="Upload a photo/video" id="HVg-EC-umY"/>
+                        <barButtonItem title="Upload a photo/video" id="HVg-EC-umY">
+                            <connections>
+                                <action selector="importImage:" destination="TYM-nd-d0E" id="VdF-Q7-bgD"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Edit Journal" id="YOH-NV-Qwm">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QGT-mv-GQv">
@@ -309,11 +317,13 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="cameraButton" destination="uOX-T2-Tcm" id="M35-od-aoM"/>
                         <outlet property="dateTextField" destination="2Se-qX-lMN" id="ls4-eN-zg0"/>
                         <outlet property="journalTextView" destination="6UN-oG-i3J" id="cQj-VR-em5"/>
                         <outlet property="locationTextField" destination="cbN-wT-bkh" id="FBp-7s-xsS"/>
                         <outlet property="saveButton" destination="fZO-E6-RLF" id="8Nz-4W-JRz"/>
                         <outlet property="tripNameTextField" destination="zvE-Na-lZH" id="MbE-sM-lgu"/>
+                        <outlet property="uploadButton" destination="HVg-EC-umY" id="2aq-J9-4Nb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sD3-v7-Pww" userLabel="First Responder" sceneMemberID="firstResponder"/>
