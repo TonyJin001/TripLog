@@ -8,8 +8,12 @@
 
 import UIKit
 
-class SingleTripViewController: UIViewController {
+class SingleTripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    
+    @IBOutlet weak var tripJournalEntriesTable: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +25,48 @@ class SingleTripViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    @IBAction func GoBack(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    let dummyDataText = ["Last week I went to NYC", "It's Christmas and...", "Today I went to the Empire State Building"]
+//    let dummyDataDate = ["01/01/17","12/24/16"]
+//    let dummyDataTripName = ["New York Trip", "New York Trip"]
+//    let dummyDataTripIndex = ["#2","#1"]
+   
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return (dummyDataText.count)
+    }
+    
+    
+    // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        cell.textLabel?.text = dummyDataText[indexPath.row]
+        return (cell)
+    }
+//       guard let cell = tableView.dequeueReusableCell(withIdentifier: "JournalEntriesTableViewCell", for: indexPath) as? JournalEntriesTableViewCell else {
+//            fatalError("Can't get cell of the right kind")
+//        }
+//        
+//        cell.journalEntryTextLabel.text = dummyDataText[indexPath.row]
+//        cell.journalEntryDateLabel.text = dummyDataDate[indexPath.row]
+//        cell.journalEntryTripNameLabel.text = dummyDataTripName[indexPath.row]
+//        cell.journalEntryTripIndexLabel.text = dummyDataTripIndex[indexPath.row]
+//        
+//        return cell
+//    }
     /*
     // MARK: - Navigation
 

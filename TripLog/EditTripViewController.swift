@@ -9,7 +9,20 @@
 import UIKit
 
 class EditTripViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var editTripName: UITextField!
+    @IBOutlet weak var editStartDate: UITextField!
+        @IBOutlet weak var editEndDate: UITextField!
+    
+    @IBAction func cancelEdit(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func SaveEdit(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

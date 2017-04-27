@@ -9,7 +9,9 @@
 import UIKit
 
 class TripTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var startdateLabel: UILabel!
+    @IBOutlet weak var enddateLabel: UILabel!
+    @IBOutlet weak var tripnameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
