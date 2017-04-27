@@ -13,7 +13,10 @@ class EditTripViewController: UIViewController {
     
     @IBOutlet weak var editTripName: UITextField!
     @IBOutlet weak var editStartDate: UITextField!
-        @IBOutlet weak var editEndDate: UITextField!
+    @IBOutlet weak var editEndDate: UITextField!
+    @IBAction func DeleteTrip(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func cancelEdit(_ sender: Any) {
         dismiss(animated: true, completion: nil)

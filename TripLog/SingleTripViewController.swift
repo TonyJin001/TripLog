@@ -35,7 +35,7 @@ class SingleTripViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
-    let dummyDataText = ["Last week I went to NYC", "It's Christmas and...", "Today I went to the Empire State Building"]
+    let dummyDataText = ["Last week I went to NYC...", "It's Christmas Today!"]
 //    let dummyDataDate = ["01/01/17","12/24/16"]
 //    let dummyDataTripName = ["New York Trip", "New York Trip"]
 //    let dummyDataTripIndex = ["#2","#1"]
@@ -67,14 +67,79 @@ class SingleTripViewController: UIViewController, UITableViewDataSource, UITable
 //        
 //        return cell
 //    }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch(segue.identifier ?? ""){
+        case "EditTrip":
+            
+            print("BYE!!")
+            
+            guard let navController = segue.destination as? UINavigationController else{
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            guard let destination = navController.topViewController as? EditTripViewController else{
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+        
+        case "NewEntryFromTrip":
+            
+            print("UM!!")
+            
+            guard let navController = segue.destination as? UINavigationController else{
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            guard let destination = navController.topViewController as? NewJournalViewController else{
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            
+            
+        case "Map":
+            
+            print("HI!!")
+            
+            guard let navController = segue.destination as? UINavigationController else {
+                fatalError("Unexpected destination")
+            }
+            
+            guard let destination = navController.topViewController as? MapViewController else{
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+        
+        case "ToEntryOne":
+            
+            print("HI!!")
+            
+            
+            guard let destination = segue.destination as? JournalDetailViewController else{
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            destination.hidesBottomBarWhenPushed = true
+            
+        case "ToEntryTwo":
+            
+            print("mimi!")
+            
+            
+            guard let destination = segue.destination as? JournalDetailViewController else{
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            destination.hidesBottomBarWhenPushed = true
+            
+        default:
+            fatalError("Unexpected segue identifier")
+        }
+    }
+}
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    */
 
-}
+    
+
+
