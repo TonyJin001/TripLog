@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class EditJournalViewController: UIViewController {
 
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var tripNameTextField: UITextField!
-    @IBOutlet weak var textTextView: UITextView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var journalTextView: UITextView!
     
     var journalEntryDetails:JournalEntry? = nil
+    var callback : ((String,String,String,String)->Void)? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,24 +37,40 @@ class EditJournalViewController: UIViewController {
         }
         
         if let text = journalEntryDetails?.text {
-            textTextView.text = text
+            journalTextView.text = text
         }
+    }
+    
+    @IBAction func cancelEditing(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
+
+
+
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        guard let button = sender as? UIBarButtonItem, button === saveButton else{
+            print("The save button was not pressed")
+            return
+        }
+        
+        let text = journalTextView.text ?? ""
+        let date = dateTextField.text ?? ""
+        let location = locationTextField.text ?? ""
+        let tripName = tripNameTextField.text ?? ""
+        
+        if callback != nil{
+            callback!(text, date, location,tripName)
+        }
     }
-    */
 
 }

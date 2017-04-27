@@ -283,20 +283,33 @@
                             <constraint firstItem="lCp-Af-4Wr" firstAttribute="top" secondItem="6UN-oG-i3J" secondAttribute="bottom" constant="10" id="vgA-Ed-F2B"/>
                         </constraints>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="uOX-T2-Tcm"/>
+                        <barButtonItem title="Item" id="HVg-EC-umY"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Edit Journal" id="YOH-NV-Qwm">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QGT-mv-GQv"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="fZO-E6-RLF"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QGT-mv-GQv">
+                            <connections>
+                                <action selector="cancelEditing:" destination="TYM-nd-d0E" id="Sdd-my-Wpg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="fZO-E6-RLF">
+                            <connections>
+                                <segue destination="FFQ-2j-Rlg" kind="unwind" unwindAction="unwindFromEditWithSender:" id="28z-4Q-Xst"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dateTextField" destination="2Se-qX-lMN" id="ls4-eN-zg0"/>
+                        <outlet property="journalTextView" destination="6UN-oG-i3J" id="cQj-VR-em5"/>
                         <outlet property="locationTextField" destination="cbN-wT-bkh" id="FBp-7s-xsS"/>
-                        <outlet property="textTextView" destination="6UN-oG-i3J" id="CmF-mv-Jz4"/>
+                        <outlet property="saveButton" destination="fZO-E6-RLF" id="8Nz-4W-JRz"/>
                         <outlet property="tripNameTextField" destination="zvE-Na-lZH" id="MbE-sM-lgu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sD3-v7-Pww" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="FFQ-2j-Rlg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3905" y="-980"/>
         </scene>
@@ -550,6 +563,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="lBK-cb-GSC">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="TYM-nd-d0E" kind="relationship" relationship="rootViewController" id="NrN-fs-QaC"/>
                     </connections>

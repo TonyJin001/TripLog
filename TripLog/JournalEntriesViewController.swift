@@ -18,12 +18,6 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBOutlet weak var journalEntriesTableView: UITableView!
-    
-    // Dummy data used for testing the table view
-    let dummyDataText = ["Last week I went to NYC", "It's Christmas and...", "Today I went to the Empire State Building"]
-    let dummyDataDate = ["01/01/17","12/24/16","10/19/16"]
-    let dummyDataTripName = ["New York Trip", "", "Fall Break"]
-    let dummyDataTripIndex = ["#1","","#2"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +28,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         journalEntriesTableView.delegate = self
         journalEntriesTableView.dataSource = self
         
+        journalEntriesTableView.reloadData()
         
     }
 
@@ -90,11 +85,6 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         cell.configureCell(entry: journalEntry)
-        
-//        cell.journalEntryTextLabel.text = dummyDataText[indexPath.row]
-//        cell.journalEntryDateLabel.text = dummyDataDate[indexPath.row]
-//        cell.journalEntryTripNameLabel.text = dummyDataTripName[indexPath.row]
-//        cell.journalEntryTripIndexLabel.text = dummyDataTripIndex[indexPath.row]
         
         return cell
     }
@@ -162,20 +152,12 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             guard let destination = navController.topViewController as? NewJournalViewController else{
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-//            destination.type = .new
+
             destination.callback = { (text, date, location, tripName) in
                 self.journalEntries.add(text:text, date:date, location:location, tripName:tripName)
             }
             
         case "ViewJournal":
-            
-//            guard let navController = segue.destination as? UINavigationController else {
-//                fatalError("Unexpected destination: \(segue.destination)")
-//            }
-//            
-//            guard let destination = navController.topViewController as? JournalDetailViewController else {
-//                fatalError("Unexpected destination: \(segue.destination)")
-//            }
             
             guard let destination = segue.destination as? JournalDetailViewController else {
                 fatalError("Unexpected destination")
@@ -194,33 +176,8 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             }
             
             destination.journalEntryDetails = journalEntry
+            destination.journalEntries = journalEntries
             destination.hidesBottomBarWhenPushed = true
-            
-            
-            
-//        case "EditBook":
-//            
-//            guard let destination = segue.destination as? BookDetailViewController else{
-//                fatalError("Unexpected destination: \(segue.destination)")
-//            }
-//            
-//            guard let cell = sender as? BookListingCell else{
-//                fatalError("Unexpected sender: \(sender)")
-//            }
-//            
-//            guard let indexPath = tableView.indexPath(for: cell) else{
-//                fatalError("The selected cell can't be found")
-//            }
-//            
-//            
-//            guard let book = fetchedResultsController?.object(at: indexPath) as? Book else{
-//                fatalError("fetched object was not a Book")
-//            }
-//            
-//            destination.type = .update(book.title!, book.author!.name!, book.year)
-//            destination.callback = { (title, author, year) in
-//                self.books.update(oldBook: book, title: title, authorName: author, year: year)
-//            }
             
             
         default:

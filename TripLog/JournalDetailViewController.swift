@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class JournalDetailViewController: UIViewController {
 
@@ -15,7 +16,15 @@ class JournalDetailViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
+
+    
+    var newDate = ""
+    var newLocation = ""
+    var newText = ""
+    var newTripName = ""
+    
     var journalEntryDetails : JournalEntry? = nil
+    var journalEntries : JournalEntryCollection? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +67,11 @@ class JournalDetailViewController: UIViewController {
 //            }
         case "EditJournal":
             
-            guard let destination = segue.destination as? EditJournalViewController else{
+            guard let navController = segue.destination as? UINavigationController else{
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let destination = navController.topViewController as? EditJournalViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
@@ -72,6 +85,51 @@ class JournalDetailViewController: UIViewController {
             
         
             destination.journalEntryDetails = journalEntryDetails
+            destination.callback = { (text, date, location, tripName) in
+                self.journalEntries?.update(oldEntry: self.journalEntryDetails!, text:text, date:date, location:location, tripName:tripName)
+                self.newDate = date
+                self.newLocation = location
+                self.newText = text
+                self.newTripName = tripName
+                
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName:"JournalEntry")
+//                request.fetchLimit = 1
+                
+                let datePredicate = NSPredicate(format: "date == %@", self.newDate)
+                let locationPredicate = NSPredicate(format: "location == %@", self.newLocation)
+                let textPredicate = NSPredicate(format: "text == %@", self.newText)
+                let tripNamePredicate = NSPredicate(format: "trip.tripName == %@", self.newTripName)
+                let andPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate,locationPredicate,textPredicate,tripNamePredicate])
+                
+                request.predicate = andPredicate
+                
+                do {
+                    let moc = self.journalEntries?.managedObjectContext
+                    let matches = try moc?.fetch(request)
+                    if matches?.count == 0 {
+                        fatalError("0 matches for the required journal entry!!!!")
+                    } else {
+                        self.journalEntryDetails = matches?[0] as? JournalEntry
+                        if let date = self.journalEntryDetails?.date {
+                            self.dateLabel.text = date
+                        }
+                        
+                        if let location = self.journalEntryDetails?.location {
+                            self.locationLabel.text = location
+                        }
+                        
+                        if let text = self.journalEntryDetails?.text {
+                            self.textTextView.text = text
+                        }
+                    }
+                } catch {
+                    fatalError("Cannot find journal entry")
+                }
+
+                
+                
+                
+            }
         
             
         default:
@@ -79,6 +137,11 @@ class JournalDetailViewController: UIViewController {
         }
         
     }
+    
+    @IBAction func unwindFromEdit(sender: UIStoryboardSegue){
+        
+    }
+
 
     
     
