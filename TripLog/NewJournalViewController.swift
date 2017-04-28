@@ -8,9 +8,8 @@
 
 import UIKit
 
-class NewJournalViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class NewJournalViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UITextFieldDelegate {
     
-//    var type: DetailType = .new
 
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
@@ -23,24 +22,27 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
     var callback : ((String,String,String,String)->Void)?
 
     
-//    @IBAction func Cancel(_ sender: Any) {
-//        dismiss(animated: true, completion: nil)
-//        
-//    }
-    
     override func viewDidLoad() {
-        let currentDateTime = Date() //Calendar code from stackoverflow
         
+        super.viewDidLoad()
+        
+        
+        dateTextField.delegate = self
+        locationTextField.delegate = self
+        tripNameTextField.delegate = self
+        journalTextView.delegate = self
+        
+        
+        let currentDateTime = Date() //Calendar code from stackoverflow
         let formatter = DateFormatter()
         formatter.timeStyle = .none
         formatter.dateStyle = .short
-        
         dateTextField.text = formatter.string(from: currentDateTime)
-        super.viewDidLoad()
+        
+        
         journalTextView.layer.borderColor = UIColor(red:0.76, green:0.76, blue:0.76, alpha:1.0).cgColor
         journalTextView.layer.borderWidth = 1.0
         journalTextView.layer.cornerRadius = 5.0
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,8 +99,18 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func cancelEditing(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
     
     

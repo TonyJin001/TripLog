@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class EditJournalViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate {
+class EditJournalViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
@@ -19,11 +19,20 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
     
+    var type:EditType = .edit
+    
     var journalEntryDetails:JournalEntry? = nil
     var callback : ((String,String,String,String)->Void)? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateTextField.delegate = self
+        locationTextField.delegate = self
+        tripNameTextField.delegate = self
+        journalTextView.delegate = self
+        
+        
 
         // Do any additional setup after loading the view.
         if let date = journalEntryDetails?.date {
@@ -41,11 +50,27 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         if let text = journalEntryDetails?.text {
             journalTextView.text = text
         }
+        
+        // Automatically set the time if this is a new entry
+        if self.type == .new {
+            let currentDateTime = Date() //Calendar code from stackoverflow
+            let formatter = DateFormatter()
+            formatter.timeStyle = .none
+            formatter.dateStyle = .short
+            dateTextField.text = formatter.string(from: currentDateTime)
+        }
+        
+        journalTextView.layer.borderColor = UIColor(red:0.76, green:0.76, blue:0.76, alpha:1.0).cgColor
+        journalTextView.layer.borderWidth = 1.0
+        journalTextView.layer.cornerRadius = 5.0
+
+        
     }
     
-    @IBAction func cancelEditing(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
+//    @IBAction func cancelEditing(_ sender: Any) {
+//        dismiss(animated: true, completion: nil)
+//    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -101,7 +126,19 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         self.dismiss(animated: true, completion: nil)
     }
 
-
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
 
     // MARK: - Navigation
 
@@ -122,4 +159,9 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         }
     }
 
+}
+
+enum EditType {
+    case new
+    case edit
 }

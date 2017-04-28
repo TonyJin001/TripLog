@@ -146,13 +146,14 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         
         switch(segue.identifier ?? ""){
         case "AddJournal":
-//            guard let navController = segue.destination as? UINavigationController else{
-//                fatalError("Unexpected destination: \(segue.destination)")
-//            }
-            guard let destination = segue.destination as? NewJournalViewController else{
+
+            guard let destination = segue.destination as? EditJournalViewController else{
                 fatalError("Unexpected destination: \(segue.destination)")
             }
 
+            destination.title = "New Journal"
+            destination.type = .new
+            
             destination.callback = { (text, date, location, tripName) in
                 self.journalEntries.add(text:text, date:date, location:location, tripName:tripName)
             }
