@@ -30,15 +30,19 @@ class JournalDetailViewController: UIViewController {
         super.viewDidLoad()
 
         if let date = journalEntryDetails?.date {
-            dateLabel.text = date
+            dateLabel.text = "Date: " + date
         }
         
         if let location = journalEntryDetails?.location {
-            locationLabel.text = location
+            locationLabel.text = "Location: " + location
         }
         
         if let text = journalEntryDetails?.text {
             textTextView.text = text
+        }
+        
+        if let title = journalEntryDetails?.trip?.tripName {
+            self.title = title
         }
         
     }
@@ -86,11 +90,11 @@ class JournalDetailViewController: UIViewController {
 //            }
         case "EditJournal":
             
-            guard let navController = segue.destination as? UINavigationController else{
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
+//            guard let navController = segue.destination as? UINavigationController else{
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
             
-            guard let destination = navController.topViewController as? EditJournalViewController else {
+            guard let destination = segue.destination as? EditJournalViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             

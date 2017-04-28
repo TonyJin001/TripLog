@@ -23,10 +23,10 @@ class NewJournalViewController: UIViewController, UINavigationControllerDelegate
     var callback : ((String,String,String,String)->Void)?
 
     
-    @IBAction func Cancel(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-        
-    }
+//    @IBAction func Cancel(_ sender: Any) {
+//        dismiss(animated: true, completion: nil)
+//        
+//    }
     
     override func viewDidLoad() {
         let currentDateTime = Date() //Calendar code from stackoverflow
