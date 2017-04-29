@@ -20,7 +20,7 @@ class JournalDetailViewController: UIViewController {
     
     var newDate = ""
     var newLocation = ""
-    var newText = ""
+    var newText:NSAttributedString? = nil
     var newTripName = ""
     
     var journalEntryDetails : JournalEntry? = nil
@@ -41,8 +41,8 @@ class JournalDetailViewController: UIViewController {
             locationLabel.text = "Location: " + location
         }
         
-        if let text = journalEntryDetails?.text {
-            textTextView.text = text
+        if let text:NSAttributedString = journalEntryDetails?.text as! NSAttributedString {
+            textTextView.attributedText = text
         }
         
         if let title = journalEntryDetails?.trip?.tripName {
@@ -124,7 +124,7 @@ class JournalDetailViewController: UIViewController {
                 
                 let datePredicate = NSPredicate(format: "date == %@", self.newDate)
                 let locationPredicate = NSPredicate(format: "location == %@", self.newLocation)
-                let textPredicate = NSPredicate(format: "text == %@", self.newText)
+                let textPredicate = NSPredicate(format: "text == %@", self.newText!)
                 let tripNamePredicate = NSPredicate(format: "trip.tripName == %@", self.newTripName)
                 let andPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate,locationPredicate,textPredicate,tripNamePredicate])
                 
@@ -146,7 +146,7 @@ class JournalDetailViewController: UIViewController {
                         }
                         
                         if let text = self.journalEntryDetails?.text {
-                            self.textTextView.text = text
+                            self.textTextView.attributedText = text as! NSAttributedString
                         }
                     }
                 } catch {

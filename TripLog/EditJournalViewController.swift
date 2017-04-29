@@ -23,7 +23,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     var type:EditType = .edit
     
     var journalEntryDetails:JournalEntry? = nil
-    var callback : ((String,String,String,String)->Void)? = nil
+    var callback : ((NSAttributedString,String,String,String)->Void)? = nil
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setToolbarHidden(false, animated: true)
@@ -42,22 +42,25 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
 
-        // Do any additional setup after loading the view.
-        if let date = journalEntryDetails?.date {
-            dateTextField.text = date
+        if self.type != .new {
+            // Do any additional setup after loading the view.
+            if let date = journalEntryDetails?.date {
+                dateTextField.text = date
+            }
+            
+            if let location = journalEntryDetails?.location {
+                locationTextField.text = location
+            }
+            
+            if let tripName = journalEntryDetails?.trip?.tripName {
+                tripNameTextField.text = tripName
+            }
+            
+            if let text:NSAttributedString = journalEntryDetails?.text as! NSAttributedString {
+                journalTextView.attributedText = text
+            }
         }
         
-        if let location = journalEntryDetails?.location {
-            locationTextField.text = location
-        }
-        
-        if let tripName = journalEntryDetails?.trip?.tripName {
-            tripNameTextField.text = tripName
-        }
-        
-        if let text = journalEntryDetails?.text {
-            journalTextView.text = text
-        }
         
         // Automatically set the time if this is a new entry
         if self.type == .new {
@@ -176,13 +179,13 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             return
         }
         
-        let text = journalTextView.text ?? ""
+        let text = journalTextView.attributedText ?? nil
         let date = dateTextField.text ?? ""
         let location = locationTextField.text ?? ""
         let tripName = tripNameTextField.text ?? ""
         
         if callback != nil{
-            callback!(text, date, location,tripName)
+            callback!(text!, date, location,tripName)
         }
     }
 
