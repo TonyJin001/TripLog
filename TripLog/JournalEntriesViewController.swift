@@ -18,6 +18,11 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBOutlet weak var journalEntriesTableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setToolbarHidden(true, animated: true)
+        self.tabBarController?.tabBar.isHidden = false
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

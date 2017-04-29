@@ -26,6 +26,10 @@ class JournalDetailViewController: UIViewController {
     var journalEntryDetails : JournalEntry? = nil
     var journalEntries : JournalEntryCollection? = nil
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setToolbarHidden(false, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

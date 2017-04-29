@@ -18,11 +18,17 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var journalTextView: UITextView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
+//    @IBOutlet weak var toolbar: UIToolbar!
     
     var type:EditType = .edit
     
     var journalEntryDetails:JournalEntry? = nil
     var callback : ((String,String,String,String)->Void)? = nil
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setToolbarHidden(false, animated: true)
+        self.tabBarController?.tabBar.isHidden = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +38,9 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         tripNameTextField.delegate = self
         journalTextView.delegate = self
         
-        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
 
         // Do any additional setup after loading the view.
         if let date = journalEntryDetails?.date {
@@ -139,7 +147,26 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         }
         return true
     }
-
+    
+    func adjustForKeyboard(notification: Notification) {
+        let userInfo = notification.userInfo!
+        
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        
+        if notification.name == Notification.Name.UIKeyboardWillHide {
+            journalTextView.contentInset = UIEdgeInsets.zero
+        } else {
+            journalTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+        }
+        
+        journalTextView.scrollIndicatorInsets = journalTextView.contentInset
+        
+        let selectedRange = journalTextView.selectedRange
+        journalTextView.scrollRangeToVisible(selectedRange)
+    }
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
