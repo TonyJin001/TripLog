@@ -70,13 +70,12 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             let formatter = DateFormatter()
             formatter.dateFormat = "MM/dd/yyyy"
             dateTextField.text = formatter.string(from: currentDateTime)
+            
+            journalTextView.text = "Write something..."
+            journalTextView.textColor = UIColor.lightGray
+            
         }
-        
-        journalTextView.layer.borderColor = UIColor(red:0.76, green:0.76, blue:0.76, alpha:1.0).cgColor
-        journalTextView.layer.borderWidth = 1.0
-        journalTextView.layer.cornerRadius = 5.0
 
-        
     }
     
 //    @IBAction func cancelEditing(_ sender: Any) {
@@ -204,7 +203,20 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         
 
     }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
 
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Write something..."
+            textView.textColor = UIColor.lightGray
+        }
+    }
     
     func handleDatePicker(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()

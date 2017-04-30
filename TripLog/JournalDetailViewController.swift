@@ -34,7 +34,7 @@ class JournalDetailViewController: UIViewController {
         super.viewDidLoad()
 
         if let date = journalEntryDetails?.date {
-            dateLabel.text = "Date: " + date
+            dateLabel.text = date
         }
         
         if let location = journalEntryDetails?.location {
@@ -42,12 +42,53 @@ class JournalDetailViewController: UIViewController {
         }
         
         if let text:NSAttributedString = journalEntryDetails?.text as! NSAttributedString {
+            
+            
+            
+//            let newAttributedString = NSMutableAttributedString(attributedString: text)
+//            
+//            // Enumerate through all the font ranges
+//            newAttributedString.enumerateAttribute(NSFontAttributeName, in: NSMakeRange(0, newAttributedString.length), options: []) { value, range, stop in
+//                guard let currentFont = value as? UIFont else {
+//                    return
+//                }
+//                
+//                // An NSFontDescriptor describes the attributes of a font: family name, face name, point size, etc.
+//                // Here we describe the replacement font as coming from the "Hoefler Text" family
+//                
+//                let fontDescriptor = currentFont.fontDescriptor.addingAttributes([UIFontDescriptorFamilyAttribute: "Avenir"])
+//                
+//                // Ask the OS for an actual font that most closely matches the description above
+//                if let newFontDescriptor = fontDescriptor.matchingFontDescriptors(withMandatoryKeys: [UIFontDescriptorFamilyAttribute]).first {
+//                    let newFont = UIFont(descriptor: newFontDescriptor, size: 20.0)
+//                    newAttributedString.addAttributes([NSFontAttributeName: newFont], range: range)
+//                }
+//            }
+            
             textTextView.attributedText = text
+            
+            
+            
+            
+//            text.attribute(NSFontAttributeName,
+//                                         value: UIFont(
+//                                            name: "Avenir",
+//                                            size: 20.0)!,
+//                                         range: NSRange(
+//                                            location: 0,
+//                                            length: text.length))
+//            textTextView.attributedText = text
+//            
+//            let font = UIFont(name: "Avenir", size: 20.0)
+            
+
         }
         
         if let title = journalEntryDetails?.trip?.tripName {
             self.title = title
         }
+        
+        textTextView.font?.withSize(20.0)
         
     }
     
