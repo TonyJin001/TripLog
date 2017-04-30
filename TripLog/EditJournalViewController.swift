@@ -18,7 +18,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var journalTextView: UITextView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
-//    @IBOutlet weak var toolbar: UIToolbar!
+
     
     var type:EditType = .edit
     
@@ -37,6 +37,8 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         locationTextField.delegate = self
         tripNameTextField.delegate = self
         journalTextView.delegate = self
+        
+        dateTextField.tag = 1
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -66,8 +68,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         if self.type == .new {
             let currentDateTime = Date() //Calendar code from stackoverflow
             let formatter = DateFormatter()
-            formatter.timeStyle = .none
-            formatter.dateStyle = .short
+            formatter.dateFormat = "MM/dd/yyyy"
             dateTextField.text = formatter.string(from: currentDateTime)
         }
         
@@ -168,6 +169,54 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         let selectedRange = journalTextView.selectedRange
         journalTextView.scrollRangeToVisible(selectedRange)
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if textField.tag == 1 {
+            let inputView = UIView(frame: CGRect(x:0, y:0, width:self.view.frame.width, height:240))
+            
+            
+            let datePickerView  : UIDatePicker = UIDatePicker(frame: CGRect(x:0, y:40, width:0, height:0))
+            datePickerView.datePickerMode = UIDatePickerMode.date
+            inputView.addSubview(datePickerView) // add date picker to UIView
+            
+            var center:CGPoint = datePickerView.center
+            center.x = inputView.center.x
+            datePickerView.center = center
+            
+            
+            let doneButton = UIButton(frame: CGRect(x:(self.view.frame.size.width/2) - (100/2), y:0, width:100, height:50))
+            doneButton.setTitle("Done", for: UIControlState.normal)
+            doneButton.setTitle("Done", for: UIControlState.highlighted)
+            doneButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+            doneButton.setTitleColor(UIColor.gray, for: UIControlState.highlighted)
+            
+            inputView.addSubview(doneButton) // add Button to UIView
+            
+            doneButton.addTarget(self, action: #selector(doneButton(_:)), for: UIControlEvents.touchUpInside) // set button click event
+            
+            textField.inputView = inputView
+            datePickerView.addTarget(self, action: #selector(handleDatePicker(_:)), for: UIControlEvents.valueChanged)
+            
+            handleDatePicker(datePickerView) // Set the date on start.
+        }
+        
+        
+
+    }
+
+    
+    func handleDatePicker(_ sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateTextField.text = dateFormatter.string(from: sender.date)
+    }
+    
+    func doneButton(_ sender:UIButton)
+    {
+        dateTextField.resignFirstResponder() // To resign the inputView on clicking done.
+    }
+    
     
     
     // MARK: - Navigation
