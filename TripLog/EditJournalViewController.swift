@@ -18,6 +18,10 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var journalTextView: UITextView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
+    
+    var camera2:UIBarButtonItem!
+    var upload2:UIBarButtonItem!
+    var toolbar:UIToolbar!
 
     
     var type:EditType = .edit
@@ -41,9 +45,32 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         dateTextField.tag = 1
         
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
 
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
+//        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+        notificationCenter.addObserver(self,selector: #selector(adjustForKeyboard),name:Notification.Name.UIKeyboardWillShow, object:nil)
+        
+        
+        
+        // Create a button bar for the number pad
+        toolbar = UIToolbar()
+        toolbar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 35)
+        
+        // Setup the buttons to be put in the system.
+        
+        camera2 = UIBarButtonItem (title: "Camera", style: .plain, target: self, action: #selector(self.importImage))
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        upload2 = UIBarButtonItem (title: "Upload a photo/video", style: .plain, target: self, action: #selector(self.importImage))
+        
+        
+        //Put the buttons into the ToolBar and display the tool bar
+        toolbar.setItems([camera2,flexSpace,upload2], animated: false)
+        journalTextView.inputAccessoryView = toolbar
+        
+
+        
         if self.type != .new {
             // Do any additional setup after loading the view.
             if let date = journalEntryDetails?.date {
@@ -90,14 +117,15 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
 
 
     @IBAction func importImage(_ sender: UIBarButtonItem) {
+        
         let image = UIImagePickerController()
         image.delegate = self
         
         // Decide whether the user wants to take a photo or select it from the photo library
-        switch sender {
-        case cameraButton:
+        switch sender.title!{
+        case cameraButton.title!:
             image.sourceType = UIImagePickerControllerSourceType.camera
-        case uploadButton:
+        case uploadButton.title!:
             image.sourceType = UIImagePickerControllerSourceType.photoLibrary
         default:
             fatalError("Source type for image picker unknown")
@@ -119,13 +147,19 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             
             // Scale the image
             let oldWidth = attachment.image!.size.width
-            let scaleFactor = oldWidth/(journalTextView.frame.size.width-10)
+            let scaleFactor = oldWidth/(journalTextView.frame.size.width)
             attachment.image = UIImage(cgImage: attachment.image!.cgImage!, scale: scaleFactor, orientation:.up)
             
             //put your NSTextAttachment into and attributedString
             let attString = NSAttributedString(attachment: attachment)
             //add this attributed string to the current position.
+            
+            journalTextView.text = journalTextView.text + "\n"
+            journalTextView.text = journalTextView.text + "\n"
+            
             journalTextView.textStorage.insert(attString, at: journalTextView.selectedRange.location)
+            
+            journalTextView.font = UIFont(name: "Avenir", size: 20.0)
             
         } else {
             // Error
@@ -143,30 +177,40 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         return true
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if(text == "\n") {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
-    }
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//        if(text == "\n") {
+//            textView.resignFirstResponder()
+//            return false
+//        }
+//        return true
+//    }
     
     func adjustForKeyboard(notification: Notification) {
+        
+        var keyboardHeight:CGFloat = 0
+        
         let userInfo = notification.userInfo!
         
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
         
+       
+        
         if notification.name == Notification.Name.UIKeyboardWillHide {
             journalTextView.contentInset = UIEdgeInsets.zero
+            
         } else {
             journalTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+//            journalTextView.inputAccessoryView = toolbar
         }
         
         journalTextView.scrollIndicatorInsets = journalTextView.contentInset
         
         let selectedRange = journalTextView.selectedRange
         journalTextView.scrollRangeToVisible(selectedRange)
+        
+    
+//        journalTextView.inputAccessoryView = toolbar
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -256,3 +300,4 @@ enum EditType {
     case new
     case edit
 }
+

@@ -109,7 +109,7 @@ class SingleTripViewController: UIViewController, UITableViewDataSource, UITable
             guard let navController = segue.destination as? UINavigationController else{
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            guard let destination = navController.topViewController as? NewJournalViewController else{
+            guard let destination = navController.topViewController as? EditJournalViewController else{
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             

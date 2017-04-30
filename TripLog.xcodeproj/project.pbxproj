@@ -19,7 +19,6 @@
 		1FE36F891EADA651003E5325 /* TripLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F881EADA651003E5325 /* TripLogTests.swift */; };
 		1FE36F941EADA651003E5325 /* TripLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F931EADA651003E5325 /* TripLogUITests.swift */; };
 		1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */; };
-		1FE36FA41EAE80CD003E5325 /* NewJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */; };
 		5D23483A1EB16434009EB07C /* EditTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2348391EB16434009EB07C /* EditTripViewController.swift */; };
 		5D23483C1EB1724A009EB07C /* SingleTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D23483B1EB1724A009EB07C /* SingleTripViewController.swift */; };
 		5D23483E1EB1786E009EB07C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D23483D1EB1786E009EB07C /* MapViewController.swift */; };
@@ -64,7 +63,6 @@
 		1FE36F931EADA651003E5325 /* TripLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogUITests.swift; sourceTree = "<group>"; };
 		1FE36F951EADA651003E5325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalEntriesTableViewCell.swift; sourceTree = "<group>"; };
-		1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewJournalViewController.swift; sourceTree = "<group>"; };
 		5D2348391EB16434009EB07C /* EditTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTripViewController.swift; sourceTree = "<group>"; };
 		5D23483B1EB1724A009EB07C /* SingleTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTripViewController.swift; sourceTree = "<group>"; };
 		5D23483D1EB1786E009EB07C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 				5D2348391EB16434009EB07C /* EditTripViewController.swift */,
 				5DCD3CC31EAFCF1D00A59DE1 /* NewTripViewController.swift */,
 				5DBFCE7A1EAEE7D80002892C /* TripTableViewCell.swift */,
-				1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */,
 				1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */,
 				1FE36F7A1EADA651003E5325 /* Assets.xcassets */,
 				1FE36F7C1EADA651003E5325 /* LaunchScreen.storyboard */,
@@ -304,7 +301,6 @@
 				1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */,
 				5D23483E1EB1786E009EB07C /* MapViewController.swift in Sources */,
 				5D23483A1EB16434009EB07C /* EditTripViewController.swift in Sources */,
-				1FE36FA41EAE80CD003E5325 /* NewJournalViewController.swift in Sources */,
 				1F4F38E51EB0394700D015D9 /* JournalDetailViewController.swift in Sources */,
 				1F4F38E71EB12E2700D015D9 /* EditJournalViewController.swift in Sources */,
 				1F4F38DB1EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld in Sources */,
