@@ -26,6 +26,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     
     var type:EditType = .edit
     
+    var journalEntries:JournalEntryCollection? = nil
     var journalEntryDetails:JournalEntry? = nil
     var callback : ((NSAttributedString,String,String,String)->Void)? = nil
     
@@ -42,7 +43,10 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         tripNameTextField.delegate = self
         journalTextView.delegate = self
         
-        dateTextField.tag = 1
+        
+        cameraButton.tag = 0
+        uploadButton.tag = 1
+        dateTextField.tag = 2
         
         let notificationCenter = NotificationCenter.default
 
@@ -58,14 +62,25 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         
         // Setup the buttons to be put in the system.
         
-        camera2 = UIBarButtonItem (title: "Camera", style: .plain, target: self, action: #selector(self.importImage))
+        let camera = UIButton.init(type:.custom)
+        camera.setImage(UIImage(named: "Camera-50.png"), for: UIControlState.normal)
+        camera.addTarget(self, action: #selector(self.importImage(_:)), for: UIControlEvents.touchUpInside)
+        camera.frame = CGRect(x: 0, y: 0, width: 53, height: 51)
+        camera.tag = 0
+        camera2 = UIBarButtonItem(customView: camera)
+        camera2.tintColor = self.view.tintColor
+        
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
-        upload2 = UIBarButtonItem (title: "Upload a photo/video", style: .plain, target: self, action: #selector(self.importImage))
+        let upload = UIButton.init(type:.custom)
+        upload.setImage(UIImage(named: "Picture-50.png"), for: UIControlState.normal)
+        upload.addTarget(self, action: #selector(self.importImage(_:)), for: UIControlEvents.touchUpInside)
+        upload.frame = CGRect(x: 0, y: 0, width: 53, height: 51)
+        upload.tag = 1
+        upload2 = UIBarButtonItem(customView: upload)
+        upload2.tintColor = uploadButton.tintColor
         
-        
-        //Put the buttons into the ToolBar and display the tool bar
         toolbar.setItems([camera2,flexSpace,upload2], animated: false)
         journalTextView.inputAccessoryView = toolbar
         
@@ -88,6 +103,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             if let text:NSAttributedString = journalEntryDetails?.text as! NSAttributedString {
                 journalTextView.attributedText = text
             }
+
         }
         
         
@@ -100,14 +116,10 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             
             journalTextView.text = "Write something..."
             journalTextView.textColor = UIColor.lightGray
-            
         }
-
+        
     }
     
-//    @IBAction func cancelEditing(_ sender: Any) {
-//        dismiss(animated: true, completion: nil)
-//    }
     
 
     override func didReceiveMemoryWarning() {
@@ -122,10 +134,10 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         image.delegate = self
         
         // Decide whether the user wants to take a photo or select it from the photo library
-        switch sender.title!{
-        case cameraButton.title!:
+        switch sender.tag{
+        case 0:
             image.sourceType = UIImagePickerControllerSourceType.camera
-        case uploadButton.title!:
+        case 1:
             image.sourceType = UIImagePickerControllerSourceType.photoLibrary
         default:
             fatalError("Source type for image picker unknown")
@@ -177,13 +189,6 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         return true
     }
     
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//        if(text == "\n") {
-//            textView.resignFirstResponder()
-//            return false
-//        }
-//        return true
-//    }
     
     func adjustForKeyboard(notification: Notification) {
         
@@ -215,7 +220,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        if textField.tag == 1 {
+        if textField.tag == 2 {
             let inputView = UIView(frame: CGRect(x:0, y:0, width:self.view.frame.width, height:240))
             
             

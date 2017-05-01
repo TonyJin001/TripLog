@@ -196,7 +196,13 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         journalEntriesTableView.reloadData()
     }
 
-
+//    @IBAction func unwindFromEditDelete(sender: UIStoryboardSegue){
+//        if let sourceViewController = sender.source as? JournalDetailViewController {
+//            let deletedJournal:JournalEntry = sourceViewController.journalEntryDetails!
+//            journalEntries.delete(deletedJournal)
+//        }
+//        journalEntriesTableView.reloadData()
+//    }
 
 }
 

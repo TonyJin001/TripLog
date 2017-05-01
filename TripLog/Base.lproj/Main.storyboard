@@ -172,9 +172,15 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Share" id="Dh2-oQ-ZSH">
+                        <barButtonItem systemItem="action" id="Dh2-oQ-ZSH">
                             <connections>
                                 <action selector="shareButtonClicked:" destination="Wqa-rV-cbl" id="bHa-At-pFE"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="imf-Sa-jXf"/>
+                        <barButtonItem systemItem="trash" id="LKm-Kt-Ssw">
+                            <connections>
+                                <action selector="deleteButtonClicked:" destination="Wqa-rV-cbl" id="dMl-lC-1U2"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -297,13 +303,13 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Camera" id="Ats-XL-Rhc">
+                        <barButtonItem image="Camera-50" id="Ats-XL-Rhc">
                             <connections>
                                 <action selector="importImage:" destination="TYM-nd-d0E" id="WFD-FC-hB1"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="wda-W4-gxP"/>
-                        <barButtonItem title="Upload a photo/video" id="cIb-r4-XZ9">
+                        <barButtonItem image="Picture-50" id="cIb-r4-XZ9">
                             <connections>
                                 <action selector="importImage:" destination="TYM-nd-d0E" id="Pfm-Kh-aDK"/>
                             </connections>
@@ -891,11 +897,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Camera-50" width="25" height="25"/>
+        <image name="Picture-50" width="25" height="25"/>
         <image name="earth-america-7" width="30" height="30"/>
         <image name="note-write-7" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qgu-Bx-CKy"/>
-        <segue reference="dCT-tE-Y8K"/>
+        <segue reference="6LY-FJ-1bW"/>
     </inferredMetricsTieBreakers>
 </document>

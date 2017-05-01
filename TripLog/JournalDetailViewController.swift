@@ -119,6 +119,15 @@ class JournalDetailViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func deleteButtonClicked(_ sender: UIBarButtonItem) {
+        journalEntries?.delete(journalEntryDetails!)
+        if let nav = self.navigationController {
+            nav.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -127,6 +136,7 @@ class JournalDetailViewController: UIViewController {
             fatalError("Unexpected destination: \(segue.destination)")
         }
         
+        destination.journalEntries = journalEntries
         destination.journalEntryDetails = journalEntryDetails
         destination.callback = { (text, date, location, tripName) in
             self.journalEntries?.update(oldEntry: self.journalEntryDetails!, text:text, date:date, location:location, tripName:tripName)
