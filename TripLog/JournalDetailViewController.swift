@@ -120,12 +120,27 @@ class JournalDetailViewController: UIViewController {
     }
     
     @IBAction func deleteButtonClicked(_ sender: UIBarButtonItem) {
-        journalEntries?.delete(journalEntryDetails!)
-        if let nav = self.navigationController {
-            nav.popViewController(animated: true)
-        } else {
-            self.dismiss(animated: true, completion: nil)
-        }
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
+            (alert:UIAlertAction!)->Void in
+            self.journalEntries?.delete(self.journalEntryDetails!)
+            if let nav = self.navigationController {
+                nav.popViewController(animated: true)
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:
+        {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     
