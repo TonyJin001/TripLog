@@ -68,7 +68,6 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         camera.frame = CGRect(x: 0, y: 0, width: 53, height: 51)
         camera.tag = 0
         camera2 = UIBarButtonItem(customView: camera)
-        camera2.tintColor = self.view.tintColor
         
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -79,9 +78,8 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         upload.frame = CGRect(x: 0, y: 0, width: 53, height: 51)
         upload.tag = 1
         upload2 = UIBarButtonItem(customView: upload)
-        upload2.tintColor = uploadButton.tintColor
-        
         toolbar.setItems([camera2,flexSpace,upload2], animated: false)
+        
         journalTextView.inputAccessoryView = toolbar
         
 
