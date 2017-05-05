@@ -159,6 +159,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
 
             destination.title = "New Journal"
             destination.type = .new
+            destination.journalEntries = self.journalEntries
             destination.hidesBottomBarWhenPushed = true
             
             destination.callback = { (text, date, location, tripName) in

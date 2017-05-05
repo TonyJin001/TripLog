@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class EditJournalViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
+class EditJournalViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
@@ -23,6 +23,8 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     var upload2:UIBarButtonItem!
     var toolbar:UIToolbar!
 
+    var mockData = ["one", "two", "three"]
+    private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     
     var type:EditType = .edit
     
@@ -47,11 +49,12 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         cameraButton.tag = 0
         uploadButton.tag = 1
         dateTextField.tag = 2
+        tripNameTextField.tag = 3
         
         let notificationCenter = NotificationCenter.default
 
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-//        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+
         notificationCenter.addObserver(self,selector: #selector(adjustForKeyboard),name:Notification.Name.UIKeyboardWillShow, object:nil)
         
         
@@ -247,8 +250,71 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             handleDatePicker(datePickerView) // Set the date on start.
         }
         
-        
+        if textField.tag == 3 {
+            
+            // get all books
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Trip")
+            
+            // sort by author anme and then by title
+            let nameSort = NSSortDescriptor(key: "tripName", ascending: true)
+            request.sortDescriptors = [nameSort]
+            
+            // Create the controller using our moc
+            let moc = journalEntries?.managedObjectContext
 
+            fetchedResultsController  = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc!, sectionNameKeyPath: nil, cacheName: nil)
+            
+            //sectionNameKeyPath????
+            
+            fetchedResultsController.delegate = self
+            do {
+                try fetchedResultsController.performFetch()
+            }catch{
+                fatalError("Failed to fetch data")
+            }
+
+            let inputView = UIView(frame: CGRect(x:0, y:0, width:self.view.frame.width, height:240))
+            let inputPickerView:UIPickerView = UIPickerView()
+            inputPickerView.dataSource = self
+            inputPickerView.delegate = self
+            inputView.addSubview(inputPickerView)
+            
+            var center:CGPoint = inputPickerView.center
+            center.x = inputView.center.x
+            inputPickerView.center = center
+            
+            let doneButton = UIButton(frame: CGRect(x:(self.view.frame.size.width/2) - (100/2), y:0, width:100, height:50))
+            doneButton.setTitle("Done", for: UIControlState.normal)
+            doneButton.setTitle("Done", for: UIControlState.highlighted)
+            doneButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+            doneButton.setTitleColor(UIColor.gray, for: UIControlState.highlighted)
+            
+            inputView.addSubview(doneButton) // add Button to UIView
+            
+            doneButton.addTarget(self, action: #selector(doneButton(_:)), for: UIControlEvents.touchUpInside) // set button click event
+
+            textField.inputView = inputView
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let indexPath = NSIndexPath(row: row, section: 0)
+        let tempTrip:Trip = (fetchedResultsController.object(at: indexPath as IndexPath) as? Trip)!
+        return tempTrip.tripName
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let indexPath = NSIndexPath(row: row, section: 0)
+        let tempTrip:Trip = (fetchedResultsController.object(at: indexPath as IndexPath) as? Trip)!
+        tripNameTextField.text = tempTrip.tripName
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return (fetchedResultsController.fetchedObjects?.count)!
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -274,6 +340,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     func doneButton(_ sender:UIButton)
     {
         dateTextField.resignFirstResponder() // To resign the inputView on clicking done.
+        locationTextField.resignFirstResponder()
     }
     
     
