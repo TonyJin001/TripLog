@@ -13,6 +13,9 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     
+    var type:JournalEntriesViewType = .all
+    var tripName:String? = nil
+    
     private let journalEntries = JournalEntryCollection() {
         print("Core Data Connected")
     }
@@ -22,6 +25,10 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setToolbarHidden(true, animated: true)
         self.tabBarController?.tabBar.isHidden = false
+        if type == .oneTrip {
+            self.tabBarController?.tabBar.isHidden = true
+            self.navigationController?.setToolbarHidden(false, animated: true)
+        }
         journalEntriesTableView.reloadData()
     }
 
@@ -47,6 +54,12 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         // get all books
         let request = NSFetchRequest<NSFetchRequestResult>(entityName:"JournalEntry")
         
+        if self.type == .oneTrip && self.tripName != nil {
+            request.predicate = NSPredicate(format: "trip.tripName == %@", self.tripName!)
+        } else if self.type == .oneTrip && self.tripName == nil {
+            fatalError("Tripname shouldn't be nill when self.type is oneTrip")
+        }
+        
         // sort by author anme and then by title
         let dateSort = NSSortDescriptor(key: "date", ascending: false)
         let tripSort = NSSortDescriptor(key: "trip.tripName", ascending: true)
@@ -54,7 +67,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         
         // Create the controller using our moc
         let moc = journalEntries.managedObjectContext
-        fetchedResultsController  = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: "trip.tripName", cacheName: nil)
+        fetchedResultsController  = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
       
         //sectionNameKeyPath????
         
@@ -159,6 +172,9 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
 
             destination.title = "New Journal"
             destination.type = .new
+            if self.type == .oneTrip {
+                destination.presetTripName = self.tripName!
+            }
             destination.journalEntries = self.journalEntries
             destination.hidesBottomBarWhenPushed = true
             
@@ -188,6 +204,11 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             destination.journalEntries = journalEntries
             destination.hidesBottomBarWhenPushed = true
             
+        case "EditTrip":
+            guard let destination = segue.destination as? NewTripViewController else {
+                fatalError("Unexpected sender: \(sender)")
+            }
+            
             
         default:
             fatalError("Unexpeced segue identifier: \(segue.identifier)")
@@ -209,3 +230,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
 
 }
 
+enum JournalEntriesViewType {
+    case all
+    case oneTrip
+}

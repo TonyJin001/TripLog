@@ -27,6 +27,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     var toolbar:UIToolbar!
     var placesClient: GMSPlacesClient!
     var locationmgr : CLLocationManager!
+    var presetTripName : String?
 
     var tripNameTextFieldUsesKeyboard = false
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
@@ -138,6 +139,10 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
                     self.locationTextField.text = placeLikelihoodList.likelihoods[0].place.name
                 }
             })
+            
+            if self.presetTripName != nil {
+                tripNameTextField.text = self.presetTripName
+            }
 
         }
         
