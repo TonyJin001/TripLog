@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GooglePlaces
 
 class EditJournalViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, NSFetchedResultsControllerDelegate {
 
@@ -19,11 +20,15 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
     
+    // API Key: AIzaSyBQUi3v8-J-HUvTkNhfBGXbgP_K6EH8Flc
+    
     var camera2:UIBarButtonItem!
     var upload2:UIBarButtonItem!
     var toolbar:UIToolbar!
+    var placesClient: GMSPlacesClient!
+    var locationmgr : CLLocationManager!
 
-    var mockData = ["one", "two", "three"]
+    var tripNameTextFieldUsesKeyboard = false
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     
     var type:EditType = .edit
@@ -40,6 +45,11 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationmgr = CLLocationManager()
+        locationmgr.requestWhenInUseAuthorization()
+        placesClient = GMSPlacesClient.shared()
+        
+
         dateTextField.delegate = self
         locationTextField.delegate = self
         tripNameTextField.delegate = self
@@ -117,6 +127,18 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             
             journalTextView.text = "Write something..."
             journalTextView.textColor = UIColor.lightGray
+            
+            placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
+                if let error = error {
+                    print("Pick Place error: \(error.localizedDescription)")
+                    return
+                }
+                
+                if let placeLikelihoodList = placeLikelihoodList {
+                    self.locationTextField.text = placeLikelihoodList.likelihoods[0].place.name
+                }
+            })
+
         }
         
     }
@@ -250,7 +272,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             handleDatePicker(datePickerView) // Set the date on start.
         }
         
-        if textField.tag == 3 {
+        if textField.tag == 3 && !tripNameTextFieldUsesKeyboard{
             
             // get all books
             let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Trip")
@@ -302,19 +324,30 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let indexPath = NSIndexPath(row: row, section: 0)
+        if row == 0 {
+            return "Create a new trip..."
+        }
+        let indexPath = NSIndexPath(row: row - 1, section: 0)
         let tempTrip:Trip = (fetchedResultsController.object(at: indexPath as IndexPath) as? Trip)!
         return tempTrip.tripName
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let indexPath = NSIndexPath(row: row, section: 0)
-        let tempTrip:Trip = (fetchedResultsController.object(at: indexPath as IndexPath) as? Trip)!
-        tripNameTextField.text = tempTrip.tripName
+        if row == 0 {
+            tripNameTextFieldUsesKeyboard = true
+            tripNameTextField.text = ""
+            tripNameTextField.resignFirstResponder()
+            tripNameTextField.inputView = nil
+            tripNameTextField.becomeFirstResponder()
+        } else {
+            let indexPath = NSIndexPath(row: row-1, section: 0)
+            let tempTrip:Trip = (fetchedResultsController.object(at: indexPath as IndexPath) as? Trip)!
+            tripNameTextField.text = tempTrip.tripName
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return (fetchedResultsController.fetchedObjects?.count)!
+        return (fetchedResultsController.fetchedObjects?.count)! + 1
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -340,7 +373,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     func doneButton(_ sender:UIButton)
     {
         dateTextField.resignFirstResponder() // To resign the inputView on clicking done.
-        locationTextField.resignFirstResponder()
+        tripNameTextField.resignFirstResponder()
     }
     
     

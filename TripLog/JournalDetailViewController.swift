@@ -179,7 +179,7 @@ class JournalDetailViewController: UIViewController {
                 } else {
                     self.journalEntryDetails = matches?[0] as? JournalEntry
                     if let date = self.journalEntryDetails?.date {
-                        self.dateLabel.text = "Date: " + date
+                        self.dateLabel.text = date
                     }
                     
                     if let location = self.journalEntryDetails?.location {
