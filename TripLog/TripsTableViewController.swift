@@ -182,7 +182,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
             }
 
             destination.type = .oneTrip
-            destination.tripName = currentTrip.tripName
+            destination.trip = currentTrip
             destination.title = currentTrip.tripName
             destination.hidesBottomBarWhenPushed = true
             

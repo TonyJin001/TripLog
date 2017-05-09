@@ -14,7 +14,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     
     var type:JournalEntriesViewType = .all
-    var tripName:String? = nil
+    var trip:Trip? = nil
     
     private let journalEntries = JournalEntryCollection() {
         print("Core Data Connected")
@@ -54,9 +54,9 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         // get all books
         let request = NSFetchRequest<NSFetchRequestResult>(entityName:"JournalEntry")
         
-        if self.type == .oneTrip && self.tripName != nil {
-            request.predicate = NSPredicate(format: "trip.tripName == %@", self.tripName!)
-        } else if self.type == .oneTrip && self.tripName == nil {
+        if self.type == .oneTrip && self.trip != nil {
+            request.predicate = NSPredicate(format: "trip.tripName == %@", self.trip!.tripName!)
+        } else if self.type == .oneTrip && self.trip == nil {
             fatalError("Tripname shouldn't be nill when self.type is oneTrip")
         }
         
@@ -173,7 +173,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             destination.title = "New Journal Entry"
             destination.type = .new
             if self.type == .oneTrip {
-                destination.presetTripName = self.tripName!
+                destination.presetTripName = self.trip?.tripName!
             }
             destination.journalEntries = self.journalEntries
             destination.hidesBottomBarWhenPushed = true
@@ -207,6 +207,17 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         case "EditTrip":
             guard let destination = segue.destination as? NewTripViewController else {
                 fatalError("Unexpected sender: \(sender)")
+            }
+            
+            if (self.trip != nil){
+                if (self.trip?.startDate == nil || self.trip?.endDate == nil){
+                    
+                    destination.type = .update((self.trip?.tripName)!, "", "")
+                }
+                else{
+                destination.type = .update((self.trip?.tripName)!, (self.trip?.startDate)!, (self.trip?.endDate)!)
+                
+                }
             }
         
         case "ToMap":

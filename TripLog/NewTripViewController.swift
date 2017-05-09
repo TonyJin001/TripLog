@@ -12,10 +12,12 @@ class NewTripViewController: UIViewController {
     
     var type: TripType = .new
     
+    
     var callback: ((String, String, String)->Void)?
 
     @IBOutlet weak var tripnamefield: UITextField!
 
+    @IBOutlet weak var deleteButton: UIButton!
     
     @IBOutlet weak var startdatefield: UITextField!
     @IBOutlet weak var enddatefield: UITextField!
@@ -29,11 +31,15 @@ class NewTripViewController: UIViewController {
         formatter.timeStyle = .none
         formatter.dateStyle = .short
         
+        
        
         super.viewDidLoad()
 
         switch(type){
         case .new:
+            startdatefield.text = formatter.string(from: Date())
+            enddatefield.text = "--"
+            deleteButton.isHidden = true
             break
         case let .update(tripName, startDate, endDate):
             
