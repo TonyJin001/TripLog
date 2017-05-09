@@ -18,6 +18,9 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         print("Core Data Connected for trips")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tripsTableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +29,6 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         
         tripsTableView.delegate = self
         tripsTableView.dataSource = self
-        tripsTableView.reloadData()
         
         tripsTableView.rowHeight = 106.5
         

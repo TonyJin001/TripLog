@@ -161,13 +161,14 @@ class JournalDetailViewController: UIViewController {
             self.newTripName = tripName
             
             let request = NSFetchRequest<NSFetchRequestResult>(entityName:"JournalEntry")
-            //                request.fetchLimit = 1
+           
+            //MARK:               NEEDS FIXING!!!!/////
             
             let datePredicate = NSPredicate(format: "date == %@", self.newDate)
             let locationPredicate = NSPredicate(format: "location == %@", self.newLocation)
             let textPredicate = NSPredicate(format: "text == %@", self.newText!)
             let tripNamePredicate = NSPredicate(format: "trip.tripName == %@", self.newTripName)
-            let andPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate,locationPredicate,textPredicate,tripNamePredicate])
+            let andPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate,locationPredicate,tripNamePredicate])
             
             request.predicate = andPredicate
             

@@ -219,7 +219,7 @@
             </objects>
             <point key="canvasLocation" x="2486" y="-980"/>
         </scene>
-        <!--Edit Journal-->
+        <!--Edit Journal Entry-->
         <scene sceneID="RTO-ba-Flp">
             <objects>
                 <viewController id="TYM-nd-d0E" customClass="EditJournalViewController" customModule="TripLog" customModuleProvider="target" sceneMemberID="viewController">
@@ -337,7 +337,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Edit Journal" id="YOH-NV-Qwm">
+                    <navigationItem key="navigationItem" title="Edit Journal Entry" id="YOH-NV-Qwm">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QGT-mv-GQv">
                             <connections>
                                 <segue destination="FFQ-2j-Rlg" kind="unwind" unwindAction="unwindFromEditWithSender:" id="xib-Zt-7WN"/>
@@ -391,7 +391,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="weU-06-GHG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Journal Entries" image="note-write-7" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sXf-de-ijy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sXf-de-ijy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -636,7 +636,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gn5-d1-5bN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trips" image="earth-america-7" id="mRj-g3-65c"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SkW-eI-q9c">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SkW-eI-q9c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
