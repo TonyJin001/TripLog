@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+import MessageUI
 
-class JournalDetailViewController: UIViewController {
+class JournalDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var textTextView: UITextView!
@@ -107,6 +108,7 @@ class JournalDetailViewController: UIViewController {
         let shareAction = UIAlertAction(title: "Share", style: .default, handler: {
             (alert:UIAlertAction!)->Void in
             print("Share")
+            self.sendEmail()
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:
@@ -203,8 +205,32 @@ class JournalDetailViewController: UIViewController {
         
     }
 
-
+    // MARK: //////////
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setSubject("Journal entry shared from TripLog")
+            
+            var htmlString = ""
+            do {
+                let data = try textTextView.attributedText.data(from: NSMakeRange(0, textTextView.attributedText.length), documentAttributes: [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType])
+                htmlString = String(data: data, encoding: String.Encoding.utf8)!
+            }catch {
+                print("Can't convert attributed string to HTML string")
+            }
+            mail.setMessageBody(htmlString, isHTML: true)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
     
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    /////////
     
   
 }

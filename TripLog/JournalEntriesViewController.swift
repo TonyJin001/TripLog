@@ -220,12 +220,12 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
         
-        case "ToMap":
-            guard let destination = segue.destination as? MapViewController else {
+        case "ViewMap":
+            guard let destination = segue.destination as? GoogleMapViewController else {
                 fatalError("Unexpected sender: \(sender)")
             }
             
-            
+            destination.fetchedResultsController = self.fetchedResultsController
             
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")
