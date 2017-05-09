@@ -170,7 +170,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
                 fatalError("Unexpected destination: \(segue.destination)")
             }
 
-            destination.title = "New Journal"
+            destination.title = "New Journal Entry"
             destination.type = .new
             if self.type == .oneTrip {
                 destination.presetTripName = self.tripName!

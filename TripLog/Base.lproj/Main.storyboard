@@ -35,10 +35,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="e5o-fY-Vtq">
-                                                    <rect key="frame" x="10" y="18" width="109" height="70.5"/>
+                                                    <rect key="frame" x="10" y="18" width="0.0" height="70.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zs-ZW-iC0">
-                                                            <rect key="frame" x="0.0" y="0.0" width="70.5" height="0.0"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="23.5"/>
                                                             <attributedString key="attributedText">
                                                                 <fragment content="Label">
                                                                     <attributes>
@@ -50,22 +50,22 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="eBV-IU-ERS">
-                                                            <rect key="frame" x="70.5" y="0.0" width="38.5" height="48"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="48"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7s-Rx-tlz">
-                                                                    <rect key="frame" x="5.5" y="0.0" width="33" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBI-T4-IHB">
-                                                                    <rect key="frame" x="5.5" y="16" width="33" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="16" width="0.0" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zd-uz-e12">
-                                                                    <rect key="frame" x="5.5" y="32" width="33" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="32" width="0.0" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -215,7 +215,7 @@
             </objects>
             <point key="canvasLocation" x="2486" y="-980"/>
         </scene>
-        <!--Edit Journal-->
+        <!--Edit Journal Entry-->
         <scene sceneID="RTO-ba-Flp">
             <objects>
                 <viewController id="TYM-nd-d0E" customClass="EditJournalViewController" customModule="TripLog" customModuleProvider="target" sceneMemberID="viewController">
@@ -333,7 +333,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Edit Journal" id="YOH-NV-Qwm">
+                    <navigationItem key="navigationItem" title="Edit Journal Entry" id="YOH-NV-Qwm">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QGT-mv-GQv">
                             <connections>
                                 <segue destination="FFQ-2j-Rlg" kind="unwind" unwindAction="unwindFromEditWithSender:" id="xib-Zt-7WN"/>
@@ -387,7 +387,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="weU-06-GHG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Journal Entries" image="note-write-7" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sXf-de-ijy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sXf-de-ijy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -547,7 +547,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ghe-fi-4hT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ah3-78-mxR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ah3-78-mxR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -658,7 +658,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gn5-d1-5bN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trips" image="earth-america-7" id="mRj-g3-65c"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SkW-eI-q9c">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SkW-eI-q9c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
