@@ -41,6 +41,16 @@ class MapViewController: UIViewController {
     }
     
 
+    @IBAction func back(_ sender: UIBarButtonItem) {
+        if presentingViewController is UINavigationController{
+            dismiss(animated: true, completion: nil)
+        }else if let owningNavController = navigationController{
+            owningNavController.popViewController(animated: true)
+        }else{
+            fatalError("View is not contained by a navigation controller")
+        }
+    }
+
     /*
     // MARK: - Navigation
 
@@ -52,3 +62,4 @@ class MapViewController: UIViewController {
     */
 
 }
+

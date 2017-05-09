@@ -170,7 +170,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
                 fatalError("Unexpected destination: \(segue.destination)")
             }
 
-            destination.title = "New Journal"
+            destination.title = "New Journal Entry"
             destination.type = .new
             if self.type == .oneTrip {
                 destination.presetTripName = self.tripName!
@@ -208,10 +208,16 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             guard let destination = segue.destination as? NewTripViewController else {
                 fatalError("Unexpected sender: \(sender)")
             }
+        
+        case "ToMap":
+            guard let destination = segue.destination as? MapViewController else {
+                fatalError("Unexpected sender: \(sender)")
+            }
+            
             
             
         default:
-            fatalError("Unexpeced segue identifier: \(segue.identifier)")
+            fatalError("Unexpected segue identifier: \(segue.identifier)")
         }
         
     }

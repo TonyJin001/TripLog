@@ -155,6 +155,11 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
+            destination.type = .new
+            destination.callback = { (tripName, startDate, endDate) in
+                self.tripEntries.add(tripName: tripName, startDate: startDate, endDate: endDate)
+            }
+            
             
         case "ViewTrip":
             
@@ -184,6 +189,9 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         default:
             fatalError("Unexpected segue identifier")
         }
+    }
+    @IBAction func unwindFromEdit(sender: UIStoryboardSegue){
+        tripsTableView.reloadData()
     }
 }
             
