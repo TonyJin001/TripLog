@@ -64,6 +64,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         uploadButton.tag = 1
         dateTextField.tag = 2
         tripNameTextField.tag = 3
+        locationTextField.tag = 4
         
         let notificationCenter = NotificationCenter.default
 
@@ -327,6 +328,12 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
 
             textField.inputView = inputView
         }
+        
+        if textField.tag == 4 {
+            let autocompleteController = GMSAutocompleteViewController()
+            autocompleteController.delegate = self
+            present(autocompleteController, animated: true, completion: nil)
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -414,3 +421,35 @@ enum EditType {
     case edit
 }
 
+extension EditJournalViewController: GMSAutocompleteViewControllerDelegate {
+    
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(place.name)")
+        print("Place address: \(place.formattedAddress)")
+        print("Place attributions: \(place.attributions)")
+        self.locationTextField.text = place.name
+        self.latitude = place.coordinate.latitude
+        self.longitude = place.coordinate.longitude
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+}

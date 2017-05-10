@@ -11,13 +11,15 @@ import CoreData
 import GoogleMaps
 import GooglePlaces
 
-class GoogleMapViewController: UIViewController {
+
+class GoogleMapViewController: UIViewController{
 
     var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     var locationManager = CLLocationManager()
     var currentLocation: GMSPlace?
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
+    
     var zoomLevel: Float = 15.0
     var centerLatitude:Double?
     var centerLongitude:Double?
@@ -37,26 +39,13 @@ class GoogleMapViewController: UIViewController {
         locationManager.delegate = self
         
         placesClient = GMSPlacesClient.shared()
-        
-//        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
-//            if let error = error {
-//                print("Pick Place error: \(error.localizedDescription)")
-//                return
-//            }
-//            
-//            if let placeLikelihoodList = placeLikelihoodList {
-//                self.currentLocation = placeLikelihoodList.likelihoods[0].place
-//            }
-//        })
+
         
         // hardcoded section
         let totalNumberOfObjects = self.fetchedResultsController!.sections?[0].numberOfObjects
         
-        print("Totalnumberofobjects: " + String(describing: totalNumberOfObjects))
-        
         
         if totalNumberOfObjects == 0 {
-            print("Number of objects is 0!!!!!!!!!!!!!")
             centerLatitude = 0
             centerLongitude = 0
         }
@@ -76,6 +65,12 @@ class GoogleMapViewController: UIViewController {
         self.mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.mapView.isMyLocationEnabled = true
         
+        
+        
+        
+
+        
+        
         for i in 0..<totalNumberOfObjects! {
             
             print(String(i)+"!!!!!!!!!!!!!!!!!!")
@@ -92,7 +87,6 @@ class GoogleMapViewController: UIViewController {
             marker.map = self.mapView
             
         }
-
         
        
         
@@ -163,3 +157,4 @@ extension GoogleMapViewController: CLLocationManagerDelegate {
         print("Error: \(error)")
     }
 }
+
