@@ -28,6 +28,9 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     var placesClient: GMSPlacesClient!
     var locationmgr : CLLocationManager!
     var presetTripName : String?
+    
+    var latitude: Double?
+    var longitude: Double?
 
     var tripNameTextFieldUsesKeyboard = false
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
@@ -36,7 +39,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     
     var journalEntries:JournalEntryCollection? = nil
     var journalEntryDetails:JournalEntry? = nil
-    var callback : ((NSAttributedString,String,String,String)->Void)? = nil
+    var callback : ((NSAttributedString,String,String,String,Double,Double)->Void)? = nil
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setToolbarHidden(false, animated: true)
@@ -137,6 +140,8 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
                 
                 if let placeLikelihoodList = placeLikelihoodList {
                     self.locationTextField.text = placeLikelihoodList.likelihoods[0].place.name
+                    self.latitude = placeLikelihoodList.likelihoods[0].place.coordinate.latitude
+                    self.longitude = placeLikelihoodList.likelihoods[0].place.coordinate.longitude
                 }
             })
             
@@ -398,7 +403,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         let tripName = tripNameTextField.text ?? ""
         
         if callback != nil{
-            callback!(text!, date, location,tripName)
+            callback!(text!, date, location,tripName,latitude ?? 0,longitude ?? 0)
         }
     }
 

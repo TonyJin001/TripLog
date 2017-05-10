@@ -178,8 +178,8 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             destination.journalEntries = self.journalEntries
             destination.hidesBottomBarWhenPushed = true
             
-            destination.callback = { (text, date, location, tripName) in
-                self.journalEntries.add(text:text, date:date, location:location, tripName:tripName)
+            destination.callback = { (text, date, location, tripName, latitude, longitude) in
+                self.journalEntries.add(text:text, date:date, location:location, tripName:tripName, latitude:latitude, longitude: longitude)
             }
             
         case "ViewJournal":

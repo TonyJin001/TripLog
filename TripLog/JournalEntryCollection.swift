@@ -58,7 +58,7 @@ class JournalEntryCollection{
         return nil
     }
     
-    func add (text:NSAttributedString,date:String,location:String,tripName:String) {
+    func add (text:NSAttributedString,date:String,location:String,tripName:String,latitude:Double,longitude:Double) {
         let trip = findTrip(name: tripName)
         var journalEntry:JournalEntry!
         managedObjectContext.performAndWait {
@@ -67,20 +67,24 @@ class JournalEntryCollection{
             journalEntry.date = date
             journalEntry.location = location
             journalEntry.trip = trip
+            journalEntry.latitude = latitude
+            journalEntry.longitude = longitude
             self.saveChanges()
         }
     }
     
-    func update(oldEntry: JournalEntry, text:NSAttributedString, date:String, location: String, tripName: String){
+    func update(oldEntry: JournalEntry, text:NSAttributedString, date:String, location: String, tripName: String, latitude:Double, longitude:Double){
         if oldEntry.trip?.tripName != tripName {
             // we can't just adjust the name because of various data dependancies
             // so we will delete the book and make a new one
             delete(oldEntry)
-            add(text:text, date:date, location:location,tripName:tripName)
+            add(text:text, date:date, location:location,tripName:tripName,latitude:latitude,longitude: longitude)
         }else{
             oldEntry.text = text
             oldEntry.date = date
             oldEntry.location = location
+            oldEntry.latitude = latitude
+            oldEntry.longitude = longitude
         }
         self.saveChanges()
     }

@@ -23,6 +23,8 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
     var newLocation = ""
     var newText:NSAttributedString? = nil
     var newTripName = ""
+    var newLatitude = 0.0
+    var newLongitude = 0.0
     
     var journalEntryDetails : JournalEntry? = nil
     var journalEntries : JournalEntryCollection? = nil
@@ -155,12 +157,14 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         
         destination.journalEntries = journalEntries
         destination.journalEntryDetails = journalEntryDetails
-        destination.callback = { (text, date, location, tripName) in
-            self.journalEntries?.update(oldEntry: self.journalEntryDetails!, text:text, date:date, location:location, tripName:tripName)
+        destination.callback = { (text, date, location, tripName, latitude, longitude) in
+            self.journalEntries?.update(oldEntry: self.journalEntryDetails!, text:text, date:date, location:location, tripName:tripName, latitude: latitude, longitude: longitude)
             self.newDate = date
             self.newLocation = location
             self.newText = text
             self.newTripName = tripName
+            self.newLatitude = latitude
+            self.newLongitude = longitude
             
             let request = NSFetchRequest<NSFetchRequestResult>(entityName:"JournalEntry")
            

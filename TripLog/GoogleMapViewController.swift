@@ -19,6 +19,8 @@ class GoogleMapViewController: UIViewController {
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
+    var centerLatitude:Double?
+    var centerLongitude:Double?
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.toolbar.isHidden = true
@@ -36,28 +38,67 @@ class GoogleMapViewController: UIViewController {
         
         placesClient = GMSPlacesClient.shared()
         
-        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
-            if let error = error {
-                print("Pick Place error: \(error.localizedDescription)")
-                return
+//        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
+//            if let error = error {
+//                print("Pick Place error: \(error.localizedDescription)")
+//                return
+//            }
+//            
+//            if let placeLikelihoodList = placeLikelihoodList {
+//                self.currentLocation = placeLikelihoodList.likelihoods[0].place
+//            }
+//        })
+        
+        // hardcoded section
+        let totalNumberOfObjects = self.fetchedResultsController!.sections?[0].numberOfObjects
+        
+        print("Totalnumberofobjects: " + String(describing: totalNumberOfObjects))
+        
+        
+        if totalNumberOfObjects == 0 {
+            print("Number of objects is 0!!!!!!!!!!!!!")
+            centerLatitude = 0
+            centerLongitude = 0
+        }
+        
+        // Set the center longitude and latitude
+        let indexPath = IndexPath(row: 0, section: 0)
+        guard let journalEntry = self.fetchedResultsController.object(at: indexPath) as? JournalEntry else {
+            fatalError("Cannot find entry")
+        }
+        centerLatitude = journalEntry.latitude
+        centerLongitude = journalEntry.longitude
+
+        // Create the map view and add snippets
+        let camera = GMSCameraPosition.camera(withLatitude: centerLatitude!, longitude: centerLongitude!, zoom: 12)
+        self.mapView = GMSMapView.map(withFrame: self.view.bounds, camera: camera)
+        self.mapView.settings.myLocationButton = true
+        self.mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.mapView.isMyLocationEnabled = true
+        
+        for i in 0..<totalNumberOfObjects! {
+            
+            print(String(i)+"!!!!!!!!!!!!!!!!!!")
+            
+            let indexPath = IndexPath(row: i, section: 0)
+            guard let journalEntry = self.fetchedResultsController.object(at: indexPath) as? JournalEntry else {
+                fatalError("Cannot find entry")
             }
             
-            if let placeLikelihoodList = placeLikelihoodList {
-                self.currentLocation = placeLikelihoodList.likelihoods[0].place
-                
-                
-                
-                let camera = GMSCameraPosition.camera(withLatitude: 1.285, longitude: 103.848, zoom: 12)
-                self.mapView = GMSMapView.map(withFrame: self.view.bounds, camera: camera)
-                self.mapView.settings.myLocationButton = true
-                self.mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                self.mapView.isMyLocationEnabled = true
-                //
-                //        // Add the map to the view, hide it until we've got a location update.
-                self.view.addSubview(self.mapView)
-                //        mapView.isHidden = false
-            }
-        })
+            let marker = GMSMarker()
+            marker.position = CLLocationCoordinate2D(latitude: journalEntry.latitude, longitude: journalEntry.longitude)
+            marker.title = journalEntry.trip?.tripName
+            marker.snippet = (journalEntry.text as! NSAttributedString).string
+            marker.map = self.mapView
+            
+        }
+
+        
+       
+        
+        // Add the map to the view, hide it until we've got a location update.
+        self.view.addSubview(self.mapView)
+        //        mapView.isHidden = false
         
     }
 
