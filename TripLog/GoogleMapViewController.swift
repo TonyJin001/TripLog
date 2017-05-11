@@ -21,7 +21,9 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
     var placesClient: GMSPlacesClient!
     var idToJournalEntry = [String : JournalEntry]()
     var markerToId = [GMSMarker:String]()
+    var idToMarker = [String:GMSMarker]()
     var selectedJournalEntry:JournalEntry?
+    var journalEntries:JournalEntryCollection?
     
     var zoomLevel: Float = 15.0
     var centerLatitude:Double?
@@ -29,11 +31,6 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.toolbar.isHidden = true
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
@@ -42,7 +39,7 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
         locationManager.delegate = self
         
         placesClient = GMSPlacesClient.shared()
-
+        
         
         // hardcoded section
         let totalNumberOfObjects = self.fetchedResultsController!.sections?[0].numberOfObjects
@@ -60,7 +57,7 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
         }
         centerLatitude = journalEntry.latitude
         centerLongitude = journalEntry.longitude
-
+        
         // Create the map view and add snippets
         let camera = GMSCameraPosition.camera(withLatitude: centerLatitude!, longitude: centerLongitude!, zoom: 12)
         self.mapView = GMSMapView.map(withFrame: self.view.bounds, camera: camera)
@@ -72,7 +69,7 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
         
         
         
-
+        
         
         
         for i in 0..<totalNumberOfObjects! {
@@ -85,23 +82,32 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
             }
             
             let objectID:String = String(describing: journalEntry.objectID)
-            print(objectID)
             
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: journalEntry.latitude, longitude: journalEntry.longitude)
             marker.title = journalEntry.trip?.tripName
             marker.snippet = (journalEntry.text as! NSAttributedString).string
             marker.map = self.mapView
+            
             markerToId[marker] = objectID
+            idToMarker[objectID] = marker
             
             idToJournalEntry[objectID] = journalEntry
+            
         }
         
-       
+        
         
         // Add the map to the view, hide it until we've got a location update.
         self.view.addSubview(self.mapView)
         //        mapView.isHidden = false
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        
         
     }
 
@@ -131,11 +137,12 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
             } else {
                 fatalError("selectedJournalEntry is nil")
             }
-            destination.navigationController?.isToolbarHidden = false
+            destination.journalEntries = self.journalEntries
             
         }
         
     }
+    
  
 
 }

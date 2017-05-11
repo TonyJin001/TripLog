@@ -25,6 +25,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
     var newTripName = ""
     var newLatitude = 0.0
     var newLongitude = 0.0
+    var deleteOrNot = false
     
     var journalEntryDetails : JournalEntry? = nil
     var journalEntries : JournalEntryCollection? = nil
@@ -129,6 +130,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
             (alert:UIAlertAction!)->Void in
             self.journalEntries?.delete(self.journalEntryDetails!)
+            self.deleteOrNot = true
             if let nav = self.navigationController {
                 nav.popViewController(animated: true)
             } else {

@@ -226,8 +226,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             }
             
             destination.fetchedResultsController = self.fetchedResultsController
-//            destination.hidesBottomBarWhenPushed = true
-//            destination.navigationController?.toolbar.isHidden = true
+            destination.journalEntries = self.journalEntries
             
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")

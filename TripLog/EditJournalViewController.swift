@@ -76,7 +76,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         
         // Create a button bar for the number pad
         toolbar = UIToolbar()
-        toolbar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 35)
+        toolbar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
         
         // Setup the buttons to be put in the system.
         

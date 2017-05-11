@@ -35,10 +35,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="e5o-fY-Vtq">
-                                                    <rect key="frame" x="10" y="18" width="109" height="70"/>
+                                                    <rect key="frame" x="10" y="18" width="0.0" height="70"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zs-ZW-iC0">
-                                                            <rect key="frame" x="0.0" y="0.0" width="70.5" height="0.0"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="23.5"/>
                                                             <attributedString key="attributedText">
                                                                 <fragment content="Label">
                                                                     <attributes>
@@ -50,22 +50,22 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="eBV-IU-ERS">
-                                                            <rect key="frame" x="70.5" y="0.0" width="38.5" height="48"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="48"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7s-Rx-tlz">
-                                                                    <rect key="frame" x="5.5" y="0.0" width="33" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBI-T4-IHB">
-                                                                    <rect key="frame" x="5.5" y="16" width="33" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="16" width="0.0" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zd-uz-e12">
-                                                                    <rect key="frame" x="5.5" y="32" width="33" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="32" width="0.0" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -106,17 +106,17 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Share" id="ahp-uA-wQq"/>
+                        <barButtonItem systemItem="action" id="ahp-uA-wQq"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="k5h-BZ-rVo"/>
-                        <barButtonItem title="View Map" id="7F0-pC-zy0">
-                            <connections>
-                                <segue destination="RbZ-n7-ryc" kind="show" identifier="ViewMap" id="ta9-se-2tD"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="mBE-Fu-7Iv"/>
                         <barButtonItem title="Edit Trip" id="ooy-aN-Dgr">
                             <connections>
                                 <segue destination="gg5-cy-vzQ" kind="show" identifier="EditTrip" id="jZf-ad-41L"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="mBE-Fu-7Iv"/>
+                        <barButtonItem image="Google Maps-50" id="7F0-pC-zy0">
+                            <connections>
+                                <segue destination="RbZ-n7-ryc" kind="show" identifier="ViewMap" id="ta9-se-2tD"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -175,6 +175,23 @@
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XJp-Gt-1yF">
+                                <rect key="frame" x="0.0" y="622" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="action" id="GGg-LD-6ur">
+                                        <connections>
+                                            <action selector="shareButtonClicked:" destination="Wqa-rV-cbl" id="ZQc-1F-9Lj"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="cYV-Xf-GR2"/>
+                                    <barButtonItem systemItem="trash" id="qco-LF-sbG">
+                                        <connections>
+                                            <action selector="deleteButtonClicked:" destination="Wqa-rV-cbl" id="eDn-dm-rGT"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -590,7 +607,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="40T-Ao-65o">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripsTableViewCell" rowHeight="107" id="f0R-CQ-g9G" customClass="TripsTableViewCell" customModule="TripLog" customModuleProvider="target">
@@ -655,7 +672,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Trips" id="F2Y-PM-I3f">
-                        <barButtonItem key="rightBarButtonItem" title="New Trip" id="qXz-Bz-vUB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="qXz-Bz-vUB">
                             <connections>
                                 <segue destination="gg5-cy-vzQ" kind="show" identifier="NewTrip" id="ztw-0l-fIw"/>
                             </connections>
@@ -672,18 +689,14 @@
         <!--Trips-->
         <scene sceneID="RER-es-fMh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="Gn5-d1-5bN" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gn5-d1-5bN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trips" image="earth-america-7" id="mRj-g3-65c"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SkW-eI-q9c">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SkW-eI-q9c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Ado-ox-3Mx">
-                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
                     <connections>
                         <segue destination="g5g-fR-eE6" kind="relationship" relationship="rootViewController" id="Zdo-cN-akS"/>
                     </connections>
@@ -695,6 +708,7 @@
     </scenes>
     <resources>
         <image name="Camera-50" width="25" height="25"/>
+        <image name="Google Maps-50" width="25" height="25"/>
         <image name="Picture-50" width="25" height="25"/>
         <image name="earth-america-7" width="30" height="30"/>
         <image name="note-write-7" width="30" height="30"/>
@@ -702,7 +716,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="jZf-ad-41L"/>
         <segue reference="Dnh-YK-hGp"/>
+        <segue reference="dCT-tE-Y8K"/>
         <segue reference="qgu-Bx-CKy"/>
-        <segue reference="6LY-FJ-1bW"/>
     </inferredMetricsTieBreakers>
 </document>
