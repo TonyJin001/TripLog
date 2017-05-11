@@ -12,13 +12,16 @@ import GoogleMaps
 import GooglePlaces
 
 
-class GoogleMapViewController: UIViewController{
+class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
 
     var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     var locationManager = CLLocationManager()
     var currentLocation: GMSPlace?
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
+    var idToJournalEntry = [String : JournalEntry]()
+    var markerToId = [GMSMarker:String]()
+    var selectedJournalEntry:JournalEntry?
     
     var zoomLevel: Float = 15.0
     var centerLatitude:Double?
@@ -61,6 +64,7 @@ class GoogleMapViewController: UIViewController{
         // Create the map view and add snippets
         let camera = GMSCameraPosition.camera(withLatitude: centerLatitude!, longitude: centerLongitude!, zoom: 12)
         self.mapView = GMSMapView.map(withFrame: self.view.bounds, camera: camera)
+        self.mapView.delegate = self
         self.mapView.settings.myLocationButton = true
         self.mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.mapView.isMyLocationEnabled = true
@@ -80,12 +84,17 @@ class GoogleMapViewController: UIViewController{
                 fatalError("Cannot find entry")
             }
             
+            let objectID:String = String(describing: journalEntry.objectID)
+            print(objectID)
+            
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: journalEntry.latitude, longitude: journalEntry.longitude)
             marker.title = journalEntry.trip?.tripName
             marker.snippet = (journalEntry.text as! NSAttributedString).string
             marker.map = self.mapView
+            markerToId[marker] = objectID
             
+            idToJournalEntry[objectID] = journalEntry
         }
         
        
@@ -101,16 +110,33 @@ class GoogleMapViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        selectedJournalEntry = idToJournalEntry[markerToId[marker]!]!
+        performSegue(withIdentifier: "ViewJournalDetails", sender: self)
+    }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "ViewJournalDetails" {
+            guard let destination = segue.destination as? JournalDetailViewController else {
+                fatalError("Cannot find JournalDetailViewController")
+            }
+            if (selectedJournalEntry != nil) {
+                destination.journalEntryDetails = selectedJournalEntry
+            } else {
+                fatalError("selectedJournalEntry is nil")
+            }
+            destination.navigationController?.isToolbarHidden = false
+            
+        }
+        
     }
-    */
+ 
 
 }
 
