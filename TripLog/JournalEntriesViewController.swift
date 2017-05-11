@@ -35,6 +35,16 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore  {
+            print("Not first launch.")
+        } else {
+            print("First launch, setting UserDefault.")
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            performSegue(withIdentifier: "modal", sender: nil)
+        }
+
+        
         initializeFetchResultsController()
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -227,6 +237,12 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             
             destination.fetchedResultsController = self.fetchedResultsController
             destination.journalEntries = self.journalEntries
+        
+        case "modal":
+            
+            guard let destination = segue.destination as? ModalViewController  else {
+                fatalError("Unexpected sender: \(sender)")
+            }
             
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")

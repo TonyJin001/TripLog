@@ -36,7 +36,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let date = journalEntryDetails?.date {
             dateLabel.text = date
         }

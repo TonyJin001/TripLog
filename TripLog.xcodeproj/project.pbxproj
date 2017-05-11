@@ -28,6 +28,7 @@
 		5D23483E1EB1786E009EB07C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D23483D1EB1786E009EB07C /* MapViewController.swift */; };
 		5D2348401EB18F90009EB07C /* TripsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D23483F1EB18F90009EB07C /* TripsTableViewController.swift */; };
 		5DCD3CC41EAFCF1D00A59DE1 /* NewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD3CC31EAFCF1D00A59DE1 /* NewTripViewController.swift */; };
+		5DFD61FC1EC4EF0900425C10 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFD61FB1EC4EF0900425C10 /* ModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		5D23483D1EB1786E009EB07C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5D23483F1EB18F90009EB07C /* TripsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsTableViewController.swift; sourceTree = "<group>"; };
 		5DCD3CC31EAFCF1D00A59DE1 /* NewTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTripViewController.swift; sourceTree = "<group>"; };
+		5DFD61FB1EC4EF0900425C10 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		61991879AACF816FCD5203BE /* Pods-TripLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripLog.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripLog/Pods-TripLog.debug.xcconfig"; sourceTree = "<group>"; };
 		C2E7ED23F79C716265B561AE /* Pods-TripLogUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripLogUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripLogUITests/Pods-TripLogUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CB02D83C10B2E2FF40F6B144 /* Pods-TripLogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripLogTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripLogTests/Pods-TripLogTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				1F4F38E21EAFDA6300D015D9 /* JournalEntryCollection.swift */,
 				1F4F38E61EB12E2700D015D9 /* EditJournalViewController.swift */,
 				1FE36F771EADA651003E5325 /* Main.storyboard */,
+				5DFD61FB1EC4EF0900425C10 /* ModalViewController.swift */,
 				1F942A951EC2653E00288EAC /* GoogleMapViewController.swift */,
 				5D23483F1EB18F90009EB07C /* TripsTableViewController.swift */,
 				1F942A8F1EBFB41E00288EAC /* TripsTableViewCell.swift */,
@@ -489,6 +492,7 @@
 				1F942A941EBFB91600288EAC /* TripCollection.swift in Sources */,
 				1F4F38E51EB0394700D015D9 /* JournalDetailViewController.swift in Sources */,
 				1F4F38E71EB12E2700D015D9 /* EditJournalViewController.swift in Sources */,
+				5DFD61FC1EC4EF0900425C10 /* ModalViewController.swift in Sources */,
 				1F4F38DB1EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld in Sources */,
 				1FE36F721EADA651003E5325 /* AppDelegate.swift in Sources */,
 				1F942A961EC2653E00288EAC /* GoogleMapViewController.swift in Sources */,
