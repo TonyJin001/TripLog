@@ -58,9 +58,10 @@ class JournalEntryCollection{
         return nil
     }
     
-    func add (text:NSAttributedString,date:String,location:String,tripName:String,latitude:Double,longitude:Double) {
+    func add (text:NSAttributedString,date:String,location:String,tripName:String,latitude:Double,longitude:Double) -> NSManagedObjectID{
         let trip = findTrip(name: tripName)
         var journalEntry:JournalEntry!
+        var journalEntryId:NSManagedObjectID? = nil
         managedObjectContext.performAndWait {
             journalEntry = JournalEntry(context: self.managedObjectContext)
             journalEntry.text = text //not sure why this is the case
@@ -70,23 +71,28 @@ class JournalEntryCollection{
             journalEntry.latitude = latitude
             journalEntry.longitude = longitude
             self.saveChanges()
+            journalEntryId = journalEntry.objectID
         }
+        return journalEntryId!
     }
     
-    func update(oldEntry: JournalEntry, text:NSAttributedString, date:String, location: String, tripName: String, latitude:Double, longitude:Double){
+    func update(oldEntry: JournalEntry, text:NSAttributedString, date:String, location: String, tripName: String, latitude:Double, longitude:Double) -> NSManagedObjectID{
+        var newEntryId:NSManagedObjectID
         if oldEntry.trip?.tripName != tripName {
             // we can't just adjust the name because of various data dependancies
             // so we will delete the book and make a new one
             delete(oldEntry)
-            add(text:text, date:date, location:location,tripName:tripName,latitude:latitude,longitude: longitude)
+            newEntryId = add(text:text, date:date, location:location,tripName:tripName,latitude:latitude,longitude: longitude)
         }else{
             oldEntry.text = text
             oldEntry.date = date
             oldEntry.location = location
             oldEntry.latitude = latitude
             oldEntry.longitude = longitude
+            newEntryId = oldEntry.objectID
         }
         self.saveChanges()
+        return newEntryId
     }
     
     func delete(_ entry:JournalEntry) {

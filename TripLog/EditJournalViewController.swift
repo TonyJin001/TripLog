@@ -119,6 +119,14 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             if let text:NSAttributedString = journalEntryDetails?.text as! NSAttributedString {
                 journalTextView.attributedText = text
             }
+            
+            if let latitude = journalEntryDetails?.latitude {
+                self.latitude = latitude
+            }
+            
+            if let longitude = journalEntryDetails?.longitude {
+                self.longitude = longitude
+            }
 
         }
         
@@ -240,7 +248,6 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             
         } else {
             journalTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
-//            journalTextView.inputAccessoryView = toolbar
         }
         
         journalTextView.scrollIndicatorInsets = journalTextView.contentInset
@@ -248,8 +255,6 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         let selectedRange = journalTextView.selectedRange
         journalTextView.scrollRangeToVisible(selectedRange)
         
-    
-//        journalTextView.inputAccessoryView = toolbar
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -296,8 +301,6 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             let moc = journalEntries?.managedObjectContext
 
             fetchedResultsController  = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc!, sectionNameKeyPath: nil, cacheName: nil)
-            
-            //sectionNameKeyPath????
             
             fetchedResultsController.delegate = self
             do {

@@ -47,45 +47,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         
         if let text:NSAttributedString = journalEntryDetails?.text as! NSAttributedString {
             
-            
-            
-//            let newAttributedString = NSMutableAttributedString(attributedString: text)
-//            
-//            // Enumerate through all the font ranges
-//            newAttributedString.enumerateAttribute(NSFontAttributeName, in: NSMakeRange(0, newAttributedString.length), options: []) { value, range, stop in
-//                guard let currentFont = value as? UIFont else {
-//                    return
-//                }
-//                
-//                // An NSFontDescriptor describes the attributes of a font: family name, face name, point size, etc.
-//                // Here we describe the replacement font as coming from the "Hoefler Text" family
-//                
-//                let fontDescriptor = currentFont.fontDescriptor.addingAttributes([UIFontDescriptorFamilyAttribute: "Avenir"])
-//                
-//                // Ask the OS for an actual font that most closely matches the description above
-//                if let newFontDescriptor = fontDescriptor.matchingFontDescriptors(withMandatoryKeys: [UIFontDescriptorFamilyAttribute]).first {
-//                    let newFont = UIFont(descriptor: newFontDescriptor, size: 20.0)
-//                    newAttributedString.addAttributes([NSFontAttributeName: newFont], range: range)
-//                }
-//            }
-            
             textTextView.attributedText = text
-            
-            
-            
-            
-//            text.attribute(NSFontAttributeName,
-//                                         value: UIFont(
-//                                            name: "Avenir",
-//                                            size: 20.0)!,
-//                                         range: NSRange(
-//                                            location: 0,
-//                                            length: text.length))
-//            textTextView.attributedText = text
-//            
-//            let font = UIFont(name: "Avenir", size: 20.0)
-            
-
         }
         
         if let title = journalEntryDetails?.trip?.tripName {
@@ -160,44 +122,21 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         destination.journalEntries = journalEntries
         destination.journalEntryDetails = journalEntryDetails
         destination.callback = { (text, date, location, tripName, latitude, longitude) in
-            self.journalEntries?.update(oldEntry: self.journalEntryDetails!, text:text, date:date, location:location, tripName:tripName, latitude: latitude, longitude: longitude)
-            self.newDate = date
-            self.newLocation = location
-            self.newText = text
-            self.newTripName = tripName
-            self.newLatitude = latitude
-            self.newLongitude = longitude
-            
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName:"JournalEntry")
-           
-            //MARK:               NEEDS FIXING!!!!/////
-            
-            let datePredicate = NSPredicate(format: "date == %@", self.newDate)
-            let locationPredicate = NSPredicate(format: "location == %@", self.newLocation)
-            let textPredicate = NSPredicate(format: "text == %@", self.newText!)
-            let tripNamePredicate = NSPredicate(format: "trip.tripName == %@", self.newTripName)
-            let andPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate,locationPredicate,tripNamePredicate])
-            
-            request.predicate = andPredicate
+            let newEntryID = self.journalEntries?.update(oldEntry: self.journalEntryDetails!, text:text, date:date, location:location, tripName:tripName, latitude: latitude, longitude: longitude)
             
             do {
                 let moc = self.journalEntries?.managedObjectContext
-                let matches = try moc?.fetch(request)
-                if matches?.count == 0 {
-                    fatalError("0 matches for the required journal entry!!!!")
-                } else {
-                    self.journalEntryDetails = matches?[0] as? JournalEntry
-                    if let date = self.journalEntryDetails?.date {
-                        self.dateLabel.text = date
-                    }
+                self.journalEntryDetails = moc?.object(with: newEntryID!) as! JournalEntry
+                if let date = self.journalEntryDetails?.date {
+                    self.dateLabel.text = date
+                }
                     
-                    if let location = self.journalEntryDetails?.location {
-                        self.locationLabel.text = "Location: "+location
-                    }
+                if let location = self.journalEntryDetails?.location {
+                    self.locationLabel.text = "Location: "+location
+                }
                     
-                    if let text = self.journalEntryDetails?.text {
-                        self.textTextView.attributedText = text as! NSAttributedString
-                    }
+                if let text = self.journalEntryDetails?.text {
+                    self.textTextView.attributedText = text as! NSAttributedString
                 }
             } catch {
                 fatalError("Cannot find journal entry")
