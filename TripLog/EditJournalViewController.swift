@@ -116,7 +116,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
                 tripNameTextField.text = tripName
             }
             
-            if let text:NSAttributedString = journalEntryDetails?.text as! NSAttributedString {
+            if let text:NSAttributedString = journalEntryDetails?.text as? NSAttributedString {
                 journalTextView.attributedText = text
             }
             
@@ -233,8 +233,6 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     
     
     func adjustForKeyboard(notification: Notification) {
-        
-        var keyboardHeight:CGFloat = 0
         
         let userInfo = notification.userInfo!
         
@@ -429,8 +427,8 @@ extension EditJournalViewController: GMSAutocompleteViewControllerDelegate {
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
+        print("Place address: \(String(describing: place.formattedAddress))")
+        print("Place attributions: \(String(describing: place.attributions))")
         self.locationTextField.text = place.name
         self.latitude = place.coordinate.latitude
         self.longitude = place.coordinate.longitude

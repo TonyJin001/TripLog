@@ -199,7 +199,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             }
             
             guard let cell = sender as? JournalEntriesTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
             guard let indexPath = journalEntriesTableView.indexPath(for:cell) else {
@@ -216,7 +216,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             
         case "EditTrip":
             guard let destination = segue.destination as? NewTripViewController else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
             if (self.trip != nil){
@@ -232,7 +232,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         
         case "ViewMap":
             guard let destination = segue.destination as? GoogleMapViewController else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
             destination.fetchedResultsController = self.fetchedResultsController
@@ -241,11 +241,11 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         case "modal":
             
             guard let destination = segue.destination as? ModalViewController  else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
         default:
-            fatalError("Unexpected segue identifier: \(segue.identifier)")
+            fatalError("Unexpected segue identifier: \(String(describing: segue.identifier))")
         }
         
     }

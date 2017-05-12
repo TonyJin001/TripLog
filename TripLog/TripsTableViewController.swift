@@ -172,7 +172,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
             }
             
             guard let cell = sender as? TripsTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
             guard let indexPath = tripsTableView.indexPath(for:cell) else {

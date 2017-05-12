@@ -45,7 +45,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
             locationLabel.text = "Location: " + location
         }
         
-        if let text:NSAttributedString = journalEntryDetails?.text as! NSAttributedString {
+        if let text:NSAttributedString = journalEntryDetails?.text as? NSAttributedString {
             
             textTextView.attributedText = text
         }
@@ -126,7 +126,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
             
             do {
                 let moc = self.journalEntries?.managedObjectContext
-                self.journalEntryDetails = moc?.object(with: newEntryID!) as! JournalEntry
+                self.journalEntryDetails = moc?.object(with: newEntryID!) as? JournalEntry
                 if let date = self.journalEntryDetails?.date {
                     self.dateLabel.text = date
                 }
