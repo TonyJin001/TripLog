@@ -11,6 +11,7 @@ import CoreData
 import GoogleMaps
 import GooglePlaces
 
+//This is file for the map, implemented with google maps.  
 
 class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
 

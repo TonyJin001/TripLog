@@ -8,6 +8,10 @@
 
 import UIKit
 
+// This is the view controller for the modal that pops up
+// the first time you open up the app. It gives a simple
+// description on a series of 'pages' about the app.
+
 class ModalViewController: UIViewController {
     
     let textpages = ["TripLog is an app where you can create and view Journal Entries for your Trips.", "You can start by creating a New Trip, and then creating a journal entry for that trip.", "Thanks for reading!"]

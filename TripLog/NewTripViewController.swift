@@ -8,6 +8,9 @@
 
 import UIKit
 
+//This is the file for creating a new trip 
+// and editing an old trip
+
 class NewTripViewController: UIViewController {
     
     var type: TripType = .new
@@ -84,13 +87,13 @@ class NewTripViewController: UIViewController {
             print("The save button was not pressed")
             return
         }
-        print ("Cookie Cake")
+        //print ("Cookie Cake")
         let tripName = tripnamefield.text ?? ""
         let startDate = startdatefield.text ?? ""
         let endDate = enddatefield.text ?? ""
         
         if callback != nil{
-            print ("IceCream Cake")
+            //print ("IceCream Cake")
             callback!(tripName, startDate, endDate)
         }
     }
