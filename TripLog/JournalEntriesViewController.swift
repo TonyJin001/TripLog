@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 
+//This is the file for looking at all the journals in the journals tab, or looking at the journals for just one specific trip.
+// It has segues to view each individual journal entry page, or to create a new journal
+
 class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
@@ -17,7 +20,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     var trip:Trip? = nil
     
     private let journalEntries = JournalEntryCollection() {
-        print("Core Data Connected")
+        //print("Core Data Connected")
     }
     
     @IBOutlet weak var journalEntriesTableView: UITableView!
@@ -37,9 +40,9 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
-            print("Not first launch.")
+            //print("Not first launch.")
         } else {
-            print("First launch, setting UserDefault.")
+            //print("First launch, setting UserDefault.")
             UserDefaults.standard.set(true, forKey: "launchedBefore")
             performSegue(withIdentifier: "modal", sender: nil)
         }

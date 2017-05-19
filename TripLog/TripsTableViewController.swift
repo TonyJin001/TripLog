@@ -9,13 +9,16 @@
 import UIKit
 import CoreData
 
+//This is the file for the Table View for the Trips. 
+// It has segues to the table view of a specific trip, and to the file to create a new trips.
+
 class TripsTableViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate{
 
     @IBOutlet weak var tripsTableView: UITableView!
     
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     private let tripEntries = TripCollection() {
-        print("Core Data Connected for trips")
+        //print("Core Data Connected for trips")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -151,7 +154,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         switch(segue.identifier ?? ""){
         case "NewTrip":
             
-            print("BYE!!")
+            //print("BYE!!")
             
             guard let destination = segue.destination as? NewTripViewController else{
                 fatalError("Unexpected destination: \(segue.destination)")
@@ -165,7 +168,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
             
         case "ViewTrip":
             
-            print("HI!!")
+            //print("HI!!")
         
             guard let destination = segue.destination as? JournalEntriesViewController else{
             fatalError("Unexpected destination: \(segue.destination)")

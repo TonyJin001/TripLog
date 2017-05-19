@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import MessageUI
 
+//This is the file for the detail journal views
+
 class JournalDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var dateLabel: UILabel!
