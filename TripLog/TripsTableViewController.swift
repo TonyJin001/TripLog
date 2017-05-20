@@ -17,25 +17,25 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
     @IBOutlet weak var tripsTableView: UITableView!
     
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
-    private let tripEntries = TripCollection() {
+    
+    private var tripEntries = TripCollection() {
         print("Core Data Connected for trips")
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tripsTableView.reloadData()
+        
         self.navigationController?.toolbar.isHidden = true
+        initializeFetchResultsController()
+        tripsTableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        initializeFetchResultsController()
-        
         tripsTableView.delegate = self
         tripsTableView.dataSource = self
         
         tripsTableView.rowHeight = 106.5
-        tripsTableView.reloadData()
+
 
     }
 
@@ -57,7 +57,6 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         // Create the controller using our moc
         let moc = tripEntries.managedObjectContext
         fetchedResultsController  = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
-        
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
@@ -98,10 +97,14 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
     // MARK: Connect tableview to fetched results controller
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tripsTableView.beginUpdates()
+        if (controller == fetchedResultsController) {
+            tripsTableView.beginUpdates()
+        }
+        
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        if (controller == fetchedResultsController) {
         switch type {
         case .insert:
             tripsTableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
@@ -112,9 +115,12 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         case .update:
             break
         }
+        }
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        if (controller == fetchedResultsController) {
+
         switch type {
         case .insert:
             tripsTableView.insertRows(at: [newIndexPath!], with: .fade)
@@ -125,10 +131,13 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         case .move:
             tripsTableView.moveRow(at: indexPath!, to: newIndexPath!)
         }
+        }
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tripsTableView.endUpdates()
+        if (controller == fetchedResultsController) {
+            tripsTableView.endUpdates()
+        }
     }
     
     /* Provides the edit functionality (deleteing rows) */
@@ -136,10 +145,72 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         if editingStyle == .delete {
             // Delete the row from the data source
             guard let trip = self.fetchedResultsController?.object(at: indexPath) as? Trip else{
-                fatalError("Cannot find journal entry")
+                fatalError("Cannot find the trip")
+            }
+            if (trip.journalEntries?.count)! > 0 {
+                let alertController = UIAlertController(title: "Trip Deletion", message: "Do you want to delete all the journal entries in the trip, or do you only want to remove their reference to this trip?", preferredStyle: .actionSheet)
+                let deleteAction = UIAlertAction(title: "Delete all entries in the trip", style: .destructive, handler: {
+                    (alert:UIAlertAction!)->Void in
+                    var journalEntries = JournalEntryCollection() {
+                        print("Core Data Connected")
+                    }
+                    // get all journal entries
+                    let entryRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"JournalEntry")
+                    // Filter for trips if necessary
+        
+                    entryRequest.predicate = NSPredicate(format: "trip.tripName == %@", trip.tripName!)
+                    
+                    // sort by author anme and then by title
+                    let dateSort = NSSortDescriptor(key: "date", ascending: false)
+                    let tripSort = NSSortDescriptor(key: "trip.tripName", ascending: true)
+                    entryRequest.sortDescriptors = [dateSort, tripSort]
+                    
+                    // Create the controller using our moc
+                    let moc = journalEntries.managedObjectContext
+                    var newFetchedResultsController  = NSFetchedResultsController(fetchRequest: entryRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+                    newFetchedResultsController.delegate = self
+                    do {
+                        try newFetchedResultsController.performFetch()
+                    }catch{
+                        fatalError("Failed to fetch data")
+                    }
+                    
+                    let totalNumberOfObjects = newFetchedResultsController.sections?[0].numberOfObjects
+                    var IDs = [NSManagedObjectID]()
+                    for i in 0..<totalNumberOfObjects! {
+                        let indexPath = IndexPath(row: i, section: 0)
+                        guard let journalEntry = newFetchedResultsController.object(at: indexPath) as? JournalEntry else {
+                            fatalError("Cannot find entry")
+                        }
+                        IDs.append(journalEntry.objectID)
+                    }
+                    for id in IDs {
+                        let tempEntry = moc.object(with: id) as? JournalEntry
+                        journalEntries.delete(tempEntry!)
+                    }
+                    self.tripEntries.delete(trip)
+                })
+                
+                let removeReferenceAction = UIAlertAction(title: "Remove reference", style: .default, handler:
+                {
+                    (alert: UIAlertAction!) -> Void in
+                    self.tripEntries.delete(trip)
+                })
+
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:
+                {
+                    (alert: UIAlertAction!) -> Void in
+                    print("Cancelled")
+                })
+                alertController.addAction(deleteAction)
+                alertController.addAction(removeReferenceAction)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                tripEntries.delete(trip)
             }
             
-            tripEntries.delete(trip)
+            
         }
     }
 
@@ -184,6 +255,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
             destination.trip = currentTrip
             destination.title = currentTrip.tripName
             destination.hidesBottomBarWhenPushed = true
+            print("End of view trip")
             
         default:
             fatalError("Unexpected segue identifier")

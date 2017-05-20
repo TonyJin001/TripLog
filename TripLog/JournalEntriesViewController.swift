@@ -20,44 +20,44 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     // Showing all entries/entries from a trip
     var type:JournalEntriesViewType = .all
     
-    var trip:Trip? = nil
+    var trip:Trip?
     
-    private let journalEntries = JournalEntryCollection() {
+    private var journalEntries = JournalEntryCollection() {
         print("Core Data Connected")
     }
     
     @IBOutlet weak var journalEntriesTableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
+        print("1")
         self.navigationController?.setToolbarHidden(true, animated: true)
         self.tabBarController?.tabBar.isHidden = false
         if type == .oneTrip {
             self.tabBarController?.tabBar.isHidden = true
             self.navigationController?.setToolbarHidden(false, animated: true)
+            print("2")
         }
+        
         journalEntriesTableView.reloadData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("4")
         // If launched for the first time, show tutorial
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
-            //print("Not first launch.")
         } else {
-            //print("First launch, setting UserDefault.")
             UserDefaults.standard.set(true, forKey: "launchedBefore")
             performSegue(withIdentifier: "modal", sender: nil)
         }
 
-        
-        initializeFetchResultsController()
-        
         journalEntriesTableView.delegate = self
         journalEntriesTableView.dataSource = self
-        
+        initializeFetchResultsController()
         journalEntriesTableView.reloadData()
+
         
     }
 
@@ -70,23 +70,22 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     func initializeFetchResultsController() {
         // get all journal entries
         let request = NSFetchRequest<NSFetchRequestResult>(entityName:"JournalEntry")
-        
         // Filter for trips if necessary
+        
         if self.type == .oneTrip && self.trip != nil {
             request.predicate = NSPredicate(format: "trip.tripName == %@", self.trip!.tripName!)
         } else if self.type == .oneTrip && self.trip == nil {
             fatalError("Tripname shouldn't be nill when self.type is oneTrip")
         }
-        
+
         // sort by author anme and then by title
         let dateSort = NSSortDescriptor(key: "date", ascending: false)
         let tripSort = NSSortDescriptor(key: "trip.tripName", ascending: true)
         request.sortDescriptors = [dateSort, tripSort]
-        
+
         // Create the controller using our moc
         let moc = journalEntries.managedObjectContext
         fetchedResultsController  = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
-        
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
