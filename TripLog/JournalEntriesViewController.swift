@@ -29,22 +29,18 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var journalEntriesTableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
-        print("1")
         self.navigationController?.setToolbarHidden(true, animated: true)
         self.tabBarController?.tabBar.isHidden = false
         if type == .oneTrip {
             self.tabBarController?.tabBar.isHidden = true
             self.navigationController?.setToolbarHidden(false, animated: true)
-            print("2")
         }
-        
         journalEntriesTableView.reloadData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("4")
+
         // If launched for the first time, show tutorial
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
