@@ -23,6 +23,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         tripsTableView.reloadData()
+        self.navigationController?.toolbar.isHidden = true
     }
     
     override func viewDidLoad() {
