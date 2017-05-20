@@ -31,10 +31,11 @@ class ModalViewController: UIViewController {
         }
         if (page < textpages.count - 2){
             page += 1
+            previousbutton.alpha = 1.0
             nextbutton.alpha = 1.0
             modaltext.text = textpages[page]
         }
-        print(page)
+        //print(page)
         
     }
     
@@ -48,10 +49,11 @@ class ModalViewController: UIViewController {
         }
         if (page > 1){
             page -= 1
+            nextbutton.alpha = 1.0
             previousbutton.alpha = 1.0
             modaltext.text = textpages[page]
         }
-        print(page)
+        //print(page)
     }
     
     @IBAction func dismissButton(_ sender: Any) {
