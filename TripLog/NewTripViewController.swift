@@ -15,6 +15,7 @@ class NewTripViewController: UIViewController {
     
     var type: TripType = .new
     
+    @IBOutlet weak var navigationBar: UINavigationItem!
     
     var callback: ((String, String, String)->Void)?
 
@@ -48,12 +49,14 @@ class NewTripViewController: UIViewController {
             startdatefield.text = formatter.string(from: Date())
             enddatefield.text = "??/??/????"
             deleteButton.isHidden = true
+            navigationBar.title = "New Trip"
             break
         case let .update(tripName, startDate, endDate):
             
             tripnamefield.text = tripName
             startdatefield.text = startDate
             enddatefield.text = endDate
+            navigationBar.title = "Edit Trip"
         }
         
         
@@ -94,6 +97,8 @@ class NewTripViewController: UIViewController {
             
             if textField.tag == 1{
                 print(textField.tag)
+
+                textField.inputView = inputView
                 datePickerView.addTarget(self, action: #selector(handleEndDatePicker(_:)), for: UIControlEvents.valueChanged)
                 
                 handleEndDatePicker(datePickerView) // Set the date on start.
