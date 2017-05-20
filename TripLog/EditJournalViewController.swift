@@ -425,9 +425,9 @@ extension EditJournalViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
+        //print("Place name: \(place.name)")
+        //print("Place address: \(place.formattedAddress)")
+        //print("Place attributions: \(place.attributions)")
         self.locationTextField.text = place.name
         self.latitude = place.coordinate.latitude
         self.longitude = place.coordinate.longitude
