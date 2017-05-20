@@ -15,9 +15,25 @@ class TripsTableViewCell: UITableViewCell {
     @IBOutlet weak var endDateLabel: UILabel!
     
     func configureCell(trip:Trip){
+        var startDate = ""
+        var endDate = ""
+        
         tripNameLabel.text = trip.tripName
-        startDateLabel.text = trip.startDate
-        endDateLabel.text = trip.endDate
+        tripNameLabel.adjustsFontSizeToFitWidth = true
+        
+        if trip.startDate != nil {
+            if trip.endDate != nil{
+                startDate = "From: " + trip.startDate!
+            } else {
+                startDate = "Starts at: " + trip.startDate!
+            }
+            
+        }
+        startDateLabel.text = startDate
+        if trip.endDate != nil {
+            endDate = "To:     " + trip.endDate!
+        }
+        endDateLabel.text = endDate
     }
     
     

@@ -171,7 +171,10 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         }
         
     }
+    
+    @IBAction func unwindFromEditToDetails(sender: UIStoryboardSegue){
 
+    }
 
 
     

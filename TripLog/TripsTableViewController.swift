@@ -35,6 +35,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         tripsTableView.dataSource = self
         
         tripsTableView.rowHeight = 106.5
+        tripsTableView.reloadData()
 
     }
 
