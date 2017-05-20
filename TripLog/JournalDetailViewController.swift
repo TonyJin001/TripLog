@@ -5,12 +5,13 @@
 //  Created by Lyra Ding on 4/25/17.
 //  Copyright © 2017 CS466. All rights reserved.
 //
+//  This is the file for the detail journal views
 
 import UIKit
 import CoreData
 import MessageUI
 
-//This is the file for the detail journal views
+
 
 class JournalDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
@@ -18,16 +19,6 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
     @IBOutlet weak var textTextView: UITextView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
-    
-
-    
-    var newDate = ""
-    var newLocation = ""
-    var newText:NSAttributedString? = nil
-    var newTripName = ""
-    var newLatitude = 0.0
-    var newLongitude = 0.0
-    var deleteOrNot = false
     
     var journalEntryDetails : JournalEntry? = nil
     var journalEntries : JournalEntryCollection? = nil
@@ -38,6 +29,8 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Fill in the detail information
         
         if let date = journalEntryDetails?.date {
             dateLabel.text = date
@@ -70,6 +63,8 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
     }
     
     
+    
+    // Handling share function
     @IBAction func shareButtonClicked(_ sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: "Share", message: "Do you want to share this journal?", preferredStyle: .actionSheet)
         let shareAction = UIAlertAction(title: "Share", style: .default, handler: {
@@ -88,13 +83,41 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         self.present(alertController, animated: true, completion: nil)
     }
     
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setSubject("Journal entry shared from TripLog")
+            
+            var htmlString = ""
+            do {
+                let data = try textTextView.attributedText.data(from: NSMakeRange(0, textTextView.attributedText.length), documentAttributes: [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType])
+                htmlString = String(data: data, encoding: String.Encoding.utf8)!
+            }catch {
+                print("Can't convert attributed string to HTML string")
+            }
+            mail.setMessageBody(htmlString, isHTML: true)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    
+    
+    
+    
+    // Handling delete function
     @IBAction func deleteButtonClicked(_ sender: UIBarButtonItem) {
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
             (alert:UIAlertAction!)->Void in
             self.journalEntries?.delete(self.journalEntryDetails!)
-            self.deleteOrNot = true
             if let nav = self.navigationController {
                 nav.popViewController(animated: true)
             } else {
@@ -126,6 +149,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         destination.callback = { (text, date, location, tripName, latitude, longitude) in
             let newEntryID = self.journalEntries?.update(oldEntry: self.journalEntryDetails!, text:text, date:date, location:location, tripName:tripName, latitude: latitude, longitude: longitude)
             
+            // After updating the journal entry in core data, fetch it by ID and display the new information
             do {
                 let moc = self.journalEntries?.managedObjectContext
                 self.journalEntryDetails = moc?.object(with: newEntryID!) as? JournalEntry
@@ -141,43 +165,15 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
                     self.textTextView.attributedText = text as! NSAttributedString
                 }
             } catch {
-                fatalError("Cannot find journal entry")
+                print("Cannot find journal entry")
             }
             
         }
-        
-    }
-    
-    @IBAction func unwindFromEdit(sender: UIStoryboardSegue){
         
     }
 
-    // MARK: //////////
-    func sendEmail() {
-        if MFMailComposeViewController.canSendMail() {
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setSubject("Journal entry shared from TripLog")
-            
-            var htmlString = ""
-            do {
-                let data = try textTextView.attributedText.data(from: NSMakeRange(0, textTextView.attributedText.length), documentAttributes: [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType])
-                htmlString = String(data: data, encoding: String.Encoding.utf8)!
-            }catch {
-                print("Can't convert attributed string to HTML string")
-            }
-            mail.setMessageBody(htmlString, isHTML: true)
-            
-            present(mail, animated: true)
-        } else {
-            // show failure alert
-        }
-    }
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true)
-    }
-    /////////
+
+
     
   
 }

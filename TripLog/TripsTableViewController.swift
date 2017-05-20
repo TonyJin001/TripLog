@@ -18,7 +18,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
     
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     private let tripEntries = TripCollection() {
-        //print("Core Data Connected for trips")
+        print("Core Data Connected for trips")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,8 +34,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         tripsTableView.dataSource = self
         
         tripsTableView.rowHeight = 106.5
-        
-        // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,13 +55,12 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         // Create the controller using our moc
         let moc = tripEntries.managedObjectContext
         fetchedResultsController  = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
-        //sectionNameKeyPath????
         
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
         }catch{
-            fatalError("Failed to fetch data")
+            print("Failed to fetch data")
         }
         
     }
@@ -153,9 +151,6 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         
         switch(segue.identifier ?? ""){
         case "NewTrip":
-            
-            //print("BYE!!")
-            
             guard let destination = segue.destination as? NewTripViewController else{
                 fatalError("Unexpected destination: \(segue.destination)")
             }
@@ -167,9 +162,6 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
             
             
         case "ViewTrip":
-            
-            //print("HI!!")
-        
             guard let destination = segue.destination as? JournalEntriesViewController else{
             fatalError("Unexpected destination: \(segue.destination)")
             }

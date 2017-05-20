@@ -4,7 +4,7 @@
 //
 //  Created by Lyra Ding on 5/9/17.
 //  Copyright © 2017 CS466. All rights reserved.
-//
+//  This is the controller for the google map that visualizes all the journal entries
 
 import UIKit
 import CoreData
@@ -30,6 +30,7 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
     var centerLatitude:Double?
     var centerLongitude:Double?
     
+    // Load map every time it appears for update on markers
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.toolbar.isHidden = true
         locationManager = CLLocationManager()
@@ -44,8 +45,6 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
         
         // hardcoded section
         let totalNumberOfObjects = self.fetchedResultsController!.sections?[0].numberOfObjects
-        
-        
         if totalNumberOfObjects == 0 {
             centerLatitude = 0
             centerLongitude = 0
@@ -68,15 +67,8 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
         self.mapView.isMyLocationEnabled = true
         
         
-        
-        
-        
-        
-        
+        //  Add markers for all entries
         for i in 0..<totalNumberOfObjects! {
-            
-            print(String(i)+"!!!!!!!!!!!!!!!!!!")
-            
             let indexPath = IndexPath(row: i, section: 0)
             guard let journalEntry = self.fetchedResultsController.object(at: indexPath) as? JournalEntry else {
                 fatalError("Cannot find entry")
@@ -96,12 +88,7 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
             idToJournalEntry[objectID] = journalEntry
             
         }
-        
-        
-        
-        // Add the map to the view, hide it until we've got a location update.
         self.view.addSubview(self.mapView)
-        //        mapView.isHidden = false
         
     }
     

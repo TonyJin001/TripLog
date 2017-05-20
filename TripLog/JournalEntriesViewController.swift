@@ -5,22 +5,25 @@
 //  Created by Lyra Ding on 4/23/17.
 //  Copyright © 2017 CS466. All rights reserved.
 //
+//  This is the file for looking at all the journals in the journals tab, or looking at the journals for just one specific trip.
+//  It has segues to view each individual journal entry page, or to create a new journal
 
 import UIKit
 import CoreData
 
-//This is the file for looking at all the journals in the journals tab, or looking at the journals for just one specific trip.
-// It has segues to view each individual journal entry page, or to create a new journal
+
 
 class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     
+    // Showing all entries/entries from a trip
     var type:JournalEntriesViewType = .all
+    
     var trip:Trip? = nil
     
     private let journalEntries = JournalEntryCollection() {
-        //print("Core Data Connected")
+        print("Core Data Connected")
     }
     
     @IBOutlet weak var journalEntriesTableView: UITableView!
@@ -38,6 +41,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // If launched for the first time, show tutorial
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
             //print("Not first launch.")
@@ -50,7 +54,6 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         
         initializeFetchResultsController()
         
-        // Do any additional setup after loading the view, typically from a nib.
         journalEntriesTableView.delegate = self
         journalEntriesTableView.dataSource = self
         
@@ -63,10 +66,12 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         // Dispose of any resources that can be recreated.
     }
     
+    
     func initializeFetchResultsController() {
-        // get all books
+        // get all journal entries
         let request = NSFetchRequest<NSFetchRequestResult>(entityName:"JournalEntry")
         
+        // Filter for trips if necessary
         if self.type == .oneTrip && self.trip != nil {
             request.predicate = NSPredicate(format: "trip.tripName == %@", self.trip!.tripName!)
         } else if self.type == .oneTrip && self.trip == nil {
@@ -81,8 +86,6 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         // Create the controller using our moc
         let moc = journalEntries.managedObjectContext
         fetchedResultsController  = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
-      
-        //sectionNameKeyPath????
         
         fetchedResultsController.delegate = self
         do {
@@ -94,7 +97,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     
-    
+    // Functions for Table View
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections!.count
     }
@@ -190,7 +193,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             }
             destination.journalEntries = self.journalEntries
             destination.hidesBottomBarWhenPushed = true
-            
+            // Called in EditJournalViewController for saving new journal entry
             destination.callback = { (text, date, location, tripName, latitude, longitude) in
                 self.journalEntries.add(text:text, date:date, location:location, tripName:tripName, latitude:latitude, longitude: longitude)
             }
@@ -201,6 +204,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
                 fatalError("Unexpected destination")
             }
             
+            // Get the journal entry selected and pass to the next view controller
             guard let cell = sender as? JournalEntriesTableViewCell else {
                 fatalError("Unexpected sender: \(String(describing: sender))")
             }
@@ -257,13 +261,6 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         journalEntriesTableView.reloadData()
     }
 
-//    @IBAction func unwindFromEditDelete(sender: UIStoryboardSegue){
-//        if let sourceViewController = sender.source as? JournalDetailViewController {
-//            let deletedJournal:JournalEntry = sourceViewController.journalEntryDetails!
-//            journalEntries.delete(deletedJournal)
-//        }
-//        journalEntriesTableView.reloadData()
-//    }
 
 }
 

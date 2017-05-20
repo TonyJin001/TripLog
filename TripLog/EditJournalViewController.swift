@@ -4,7 +4,7 @@
 //
 //  Created by Lyra Ding on 4/26/17.
 //  Copyright © 2017 CS466. All rights reserved.
-//
+//  This is the controller for editing/creating a journal entry
 
 import UIKit
 import CoreData
@@ -19,8 +19,6 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var journalTextView: UITextView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
-    
-    // API Key: AIzaSyBQUi3v8-J-HUvTkNhfBGXbgP_K6EH8Flc
     
     var camera2:UIBarButtonItem!
     var upload2:UIBarButtonItem!
@@ -49,6 +47,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Initiate location manager and ask for permission
         locationmgr = CLLocationManager()
         locationmgr.requestWhenInUseAuthorization()
         placesClient = GMSPlacesClient.shared()
@@ -68,18 +67,15 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         
         let notificationCenter = NotificationCenter.default
 
+        // Adjust the text view so that it's not hidden by keyboard
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-
         notificationCenter.addObserver(self,selector: #selector(adjustForKeyboard),name:Notification.Name.UIKeyboardWillShow, object:nil)
         
-        
-        
-        // Create a button bar for the number pad
+        // Creating a toolbar that can be moved when keyboard's shown
         toolbar = UIToolbar()
         toolbar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
         
         // Setup the buttons to be put in the system.
-        
         let camera = UIButton.init(type:.custom)
         camera.setImage(UIImage(named: "Camera-50.png"), for: UIControlState.normal)
         camera.addTarget(self, action: #selector(self.importImage(_:)), for: UIControlEvents.touchUpInside)
@@ -100,10 +96,9 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         
         journalTextView.inputAccessoryView = toolbar
         
-
         
+        // Previous information if it's edit journal
         if self.type != .new {
-            // Do any additional setup after loading the view.
             if let date = journalEntryDetails?.date {
                 dateTextField.text = date
             }
@@ -141,6 +136,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             journalTextView.text = "Write something..."
             journalTextView.textColor = UIColor.lightGray
             
+            // Automatically set the current place
             placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
                 if let error = error {
                     print("Pick Place error: \(error.localizedDescription)")
@@ -169,7 +165,8 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         // Dispose of any resources that can be recreated.
     }
 
-
+    
+    // Handles image import
     @IBAction func importImage(_ sender: UIBarButtonItem) {
         
         let image = UIImagePickerController()
@@ -182,7 +179,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         case 1:
             image.sourceType = UIImagePickerControllerSourceType.photoLibrary
         default:
-            fatalError("Source type for image picker unknown")
+            print("Source type for image picker unknown")
         }
         
         image.allowsEditing = false
@@ -206,11 +203,15 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             
             //put your NSTextAttachment into and attributedString
             let attString = NSAttributedString(attachment: attachment)
+            
+            if journalTextView.textColor == UIColor.lightGray {
+                journalTextView.text = ""
+                journalTextView.textColor = UIColor.black
+            }
+            
             //add this attributed string to the current position.
-            
             journalTextView.text = journalTextView.text + "\n"
             journalTextView.text = journalTextView.text + "\n"
-            
             journalTextView.textStorage.insert(attString, at: journalTextView.selectedRange.location)
             
             journalTextView.font = UIFont(name: "Avenir", size: 20.0)
@@ -219,21 +220,17 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             // Error
             journalTextView.text = "Didn't get the image"
         }
-        
-        
-        
         self.dismiss(animated: true, completion: nil)
     }
 
-    
+    // When return is pressed in the textfield, hide keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    
+    // Adjust textfield position so that it's not hidden by keyboard
     func adjustForKeyboard(notification: Notification) {
-        
         let userInfo = notification.userInfo!
         
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
@@ -257,6 +254,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
+        // If inputing date, use a date picker
         if textField.tag == 2 {
             let inputView = UIView(frame: CGRect(x:0, y:0, width:self.view.frame.width, height:240))
             
@@ -269,7 +267,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             center.x = inputView.center.x
             datePickerView.center = center
             
-            
+            // Add a done button that will dismiss the date picker
             let doneButton = UIButton(frame: CGRect(x:(self.view.frame.size.width/2) - (100/2), y:0, width:100, height:50))
             doneButton.setTitle("Done", for: UIControlState.normal)
             doneButton.setTitle("Done", for: UIControlState.highlighted)
@@ -286,9 +284,9 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             handleDatePicker(datePickerView) // Set the date on start.
         }
         
+        // Use a picker view if it's selecting a trip name & if not creating a new trip
         if textField.tag == 3 && !tripNameTextFieldUsesKeyboard{
             
-            // get all books
             let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Trip")
             
             // sort by author anme and then by title
@@ -304,7 +302,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             do {
                 try fetchedResultsController.performFetch()
             }catch{
-                fatalError("Failed to fetch data")
+                print("Failed to fetch data")
             }
 
             let inputView = UIView(frame: CGRect(x:0, y:0, width:self.view.frame.width, height:240))
@@ -330,6 +328,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             textField.inputView = inputView
         }
         
+        // When inputing location, use google map's API
         if textField.tag == 4 {
             let autocompleteController = GMSAutocompleteViewController()
             autocompleteController.delegate = self
@@ -341,6 +340,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         return 1
     }
     
+    // Set the first title in pickerview as Create a new trip
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if row == 0 {
             return "Create a new trip..."
@@ -351,6 +351,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // If user decides to create a new trip, dismiss pickerview and use keyboard
         if row == 0 {
             tripNameTextFieldUsesKeyboard = true
             tripNameTextField.text = ""
@@ -368,19 +369,22 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         return (fetchedResultsController.fetchedObjects?.count)! + 1
     }
     
+    
+    // Create place holder for text view
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.black
         }
     }
-
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
+        if textView.text.isEmpty && textView.attributedText != nil{
             textView.text = "Write something..."
             textView.textColor = UIColor.lightGray
         }
     }
+    
+    
     
     func handleDatePicker(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
@@ -422,13 +426,11 @@ enum EditType {
     case edit
 }
 
+// Google Map's API
 extension EditJournalViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place address: \(String(describing: place.formattedAddress))")
-        print("Place attributions: \(String(describing: place.attributions))")
         self.locationTextField.text = place.name
         self.latitude = place.coordinate.latitude
         self.longitude = place.coordinate.longitude

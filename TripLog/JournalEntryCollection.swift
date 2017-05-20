@@ -2,9 +2,10 @@
 //  JournalEntryCollection.swift
 //  TripLog
 //
-//  Created by Lyra Ding on 4/25/17.
+//  Created by Tony Jin on 4/25/17.
 //  Copyright © 2017 CS466. All rights reserved.
-//
+//  
+//  A collection of journal entries from core data
 
 import UIKit
 import Foundation
@@ -28,14 +29,14 @@ class JournalEntryCollection{
         
         persistentContainer.loadPersistentStores(){ (description, err) in
             if let err = err{
-                // should try harder to make the connection and not just dump the user
-                fatalError("Could not load Core Data: \(err)")
+                print("Could not load Core Data: \(err)")
             }
             
             completionClosure()
         }
     }
     
+    // Check if trip is already there. If not, create a new one.
     func findTrip(name:String)->Trip?{
         let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Trip")
         request.fetchLimit = 1
@@ -53,11 +54,12 @@ class JournalEntryCollection{
                 return matches[0] as? Trip
             }
         } catch {
-            fatalError("Unable to find trips")
+            print("Unable to find trips")
         }
         return nil
     }
     
+    // Add a journal entry
     func add (text:NSAttributedString,date:String,location:String,tripName:String,latitude:Double,longitude:Double) -> NSManagedObjectID{
         let trip = findTrip(name: tripName)
         var journalEntry:JournalEntry!
@@ -76,11 +78,10 @@ class JournalEntryCollection{
         return journalEntryId!
     }
     
+    // Update a journal entry
     func update(oldEntry: JournalEntry, text:NSAttributedString, date:String, location: String, tripName: String, latitude:Double, longitude:Double) -> NSManagedObjectID{
         var newEntryId:NSManagedObjectID
         if oldEntry.trip?.tripName != tripName {
-            // we can't just adjust the name because of various data dependancies
-            // so we will delete the book and make a new one
             delete(oldEntry)
             newEntryId = add(text:text, date:date, location:location,tripName:tripName,latitude:latitude,longitude: longitude)
         }else{
@@ -95,21 +96,22 @@ class JournalEntryCollection{
         return newEntryId
     }
     
+    // Delete a journal entry
     func delete(_ entry:JournalEntry) {
         managedObjectContext.delete(entry)
         self.saveChanges()
     }
 
-    
+    // Save changes
     func saveChanges() {
         if managedObjectContext.hasChanges {
             do {
                 try managedObjectContext.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                // print() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                print("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
     }

@@ -136,23 +136,11 @@
 		1FE36F701EADA651003E5325 /* TripLog */ = {
 			isa = PBXGroup;
 			children = (
-				1FE36F711EADA651003E5325 /* AppDelegate.swift */,
-				1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */,
-				1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */,
-				1F4F38E41EB0394700D015D9 /* JournalDetailViewController.swift */,
-				1F4F38E21EAFDA6300D015D9 /* JournalEntryCollection.swift */,
-				1F4F38E61EB12E2700D015D9 /* EditJournalViewController.swift */,
+				1FFBFE361ECF8B9200E99696 /* Supporting Files */,
+				1FFBFE371ECF8BBB00E99696 /* Data Model */,
+				1FFBFE351ECF8B5600E99696 /* Controllers */,
+				1FFBFE381ECF8BD800E99696 /* Cells */,
 				1FE36F771EADA651003E5325 /* Main.storyboard */,
-				5DFD61FB1EC4EF0900425C10 /* ModalViewController.swift */,
-				1F942A951EC2653E00288EAC /* GoogleMapViewController.swift */,
-				5D23483F1EB18F90009EB07C /* TripsTableViewController.swift */,
-				1F942A8F1EBFB41E00288EAC /* TripsTableViewCell.swift */,
-				1F942A931EBFB91600288EAC /* TripCollection.swift */,
-				5DCD3CC31EAFCF1D00A59DE1 /* NewTripViewController.swift */,
-				1F4F38D91EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld */,
-				1FE36F7A1EADA651003E5325 /* Assets.xcassets */,
-				1FE36F7C1EADA651003E5325 /* LaunchScreen.storyboard */,
-				1FE36F7F1EADA651003E5325 /* Info.plist */,
 			);
 			path = TripLog;
 			sourceTree = "<group>";
@@ -173,6 +161,50 @@
 				1FE36F951EADA651003E5325 /* Info.plist */,
 			);
 			path = TripLogUITests;
+			sourceTree = "<group>";
+		};
+		1FFBFE351ECF8B5600E99696 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */,
+				1F4F38E41EB0394700D015D9 /* JournalDetailViewController.swift */,
+				1F4F38E61EB12E2700D015D9 /* EditJournalViewController.swift */,
+				5DFD61FB1EC4EF0900425C10 /* ModalViewController.swift */,
+				1F942A951EC2653E00288EAC /* GoogleMapViewController.swift */,
+				5D23483F1EB18F90009EB07C /* TripsTableViewController.swift */,
+				5DCD3CC31EAFCF1D00A59DE1 /* NewTripViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1FFBFE361ECF8B9200E99696 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1FE36F711EADA651003E5325 /* AppDelegate.swift */,
+				1FE36F7A1EADA651003E5325 /* Assets.xcassets */,
+				1FE36F7C1EADA651003E5325 /* LaunchScreen.storyboard */,
+				1FE36F7F1EADA651003E5325 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1FFBFE371ECF8BBB00E99696 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F4F38E21EAFDA6300D015D9 /* JournalEntryCollection.swift */,
+				1F942A931EBFB91600288EAC /* TripCollection.swift */,
+				1F4F38D91EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		1FFBFE381ECF8BD800E99696 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */,
+				1F942A8F1EBFB41E00288EAC /* TripsTableViewCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		47F89586955BEE60911E3834 /* Pods */ = {
