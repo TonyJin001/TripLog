@@ -27,5 +27,13 @@ class JournalEntriesTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func configureCell(entry:JournalEntry) {
+        let tempAttributedString:NSAttributedString = entry.text as! NSAttributedString
+        journalEntryTextLabel.text = tempAttributedString.string
+        journalEntryDateLabel.text = entry.date
+        journalEntryTripIndexLabel.text = ""
+        journalEntryTripNameLabel.text = entry.trip?.tripName
+    }
 
 }

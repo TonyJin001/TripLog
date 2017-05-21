@@ -7,16 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BBD287EFCF1F813D3C09BC3 /* Pods_TripLogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E584AE569CA4A5D21AAC8637 /* Pods_TripLogUITests.framework */; };
+		1F4F38DB1EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F38D91EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld */; };
+		1F4F38E31EAFDA6300D015D9 /* JournalEntryCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F38E21EAFDA6300D015D9 /* JournalEntryCollection.swift */; };
+		1F4F38E51EB0394700D015D9 /* JournalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F38E41EB0394700D015D9 /* JournalDetailViewController.swift */; };
+		1F4F38E71EB12E2700D015D9 /* EditJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F38E61EB12E2700D015D9 /* EditJournalViewController.swift */; };
+		1F942A901EBFB41E00288EAC /* TripsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F942A8F1EBFB41E00288EAC /* TripsTableViewCell.swift */; };
+		1F942A961EC2653E00288EAC /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F942A951EC2653E00288EAC /* GoogleMapViewController.swift */; };
 		1FE36F721EADA651003E5325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F711EADA651003E5325 /* AppDelegate.swift */; };
 		1FE36F741EADA651003E5325 /* JournalEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */; };
-		1FE36F761EADA651003E5325 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F751EADA651003E5325 /* TripsViewController.swift */; };
 		1FE36F791EADA651003E5325 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FE36F771EADA651003E5325 /* Main.storyboard */; };
 		1FE36F7B1EADA651003E5325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FE36F7A1EADA651003E5325 /* Assets.xcassets */; };
 		1FE36F7E1EADA651003E5325 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FE36F7C1EADA651003E5325 /* LaunchScreen.storyboard */; };
 		1FE36F891EADA651003E5325 /* TripLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F881EADA651003E5325 /* TripLogTests.swift */; };
 		1FE36F941EADA651003E5325 /* TripLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F931EADA651003E5325 /* TripLogUITests.swift */; };
 		1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */; };
-		1FE36FA41EAE80CD003E5325 /* NewJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */; };
+		2046F8343277AD931DBEF5BD /* Pods_TripLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7A083934DD723D90A8EB6E1 /* Pods_TripLog.framework */; };
+		27D1BF48CA84935DB25B879A /* Pods_TripLogTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB6353C782D61622C045D8 /* Pods_TripLogTests.framework */; };
+		5D2348401EB18F90009EB07C /* TripsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D23483F1EB18F90009EB07C /* TripsTableViewController.swift */; };
+		5DCD3CC41EAFCF1D00A59DE1 /* NewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD3CC31EAFCF1D00A59DE1 /* NewTripViewController.swift */; };
+		5DFD61FC1EC4EF0900425C10 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFD61FB1EC4EF0900425C10 /* ModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,10 +47,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02B7011A73809815165CF751 /* Pods-TripLogUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripLogUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripLogUITests/Pods-TripLogUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		08EB6353C782D61622C045D8 /* Pods_TripLogTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripLogTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F4F38DA1EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JournalEntryModel.xcdatamodel; sourceTree = "<group>"; };
+		1F4F38E21EAFDA6300D015D9 /* JournalEntryCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalEntryCollection.swift; sourceTree = "<group>"; };
+		1F4F38E41EB0394700D015D9 /* JournalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalDetailViewController.swift; sourceTree = "<group>"; };
+		1F4F38E61EB12E2700D015D9 /* EditJournalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditJournalViewController.swift; sourceTree = "<group>"; };
+		1F942A8F1EBFB41E00288EAC /* TripsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsTableViewCell.swift; sourceTree = "<group>"; };
+		1F942A951EC2653E00288EAC /* GoogleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
 		1FE36F6E1EADA651003E5325 /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE36F711EADA651003E5325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntriesViewController.swift; sourceTree = "<group>"; };
-		1FE36F751EADA651003E5325 /* TripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		1FE36F781EADA651003E5325 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FE36F7A1EADA651003E5325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FE36F7D1EADA651003E5325 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,7 +69,16 @@
 		1FE36F931EADA651003E5325 /* TripLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogUITests.swift; sourceTree = "<group>"; };
 		1FE36F951EADA651003E5325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalEntriesTableViewCell.swift; sourceTree = "<group>"; };
-		1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewJournalViewController.swift; sourceTree = "<group>"; };
+		5D23483F1EB18F90009EB07C /* TripsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsTableViewController.swift; sourceTree = "<group>"; };
+		5DCD3CC31EAFCF1D00A59DE1 /* NewTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTripViewController.swift; sourceTree = "<group>"; };
+		5DFD61FB1EC4EF0900425C10 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		61991879AACF816FCD5203BE /* Pods-TripLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripLog.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripLog/Pods-TripLog.debug.xcconfig"; sourceTree = "<group>"; };
+		C2E7ED23F79C716265B561AE /* Pods-TripLogUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripLogUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripLogUITests/Pods-TripLogUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CB02D83C10B2E2FF40F6B144 /* Pods-TripLogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripLogTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripLogTests/Pods-TripLogTests.release.xcconfig"; sourceTree = "<group>"; };
+		E2B9715CDF90714F196E04B1 /* Pods-TripLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripLog.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripLog/Pods-TripLog.release.xcconfig"; sourceTree = "<group>"; };
+		E584AE569CA4A5D21AAC8637 /* Pods_TripLogUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripLogUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7A083934DD723D90A8EB6E1 /* Pods_TripLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F74858CE93609D2FA219A90B /* Pods-TripLogTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripLogTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripLogTests/Pods-TripLogTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2046F8343277AD931DBEF5BD /* Pods_TripLog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27D1BF48CA84935DB25B879A /* Pods_TripLogTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BBD287EFCF1F813D3C09BC3 /* Pods_TripLogUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +116,8 @@
 				1FE36F871EADA651003E5325 /* TripLogTests */,
 				1FE36F921EADA651003E5325 /* TripLogUITests */,
 				1FE36F6F1EADA651003E5325 /* Products */,
+				47F89586955BEE60911E3834 /* Pods */,
+				5AFC825B140AEAFEFE296C48 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,15 +134,11 @@
 		1FE36F701EADA651003E5325 /* TripLog */ = {
 			isa = PBXGroup;
 			children = (
-				1FE36F711EADA651003E5325 /* AppDelegate.swift */,
-				1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */,
-				1FE36F751EADA651003E5325 /* TripsViewController.swift */,
+				1FFBFE361ECF8B9200E99696 /* Supporting Files */,
+				1FFBFE371ECF8BBB00E99696 /* Data Model */,
+				1FFBFE351ECF8B5600E99696 /* Controllers */,
+				1FFBFE381ECF8BD800E99696 /* Cells */,
 				1FE36F771EADA651003E5325 /* Main.storyboard */,
-				1FE36FA31EAE80CD003E5325 /* NewJournalViewController.swift */,
-				1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */,
-				1FE36F7A1EADA651003E5325 /* Assets.xcassets */,
-				1FE36F7C1EADA651003E5325 /* LaunchScreen.storyboard */,
-				1FE36F7F1EADA651003E5325 /* Info.plist */,
 			);
 			path = TripLog;
 			sourceTree = "<group>";
@@ -134,6 +161,72 @@
 			path = TripLogUITests;
 			sourceTree = "<group>";
 		};
+		1FFBFE351ECF8B5600E99696 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */,
+				1F4F38E41EB0394700D015D9 /* JournalDetailViewController.swift */,
+				1F4F38E61EB12E2700D015D9 /* EditJournalViewController.swift */,
+				5DFD61FB1EC4EF0900425C10 /* ModalViewController.swift */,
+				1F942A951EC2653E00288EAC /* GoogleMapViewController.swift */,
+				5D23483F1EB18F90009EB07C /* TripsTableViewController.swift */,
+				5DCD3CC31EAFCF1D00A59DE1 /* NewTripViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1FFBFE361ECF8B9200E99696 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1FE36F711EADA651003E5325 /* AppDelegate.swift */,
+				1FE36F7A1EADA651003E5325 /* Assets.xcassets */,
+				1FE36F7C1EADA651003E5325 /* LaunchScreen.storyboard */,
+				1FE36F7F1EADA651003E5325 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1FFBFE371ECF8BBB00E99696 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F4F38E21EAFDA6300D015D9 /* JournalEntryCollection.swift */,
+				1F4F38D91EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		1FFBFE381ECF8BD800E99696 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1FE36FA11EADBF19003E5325 /* JournalEntriesTableViewCell.swift */,
+				1F942A8F1EBFB41E00288EAC /* TripsTableViewCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		47F89586955BEE60911E3834 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				61991879AACF816FCD5203BE /* Pods-TripLog.debug.xcconfig */,
+				E2B9715CDF90714F196E04B1 /* Pods-TripLog.release.xcconfig */,
+				F74858CE93609D2FA219A90B /* Pods-TripLogTests.debug.xcconfig */,
+				CB02D83C10B2E2FF40F6B144 /* Pods-TripLogTests.release.xcconfig */,
+				02B7011A73809815165CF751 /* Pods-TripLogUITests.debug.xcconfig */,
+				C2E7ED23F79C716265B561AE /* Pods-TripLogUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5AFC825B140AEAFEFE296C48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7A083934DD723D90A8EB6E1 /* Pods_TripLog.framework */,
+				08EB6353C782D61622C045D8 /* Pods_TripLogTests.framework */,
+				E584AE569CA4A5D21AAC8637 /* Pods_TripLogUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,9 +234,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FE36F981EADA651003E5325 /* Build configuration list for PBXNativeTarget "TripLog" */;
 			buildPhases = (
+				C65186B338601FBEFC9A94A0 /* [CP] Check Pods Manifest.lock */,
 				1FE36F6A1EADA651003E5325 /* Sources */,
 				1FE36F6B1EADA651003E5325 /* Frameworks */,
 				1FE36F6C1EADA651003E5325 /* Resources */,
+				FD21C635DA6BF5E298B96320 /* [CP] Embed Pods Frameworks */,
+				89EDE0B54EB142D62180C928 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -158,9 +254,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FE36F9B1EADA651003E5325 /* Build configuration list for PBXNativeTarget "TripLogTests" */;
 			buildPhases = (
+				813CBD4D46EC2D6820178581 /* [CP] Check Pods Manifest.lock */,
 				1FE36F801EADA651003E5325 /* Sources */,
 				1FE36F811EADA651003E5325 /* Frameworks */,
 				1FE36F821EADA651003E5325 /* Resources */,
+				132DE0F92E9CAEC087C414C3 /* [CP] Embed Pods Frameworks */,
+				365C50F264106809BCB6B7B5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,9 +275,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FE36F9E1EADA651003E5325 /* Build configuration list for PBXNativeTarget "TripLogUITests" */;
 			buildPhases = (
+				45D2BBF1DF1C7B48ED897569 /* [CP] Check Pods Manifest.lock */,
 				1FE36F8B1EADA651003E5325 /* Sources */,
 				1FE36F8C1EADA651003E5325 /* Frameworks */,
 				1FE36F8D1EADA651003E5325 /* Resources */,
+				12986207083AD73AA480632F /* [CP] Embed Pods Frameworks */,
+				116038D759641F8D865A2A79 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -203,15 +305,18 @@
 					1FE36F6D1EADA651003E5325 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = NCMLUGS6E6;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					1FE36F831EADA651003E5325 = {
 						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 1FE36F6D1EADA651003E5325;
 					};
 					1FE36F8E1EADA651003E5325 = {
 						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 1FE36F6D1EADA651003E5325;
 					};
@@ -264,16 +369,161 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		116038D759641F8D865A2A79 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripLogUITests/Pods-TripLogUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		12986207083AD73AA480632F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripLogUITests/Pods-TripLogUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		132DE0F92E9CAEC087C414C3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripLogTests/Pods-TripLogTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		365C50F264106809BCB6B7B5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripLogTests/Pods-TripLogTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45D2BBF1DF1C7B48ED897569 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		813CBD4D46EC2D6820178581 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		89EDE0B54EB142D62180C928 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripLog/Pods-TripLog-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C65186B338601FBEFC9A94A0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FD21C635DA6BF5E298B96320 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripLog/Pods-TripLog-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1FE36F6A1EADA651003E5325 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F4F38E31EAFDA6300D015D9 /* JournalEntryCollection.swift in Sources */,
 				1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */,
-				1FE36FA41EAE80CD003E5325 /* NewJournalViewController.swift in Sources */,
-				1FE36F761EADA651003E5325 /* TripsViewController.swift in Sources */,
+				1F4F38E51EB0394700D015D9 /* JournalDetailViewController.swift in Sources */,
+				1F4F38E71EB12E2700D015D9 /* EditJournalViewController.swift in Sources */,
+				5DFD61FC1EC4EF0900425C10 /* ModalViewController.swift in Sources */,
+				1F4F38DB1EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld in Sources */,
 				1FE36F721EADA651003E5325 /* AppDelegate.swift in Sources */,
+				1F942A961EC2653E00288EAC /* GoogleMapViewController.swift in Sources */,
+				5D2348401EB18F90009EB07C /* TripsTableViewController.swift in Sources */,
+				5DCD3CC41EAFCF1D00A59DE1 /* NewTripViewController.swift in Sources */,
 				1FE36F741EADA651003E5325 /* JournalEntriesViewController.swift in Sources */,
+				1F942A901EBFB41E00288EAC /* TripsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +675,7 @@
 		};
 		1FE36F991EADA651003E5325 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61991879AACF816FCD5203BE /* Pods-TripLog.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NCMLUGS6E6;
@@ -439,6 +690,7 @@
 		};
 		1FE36F9A1EADA651003E5325 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2B9715CDF90714F196E04B1 /* Pods-TripLog.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NCMLUGS6E6;
@@ -453,6 +705,7 @@
 		};
 		1FE36F9C1EADA651003E5325 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F74858CE93609D2FA219A90B /* Pods-TripLogTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -467,6 +720,7 @@
 		};
 		1FE36F9D1EADA651003E5325 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB02D83C10B2E2FF40F6B144 /* Pods-TripLogTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -481,6 +735,7 @@
 		};
 		1FE36F9F1EADA651003E5325 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02B7011A73809815165CF751 /* Pods-TripLogUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = TripLogUITests/Info.plist;
@@ -494,6 +749,7 @@
 		};
 		1FE36FA01EADA651003E5325 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2E7ED23F79C716265B561AE /* Pods-TripLogUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = TripLogUITests/Info.plist;
@@ -545,6 +801,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1F4F38D91EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1F4F38DA1EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodel */,
+			);
+			currentVersion = 1F4F38DA1EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodel */;
+			path = JournalEntryModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1FE36F661EADA651003E5325 /* Project object */;
 }
