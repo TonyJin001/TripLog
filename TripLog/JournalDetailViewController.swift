@@ -38,6 +38,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         
         if let location = journalEntryDetails?.location {
             locationLabel.text = "Location: " + location
+            locationLabel.adjustsFontSizeToFitWidth = true
         }
         
         if let text:NSAttributedString = journalEntryDetails?.text as? NSAttributedString {

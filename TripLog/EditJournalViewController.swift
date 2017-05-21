@@ -408,7 +408,10 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
             print("The save button was not pressed")
             return
         }
-        
+
+        if journalTextView.textColor == UIColor.lightGray {
+            journalTextView.text = ""
+        }
         let text = journalTextView.attributedText ?? nil
         let date = dateTextField.text ?? ""
         let location = locationTextField.text ?? ""
