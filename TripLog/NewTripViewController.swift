@@ -5,15 +5,11 @@
 //  Created by Vaasu on 4/25/17.
 //  Copyright © 2017 CS466. All rights reserved.
 //
+//  This is the file for creating a new trip
+//  After creating a new trip, it will segue
+//  back to the trips table view
 
 import UIKit
-
-//This is the file for creating a new trip
-//After creating a new trip, it will segue 
-//back to the trips table view
-
-
-
 
 class NewTripViewController: UIViewController {
     
@@ -101,16 +97,13 @@ class NewTripViewController: UIViewController {
         if (enddatefield.text != ""){ //enddate filled in
             let enddate = dateFormatter.date(from: enddatefield.text!)
             
-            //print((enddate?.timeIntervalSince1970)!)
-            //print(sender.date.timeIntervalSince1970)
-            
             if ((enddate?.timeIntervalSince1970)! >= sender.date.timeIntervalSince1970){ //start date is before enddate
                 
                 startdatefield.text = dateFormatter.string(from: sender.date)
             }
             
             else{ //startdate is set to enddate since it can't be later
-                //we don't have an alert here because we thought 
+                //we don't have an alert here because we thought
                 //too many would be annoying
                 // this is less likely to occur, and still 
                 //will prevent impossible values so the absence of an alert
@@ -145,7 +138,6 @@ class NewTripViewController: UIViewController {
                                               message: "The End Date Can't be Before the Start Date!", preferredStyle: UIAlertControllerStyle.alert);
             
                 let failAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {(Action) in
-                //                print("alert");
                 }
             
                 dateAlert.addAction(failAction)
@@ -171,7 +163,7 @@ class NewTripViewController: UIViewController {
         }else if let owningNavController = navigationController{
             owningNavController.popViewController(animated: true)
         }else{
-            fatalError("View is not contained by a navigation controller")
+            print("View is not contained by a navigation controller")
         }
     }
 
@@ -188,7 +180,6 @@ class NewTripViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let button = sender as? UIBarButtonItem, button === saveButton else{
-            //print("The save button was not pressed")
             return
         }
         
@@ -213,7 +204,6 @@ class NewTripViewController: UIViewController {
             message: "Please Enter a Name For Your Trip", preferredStyle: UIAlertControllerStyle.alert);
             
             let failAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {(Action) in
-//                print("alert");
             }
             
             saveAlert.addAction(failAction)

@@ -2,17 +2,17 @@
 //  GoogleMapViewController.swift
 //  TripLog
 //
-//  Created by Lyra Ding on 5/9/17.
+//  Created by Tony Jin on 5/9/17.
 //  Copyright © 2017 CS466. All rights reserved.
-//  This is the controller for the google map that visualizes all the journal entries
+//  This is file for the map view, implemented with google maps.
+//  You can view the map by looking at the view for a specific trip
+//  You can click on a marker and view the details of a specific journal entry
 
 import UIKit
 import CoreData
 import GoogleMaps
 import GooglePlaces
 
-//This is file for the map view, implemented with google maps.
-//You can view the map by looking at the view for a specific trip
 
 class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
 
@@ -97,9 +97,6 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -107,13 +104,12 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Navigation
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         selectedJournalEntry = idToJournalEntry[markerToId[marker]!]!
         performSegue(withIdentifier: "ViewJournalDetails", sender: self)
     }
 
-    
-    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -138,12 +134,13 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
 
 }
 
+// Google's code for CLLocationManagerDelegate
 extension GoogleMapViewController: CLLocationManagerDelegate {
     
     // Handle incoming location events.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
-        //print("Location: \(location)")
+        print("Location: \(location)")
 
     }
     

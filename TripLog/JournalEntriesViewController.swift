@@ -2,7 +2,7 @@
 //  FirstViewController.swift
 //  TripLog
 //
-//  Created by Lyra Ding on 4/23/17.
+//  Created by Tony Jin on 4/23/17.
 //  Copyright © 2017 CS466. All rights reserved.
 //
 //  This is the file for looking at all the journals in the journals tab,
@@ -27,7 +27,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     var trip:Trip?
     
     private var journalEntries = JournalEntryCollection() {
-        //print("Core Data Connected")
+        // Connect to Core Data
     }
     
     @IBOutlet weak var journalEntriesTableView: UITableView!
@@ -35,12 +35,14 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setToolbarHidden(true, animated: true)
         self.tabBarController?.tabBar.isHidden = false
+        
+        // Identify if we are displaying one trip or all journal entries
         if type == .oneTrip {
             self.tabBarController?.tabBar.isHidden = true
             self.navigationController?.setToolbarHidden(false, animated: true)
         }
         
-        
+        // Pass the core data to trips tab
         let navController = self.tabBarController?.viewControllers?[1] as! UINavigationController
         let tripTab = navController.viewControllers.first as! TripsTableViewController
         if tripTab.tripEntries == nil {
@@ -82,12 +84,12 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     func initializeFetchResultsController() {
         // get all journal entries
         let request = NSFetchRequest<NSFetchRequestResult>(entityName:"JournalEntry")
-        // Filter for trips if necessary
         
+        // Filter for trips if necessary
         if self.type == .oneTrip && self.trip != nil {
             request.predicate = NSPredicate(format: "trip.tripName == %@", self.trip!.tripName!)
         } else if self.type == .oneTrip && self.trip == nil {
-            fatalError("Tripname shouldn't be nill when self.type is oneTrip")
+            print("Error: Tripname shouldn't be nill when self.type is oneTrip")
         }
 
         // sort by author anme and then by title
@@ -108,7 +110,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     
-    // Functions for Table View
+    // MARK: Functions for Table View
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections!.count
     }
@@ -253,6 +255,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
+    // Unwind from Edit Journal
     @IBAction func unwindFromEdit(sender: UIStoryboardSegue){
         journalEntriesTableView.reloadData()
     }

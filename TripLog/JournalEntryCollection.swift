@@ -5,7 +5,7 @@
 //  Created by Tony Jin on 4/25/17.
 //  Copyright © 2017 CS466. All rights reserved.
 //  
-//  A collection of journal entries from core data
+//  A collection of journal entries & Trips from core data
 
 import UIKit
 import Foundation

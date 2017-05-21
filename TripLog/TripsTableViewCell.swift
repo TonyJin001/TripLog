@@ -5,10 +5,11 @@
 //  Created by Lyra Ding on 5/7/17.
 //  Copyright © 2017 CS466. All rights reserved.
 //
+//  This is the file for the cells in the trips table view
 
 import UIKit
 
-//This is the file for the cells in the trips table view
+
 
 class TripsTableViewCell: UITableViewCell {
 

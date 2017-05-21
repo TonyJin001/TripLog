@@ -1,16 +1,17 @@
 //
-//  TheFixedTripsViewController.swift
+//  TripsTableViewController.swift
 //  TripLog
 //
 //  Created by Vaasu on 4/26/17.
 //  Copyright © 2017 CS466. All rights reserved.
 //
+//  This is the file for the Table View for the Trips.
+//  It has segues to the table view of a specific trip, and to the file to create a new trips.
 
 import UIKit
 import CoreData
 
-//This is the file for the Table View for the Trips. 
-// It has segues to the table view of a specific trip, and to the file to create a new trips.
+
 
 class TripsTableViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate{
 
@@ -18,9 +19,6 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
     
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     
-//    private var tripEntries = JournalEntryCollection() {
-//        print("Core Data Connected for trips")
-//    }
     var tripEntries:JournalEntryCollection?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,10 +32,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         super.viewDidLoad()
         tripsTableView.delegate = self
         tripsTableView.dataSource = self
-        
         tripsTableView.rowHeight = 106.5
-
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,8 +42,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
     
     
     func initializeFetchResultsController() {
-        
-        // get all books
+        // get all trips
         let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Trip")
         
         // sort by trip name
@@ -152,13 +146,11 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
                 let alertController = UIAlertController(title: "Trip Deletion", message: "Do you want to delete all the journal entries in the trip, or do you only want to remove their reference to this trip?", preferredStyle: .actionSheet)
                 let deleteAction = UIAlertAction(title: "Delete all entries in the trip", style: .destructive, handler: {
                     (alert:UIAlertAction!)->Void in
-//                    var journalEntries = JournalEntryCollection() {
-//                        print("Core Data Connected")
-//                    }
+
                     // get all journal entries
                     let entryRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"JournalEntry")
+                    
                     // Filter for trips if necessary
-        
                     entryRequest.predicate = NSPredicate(format: "trip.tripName == %@", trip.tripName!)
                     
                     // sort by author anme and then by title
@@ -210,8 +202,6 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
             } else {
                 tripEntries?.deleteTrip(trip)
             }
-            
-            
         }
     }
 
@@ -258,7 +248,6 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
             destination.trip = currentTrip
             destination.title = currentTrip.tripName
             destination.hidesBottomBarWhenPushed = true
-            //print("End of view trip")
             
         default:
             fatalError("Unexpected segue identifier")

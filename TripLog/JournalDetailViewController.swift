@@ -2,21 +2,21 @@
 //  JournalDetailViewController.swift
 //  TripLog
 //
-//  Created by Lyra Ding on 4/25/17.
+//  Created by Tony Jin on 4/25/17.
 //  Copyright © 2017 CS466. All rights reserved.
 //
-//  This is the file for the detail journal views
+// This is the file for the view of a single journal entry.
+// It has a segue to the edit journal entry view,
+// and has the delete and share entry functionality.
+// The single journal entry view can be reached by
+// clicking on the journalentry cell from
+// either the single trips table or from the journalentries tab
 
 import UIKit
 import CoreData
 import MessageUI
 
-// This is the file for the view of a single journal entry.
-// It has a segue to the edit journal entry view,
-// and has the delete and share entry functionality.
-// The single journal entry view can be reached by 
-// clicking on the journalentrycell from
-// either the single trips table or from the journalentries tab
+
 
 class JournalDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
@@ -47,7 +47,6 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         }
         
         if let text:NSAttributedString = journalEntryDetails?.text as? NSAttributedString {
-            
             textTextView.attributedText = text
         }
         
@@ -75,14 +74,14 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         let alertController = UIAlertController(title: "Share", message: "Do you want to share this journal?", preferredStyle: .actionSheet)
         let shareAction = UIAlertAction(title: "Share", style: .default, handler: {
             (alert:UIAlertAction!)->Void in
-            print("Share")
+            //Send the journal entry by email
             self.sendEmail()
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:
         {
             (alert: UIAlertAction!) -> Void in
-            print("Cancelled")
+            // Cancel the share action
         })
         alertController.addAction(shareAction)
         alertController.addAction(cancelAction)
@@ -135,14 +134,14 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:
         {
             (alert: UIAlertAction!) -> Void in
-            print("Cancelled")
+            // Cancel delete function
         })
         alertController.addAction(deleteAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
     }
 
-    //Navigation
+    //MARK: Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
@@ -175,6 +174,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         
     }
     
+    // Unwind from edit journal entry
     @IBAction func unwindFromEditToDetails(sender: UIStoryboardSegue){
 
     }

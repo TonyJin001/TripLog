@@ -5,12 +5,12 @@
 //  Created by Vaasu on 5/11/17.
 //  Copyright © 2017 CS466. All rights reserved.
 //
-
-import UIKit
-
 // This is the view controller for the modal that pops up
 // the first time you open up the app. It gives a simple
 // description on a series of 'pages' about the app.
+
+import UIKit
+
 
 class ModalViewController: UIViewController {
     

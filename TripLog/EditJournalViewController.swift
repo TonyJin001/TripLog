@@ -2,21 +2,17 @@
 //  EditJournalViewController.swift
 //  TripLog
 //
-//  Created by Lyra Ding on 4/26/17.
+//  Created by Tony Jin on 4/26/17.
 //  Copyright © 2017 CS466. All rights reserved.
-//  This is the controller for editing/creating a journal entry
-
-import UIKit
-import CoreData
-import GooglePlaces
-
 // This is the file for the edit journal view.
 // From this page you can make new journal entries,
 // or edit an old one and save your changes
 // From this view, you can add new photos in the camera roll
 // Or you can go to the camera and take a photo to add it
 
-
+import UIKit
+import CoreData
+import GooglePlaces
 
 class EditJournalViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, NSFetchedResultsControllerDelegate {
 
@@ -41,6 +37,7 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
     var tripNameTextFieldUsesKeyboard = false
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     
+    // Controls whether the view controller is responsible for editing an entry or creating a new one
     var type:EditType = .edit
     
     var journalEntries:JournalEntryCollection? = nil
