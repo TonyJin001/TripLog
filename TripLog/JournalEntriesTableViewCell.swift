@@ -2,11 +2,16 @@
 //  JournalEntriesTableViewCell.swift
 //  TripLog
 //
-//  Created by Lyra Ding on 4/24/17.
+//  Created by Tony Jin on 4/24/17.
 //  Copyright © 2017 CS466. All rights reserved.
 //
+//this is the file for the cells for single journal entries
+//you can see these cells when viewing individual trip's journal entries
+//or when viewing all the journal entries together
 
 import UIKit
+
+
 
 class JournalEntriesTableViewCell: UITableViewCell {
 
@@ -26,6 +31,15 @@ class JournalEntriesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configureCell(entry:JournalEntry) {
+        let tempAttributedString:NSAttributedString = entry.text as! NSAttributedString
+        journalEntryTextLabel.text = tempAttributedString.string
+        journalEntryDateLabel.text = entry.date
+        journalEntryTripIndexLabel.text = ""
+        journalEntryTripNameLabel.text = entry.trip?.tripName
+        journalEntryTripNameLabel.adjustsFontSizeToFitWidth = true
     }
 
 }
