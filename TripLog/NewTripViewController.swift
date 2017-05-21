@@ -12,6 +12,9 @@ import UIKit
 //After creating a new trip, it will segue 
 //back to the trips table view
 
+
+
+
 class NewTripViewController: UIViewController {
     
     var type: TripType = .new
@@ -25,13 +28,15 @@ class NewTripViewController: UIViewController {
     @IBOutlet weak var startdatefield: UITextField!
     @IBOutlet weak var enddatefield: UITextField!
     
-    
+    var alertCount: Int = 0 //this is so that the date alert does not get annoying
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        alertCount = 0
         
         startdatefield.tag = 0
         enddatefield.tag = 1
@@ -96,8 +101,8 @@ class NewTripViewController: UIViewController {
         if (enddatefield.text != ""){ //enddate filled in
             let enddate = dateFormatter.date(from: enddatefield.text!)
             
-            print((enddate?.timeIntervalSince1970)!)
-            print(sender.date.timeIntervalSince1970)
+            //print((enddate?.timeIntervalSince1970)!)
+            //print(sender.date.timeIntervalSince1970)
             
             if ((enddate?.timeIntervalSince1970)! >= sender.date.timeIntervalSince1970){ //start date is before enddate
                 
@@ -105,7 +110,13 @@ class NewTripViewController: UIViewController {
             }
             
             else{ //startdate is set to enddate since it can't be later
+                //we don't have an alert here because we thought 
+                //too many would be annoying
+                // this is less likely to occur, and still 
+                //will prevent impossible values so the absence of an alert
+                // seemed justified
                 startdatefield.text = enddatefield.text
+                
             }
             
         }
@@ -129,7 +140,20 @@ class NewTripViewController: UIViewController {
         }
         
         else{ //enddate gets startdate since it can't be before startdate
-            enddatefield.text = startdatefield.text
+            if (alertCount == 0){
+                let dateAlert = UIAlertController(title: "Time Traveling?",
+                                              message: "The End Date Can't be Before the Start Date!", preferredStyle: UIAlertControllerStyle.alert);
+            
+                let failAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {(Action) in
+                //                print("alert");
+                }
+            
+                dateAlert.addAction(failAction)
+            
+                self.present(dateAlert, animated: true, completion: nil);
+                alertCount = 1
+                enddatefield.text = startdatefield.text
+            }
         }
 
     }
@@ -168,6 +192,7 @@ class NewTripViewController: UIViewController {
             return
         }
         
+        
         if (tripnamefield.text != ""){ //if no trippname is entered, trip is not saved
         
             let tripName = tripnamefield.text ?? "Unnamed Trip"
@@ -179,6 +204,21 @@ class NewTripViewController: UIViewController {
             if callback != nil{
                 callback!(tripName, startDate, endDate)
             }
+        }
+        
+        
+        
+        else{ //alert for no trip name
+            let saveAlert = UIAlertController(title: "Hold It!",
+            message: "Please Enter a Name For Your Trip", preferredStyle: UIAlertControllerStyle.alert);
+            
+            let failAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {(Action) in
+//                print("alert");
+            }
+            
+            saveAlert.addAction(failAction)
+            
+            self.present(saveAlert, animated: true, completion: nil);
         }
     }
 }
