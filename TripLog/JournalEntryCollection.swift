@@ -38,25 +38,33 @@ class JournalEntryCollection{
     
     // Check if trip is already there. If not, create a new one.
     func findTrip(name:String)->Trip?{
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Trip")
-        request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "tripName == %@", name)
-        do {
-            let matches = try managedObjectContext.fetch(request)
-            if matches.count==0 {
-                var trip:Trip!
-                managedObjectContext.performAndWait {
-                    trip = Trip(context: self.managedObjectContext)
-                    trip.tripName = name
+        if name != "" {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Trip")
+            request.fetchLimit = 1
+            request.predicate = NSPredicate(format: "tripName == %@", name)
+            do {
+                let matches = try managedObjectContext.fetch(request)
+                if matches.count==0 {
+                    var trip:Trip!
+                    managedObjectContext.performAndWait {
+                        trip = Trip(context: self.managedObjectContext)
+                        trip.tripName = name
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "MM/dd/yyyy"
+                        trip.startDate = dateFormatter.string(from: Date())
+                    }
+                    return trip
+                } else {
+                    return matches[0] as? Trip
                 }
-                return trip
-            } else {
-                return matches[0] as? Trip
+            } catch {
+                print("Unable to find trips")
             }
-        } catch {
-            print("Unable to find trips")
+            return nil
         }
+        
         return nil
+        
     }
     
     // Add a journal entry
@@ -119,6 +127,7 @@ class JournalEntryCollection{
         oldTrip.tripName = tripName
         oldTrip.startDate = startDate
         oldTrip.endDate = endDate
+        print(oldTrip.journalEntries)
         self.saveChanges()
     }
     
@@ -132,7 +141,9 @@ class JournalEntryCollection{
     func saveChanges() {
         if managedObjectContext.hasChanges {
             do {
+                print("saving")
                 try managedObjectContext.save()
+                print("saved")
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // print() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.

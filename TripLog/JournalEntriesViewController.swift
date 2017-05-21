@@ -35,12 +35,31 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             self.tabBarController?.tabBar.isHidden = true
             self.navigationController?.setToolbarHidden(false, animated: true)
         }
+        
+        
+        var navController = self.tabBarController?.viewControllers?[1] as! UINavigationController
+        var tripTab = navController.viewControllers.first as! TripsTableViewController
+        if tripTab.tripEntries == nil {
+            tripTab.tripEntries = journalEntries
+        }
+        
+//        if journalEntries.managedObjectContext.hasChanges || (tripTab.tripEntries?.managedObjectContext.hasChanges)!{
+//            print ("Has Changed!!!!!!")
+//            initializeFetchResultsController()
+//        } else {
+//            print("no changes!!!!!!")
+//        }
+        
+        if type != .oneTrip {
+            initializeFetchResultsController()
+        }
+        
         journalEntriesTableView.reloadData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // If launched for the first time, show tutorial
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {

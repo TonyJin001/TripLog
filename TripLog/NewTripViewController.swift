@@ -38,7 +38,7 @@ class NewTripViewController: UIViewController {
         
         let formatter = DateFormatter()
         formatter.timeStyle = .none
-        formatter.dateStyle = .short
+        formatter.dateFormat = "MM/dd/yyyy"
         
         
        
@@ -114,7 +114,7 @@ class NewTripViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
-            startdatefield.text = dateFormatter.string(from: sender.date)
+        startdatefield.text = dateFormatter.string(from: sender.date)
     }
     
     
@@ -164,19 +164,14 @@ class NewTripViewController: UIViewController {
             print("The save button was not pressed")
             return
         }
-        //print ("Cookie Cake")
-        let tripName = tripnamefield.text ?? ""
+        let tripName = tripnamefield.text ?? "Unnamed Trip"
         let startDate = startdatefield.text ?? ""
         let endDate = enddatefield.text ?? ""
         
         if callback != nil{
-            print ("IceCream Cake")
             callback!(tripName, startDate, endDate)
         }
     }
-
-
-
 }
 
 enum TripType{

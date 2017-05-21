@@ -22,12 +22,7 @@ class TripsTableViewCell: UITableViewCell {
         tripNameLabel.adjustsFontSizeToFitWidth = true
         
         if trip.startDate != nil {
-            if trip.endDate != nil{
-                startDate = "From: " + trip.startDate!
-            } else {
-                startDate = "Starts at: " + trip.startDate!
-            }
-            
+            startDate = "From: " + trip.startDate!
         }
         startDateLabel.text = startDate
         if trip.endDate != nil {

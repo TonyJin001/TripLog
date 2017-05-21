@@ -18,9 +18,10 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
     
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     
-    private var tripEntries = JournalEntryCollection() {
-        print("Core Data Connected for trips")
-    }
+//    private var tripEntries = JournalEntryCollection() {
+//        print("Core Data Connected for trips")
+//    }
+    var tripEntries:JournalEntryCollection?
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -55,8 +56,8 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
         request.sortDescriptors = [tripSort]
         
         // Create the controller using our moc
-        let moc = tripEntries.managedObjectContext
-        fetchedResultsController  = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+        let moc = tripEntries?.managedObjectContext
+        fetchedResultsController  = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc!, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
@@ -166,8 +167,8 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
                     entryRequest.sortDescriptors = [dateSort, tripSort]
                     
                     // Create the controller using our moc
-                    let moc = self.tripEntries.managedObjectContext
-                    var newFetchedResultsController  = NSFetchedResultsController(fetchRequest: entryRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+                    let moc = self.tripEntries?.managedObjectContext
+                    var newFetchedResultsController  = NSFetchedResultsController(fetchRequest: entryRequest, managedObjectContext: moc!, sectionNameKeyPath: nil, cacheName: nil)
                     newFetchedResultsController.delegate = self
                     do {
                         try newFetchedResultsController.performFetch()
@@ -185,16 +186,16 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
                         IDs.append(journalEntry.objectID)
                     }
                     for id in IDs {
-                        let tempEntry = moc.object(with: id) as? JournalEntry
-                        self.tripEntries.deleteJournalEntry(tempEntry!)
+                        let tempEntry = moc?.object(with: id) as? JournalEntry
+                        self.tripEntries?.deleteJournalEntry(tempEntry!)
                     }
-                    self.tripEntries.deleteTrip(trip)
+                    self.tripEntries?.deleteTrip(trip)
                 })
                 
                 let removeReferenceAction = UIAlertAction(title: "Remove reference", style: .default, handler:
                 {
                     (alert: UIAlertAction!) -> Void in
-                    self.tripEntries.deleteTrip(trip)
+                    self.tripEntries?.deleteTrip(trip)
                 })
 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:
@@ -207,7 +208,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
                 alertController.addAction(cancelAction)
                 self.present(alertController, animated: true, completion: nil)
             } else {
-                tripEntries.deleteTrip(trip)
+                tripEntries?.deleteTrip(trip)
             }
             
             
@@ -230,7 +231,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
             
             destination.type = .new
             destination.callback = { (tripName, startDate, endDate) in
-                self.tripEntries.addTrip(tripName: tripName, startDate: startDate, endDate: endDate)
+                self.tripEntries?.addTrip(tripName: tripName, startDate: startDate, endDate: endDate)
             }
             
             
