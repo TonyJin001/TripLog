@@ -48,15 +48,17 @@ class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
         if totalNumberOfObjects == 0 {
             centerLatitude = 0
             centerLongitude = 0
+        } else {
+            // Set the center longitude and latitude
+            let indexPath = IndexPath(row: 0, section: 0)
+            guard let journalEntry = self.fetchedResultsController.object(at: indexPath) as? JournalEntry else {
+                centerLatitude = 0
+                centerLongitude = 0
+                return
+            }
+            centerLatitude = journalEntry.latitude
+            centerLongitude = journalEntry.longitude
         }
-        
-        // Set the center longitude and latitude
-        let indexPath = IndexPath(row: 0, section: 0)
-        guard let journalEntry = self.fetchedResultsController.object(at: indexPath) as? JournalEntry else {
-            fatalError("Cannot find entry")
-        }
-        centerLatitude = journalEntry.latitude
-        centerLongitude = journalEntry.longitude
         
         // Create the map view and add snippets
         let camera = GMSCameraPosition.camera(withLatitude: centerLatitude!, longitude: centerLongitude!, zoom: 12)

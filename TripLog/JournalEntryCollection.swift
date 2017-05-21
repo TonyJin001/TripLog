@@ -60,7 +60,7 @@ class JournalEntryCollection{
     }
     
     // Add a journal entry
-    func add (text:NSAttributedString,date:String,location:String,tripName:String,latitude:Double,longitude:Double) -> NSManagedObjectID{
+    func addJournalEntry (text:NSAttributedString,date:String,location:String,tripName:String,latitude:Double,longitude:Double) -> NSManagedObjectID{
         let trip = findTrip(name: tripName)
         var journalEntry:JournalEntry!
         var journalEntryId:NSManagedObjectID? = nil
@@ -79,11 +79,11 @@ class JournalEntryCollection{
     }
     
     // Update a journal entry
-    func update(oldEntry: JournalEntry, text:NSAttributedString, date:String, location: String, tripName: String, latitude:Double, longitude:Double) -> NSManagedObjectID{
+    func updateJournalEntry(oldEntry: JournalEntry, text:NSAttributedString, date:String, location: String, tripName: String, latitude:Double, longitude:Double) -> NSManagedObjectID{
         var newEntryId:NSManagedObjectID
         if oldEntry.trip?.tripName != tripName {
-            delete(oldEntry)
-            newEntryId = add(text:text, date:date, location:location,tripName:tripName,latitude:latitude,longitude: longitude)
+            deleteJournalEntry(oldEntry)
+            newEntryId = addJournalEntry(text:text, date:date, location:location,tripName:tripName,latitude:latitude,longitude: longitude)
         }else{
             oldEntry.text = text
             oldEntry.date = date
@@ -97,8 +97,34 @@ class JournalEntryCollection{
     }
     
     // Delete a journal entry
-    func delete(_ entry:JournalEntry) {
+    func deleteJournalEntry(_ entry:JournalEntry) {
         managedObjectContext.delete(entry)
+        self.saveChanges()
+    }
+    
+    // Add a new trip
+    func addTrip (tripName:String,startDate:String,endDate:String) {
+        var trip:Trip!
+        managedObjectContext.performAndWait {
+            trip = Trip(context: self.managedObjectContext)
+            trip.tripName = tripName
+            trip.startDate = startDate
+            trip.endDate = endDate
+            self.saveChanges()
+        }
+    }
+    
+    // Update an old trip
+    func updateTrip(oldTrip: Trip, tripName:String, startDate:String,endDate:String){
+        oldTrip.tripName = tripName
+        oldTrip.startDate = startDate
+        oldTrip.endDate = endDate
+        self.saveChanges()
+    }
+    
+    // Delete a trip
+    func deleteTrip(_ trip:Trip) {
+        managedObjectContext.delete(trip)
         self.saveChanges()
     }
 

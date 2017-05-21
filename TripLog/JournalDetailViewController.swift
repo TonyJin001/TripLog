@@ -117,7 +117,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
             (alert:UIAlertAction!)->Void in
-            self.journalEntries?.delete(self.journalEntryDetails!)
+            self.journalEntries?.deleteJournalEntry(self.journalEntryDetails!)
             if let nav = self.navigationController {
                 nav.popViewController(animated: true)
             } else {
@@ -147,7 +147,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         destination.journalEntries = journalEntries
         destination.journalEntryDetails = journalEntryDetails
         destination.callback = { (text, date, location, tripName, latitude, longitude) in
-            let newEntryID = self.journalEntries?.update(oldEntry: self.journalEntryDetails!, text:text, date:date, location:location, tripName:tripName, latitude: latitude, longitude: longitude)
+            let newEntryID = self.journalEntries?.updateJournalEntry(oldEntry: self.journalEntryDetails!, text:text, date:date, location:location, tripName:tripName, latitude: latitude, longitude: longitude)
             
             // After updating the journal entry in core data, fetch it by ID and display the new information
             do {

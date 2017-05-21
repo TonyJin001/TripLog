@@ -163,7 +163,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
                 fatalError("Cannot find journal entry")
             }
             
-            journalEntries.delete(journalEntry)
+            journalEntries.deleteJournalEntry(journalEntry)
         }
     }
     
@@ -190,7 +190,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             destination.hidesBottomBarWhenPushed = true
             // Called in EditJournalViewController for saving new journal entry
             destination.callback = { (text, date, location, tripName, latitude, longitude) in
-                self.journalEntries.add(text:text, date:date, location:location, tripName:tripName, latitude:latitude, longitude: longitude)
+                self.journalEntries.addJournalEntry(text:text, date:date, location:location, tripName:tripName, latitude:latitude, longitude: longitude)
             }
             
         case "ViewJournal":
@@ -230,7 +230,12 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
                 destination.type = .update((self.trip?.tripName)!, (self.trip?.startDate)!, (self.trip?.endDate)!)
                 
                 }
+                destination.callback = { (tripName, startDate, endDate) in
+                    self.journalEntries.updateTrip(oldTrip: self.trip!,tripName: tripName,startDate: startDate,endDate: endDate)
+                }
             }
+            
+
         
         case "ViewMap":
             guard let destination = segue.destination as? GoogleMapViewController else {

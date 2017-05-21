@@ -47,7 +47,6 @@ class NewTripViewController: UIViewController {
         switch(type){
         case .new:
             startdatefield.text = formatter.string(from: Date())
-            enddatefield.text = "??/??/????"
             deleteButton.isHidden = true
             navigationBar.title = "New Trip"
             break
@@ -171,7 +170,7 @@ class NewTripViewController: UIViewController {
         let endDate = enddatefield.text ?? ""
         
         if callback != nil{
-            //print ("IceCream Cake")
+            print ("IceCream Cake")
             callback!(tripName, startDate, endDate)
         }
     }

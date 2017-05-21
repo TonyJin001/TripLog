@@ -13,7 +13,6 @@
 		1F4F38E51EB0394700D015D9 /* JournalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F38E41EB0394700D015D9 /* JournalDetailViewController.swift */; };
 		1F4F38E71EB12E2700D015D9 /* EditJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F38E61EB12E2700D015D9 /* EditJournalViewController.swift */; };
 		1F942A901EBFB41E00288EAC /* TripsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F942A8F1EBFB41E00288EAC /* TripsTableViewCell.swift */; };
-		1F942A941EBFB91600288EAC /* TripCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F942A931EBFB91600288EAC /* TripCollection.swift */; };
 		1F942A961EC2653E00288EAC /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F942A951EC2653E00288EAC /* GoogleMapViewController.swift */; };
 		1FE36F721EADA651003E5325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F711EADA651003E5325 /* AppDelegate.swift */; };
 		1FE36F741EADA651003E5325 /* JournalEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE36F731EADA651003E5325 /* JournalEntriesViewController.swift */; };
@@ -55,7 +54,6 @@
 		1F4F38E41EB0394700D015D9 /* JournalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalDetailViewController.swift; sourceTree = "<group>"; };
 		1F4F38E61EB12E2700D015D9 /* EditJournalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditJournalViewController.swift; sourceTree = "<group>"; };
 		1F942A8F1EBFB41E00288EAC /* TripsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsTableViewCell.swift; sourceTree = "<group>"; };
-		1F942A931EBFB91600288EAC /* TripCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCollection.swift; sourceTree = "<group>"; };
 		1F942A951EC2653E00288EAC /* GoogleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
 		1FE36F6E1EADA651003E5325 /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE36F711EADA651003E5325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				1F4F38E21EAFDA6300D015D9 /* JournalEntryCollection.swift */,
-				1F942A931EBFB91600288EAC /* TripCollection.swift */,
 				1F4F38D91EAEE5CA00D015D9 /* JournalEntryModel.xcdatamodeld */,
 			);
 			name = "Data Model";
@@ -517,7 +514,6 @@
 			files = (
 				1F4F38E31EAFDA6300D015D9 /* JournalEntryCollection.swift in Sources */,
 				1FE36FA21EADBF19003E5325 /* JournalEntriesTableViewCell.swift in Sources */,
-				1F942A941EBFB91600288EAC /* TripCollection.swift in Sources */,
 				1F4F38E51EB0394700D015D9 /* JournalDetailViewController.swift in Sources */,
 				1F4F38E71EB12E2700D015D9 /* EditJournalViewController.swift in Sources */,
 				5DFD61FC1EC4EF0900425C10 /* ModalViewController.swift in Sources */,

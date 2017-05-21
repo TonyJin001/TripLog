@@ -18,7 +18,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
     
     private var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>!
     
-    private var tripEntries = TripCollection() {
+    private var tripEntries = JournalEntryCollection() {
         print("Core Data Connected for trips")
     }
     
@@ -151,9 +151,9 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
                 let alertController = UIAlertController(title: "Trip Deletion", message: "Do you want to delete all the journal entries in the trip, or do you only want to remove their reference to this trip?", preferredStyle: .actionSheet)
                 let deleteAction = UIAlertAction(title: "Delete all entries in the trip", style: .destructive, handler: {
                     (alert:UIAlertAction!)->Void in
-                    var journalEntries = JournalEntryCollection() {
-                        print("Core Data Connected")
-                    }
+//                    var journalEntries = JournalEntryCollection() {
+//                        print("Core Data Connected")
+//                    }
                     // get all journal entries
                     let entryRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"JournalEntry")
                     // Filter for trips if necessary
@@ -166,7 +166,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
                     entryRequest.sortDescriptors = [dateSort, tripSort]
                     
                     // Create the controller using our moc
-                    let moc = journalEntries.managedObjectContext
+                    let moc = self.tripEntries.managedObjectContext
                     var newFetchedResultsController  = NSFetchedResultsController(fetchRequest: entryRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
                     newFetchedResultsController.delegate = self
                     do {
@@ -186,15 +186,15 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
                     }
                     for id in IDs {
                         let tempEntry = moc.object(with: id) as? JournalEntry
-                        journalEntries.delete(tempEntry!)
+                        self.tripEntries.deleteJournalEntry(tempEntry!)
                     }
-                    self.tripEntries.delete(trip)
+                    self.tripEntries.deleteTrip(trip)
                 })
                 
                 let removeReferenceAction = UIAlertAction(title: "Remove reference", style: .default, handler:
                 {
                     (alert: UIAlertAction!) -> Void in
-                    self.tripEntries.delete(trip)
+                    self.tripEntries.deleteTrip(trip)
                 })
 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:
@@ -207,7 +207,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
                 alertController.addAction(cancelAction)
                 self.present(alertController, animated: true, completion: nil)
             } else {
-                tripEntries.delete(trip)
+                tripEntries.deleteTrip(trip)
             }
             
             
@@ -230,7 +230,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
             
             destination.type = .new
             destination.callback = { (tripName, startDate, endDate) in
-                self.tripEntries.add(tripName: tripName, startDate: startDate, endDate: endDate)
+                self.tripEntries.addTrip(tripName: tripName, startDate: startDate, endDate: endDate)
             }
             
             
