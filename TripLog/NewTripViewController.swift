@@ -20,8 +20,6 @@ class NewTripViewController: UIViewController {
     var callback: ((String, String, String)->Void)?
 
     @IBOutlet weak var tripnamefield: UITextField!
-
-    @IBOutlet weak var deleteButton: UIButton!
     
     @IBOutlet weak var startdatefield: UITextField!
     @IBOutlet weak var enddatefield: UITextField!
@@ -32,6 +30,7 @@ class NewTripViewController: UIViewController {
    
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         startdatefield.tag = 0
         enddatefield.tag = 1
@@ -40,29 +39,11 @@ class NewTripViewController: UIViewController {
         formatter.timeStyle = .none
         formatter.dateFormat = "MM/dd/yyyy"
         
-        
-       
-        super.viewDidLoad()
-
-        switch(type){
-        case .new:
-            startdatefield.text = formatter.string(from: Date())
-            deleteButton.isHidden = true
-            navigationBar.title = "New Trip"
-            break
-        case let .update(tripName, startDate, endDate):
-            
-            tripnamefield.text = tripName
-            startdatefield.text = startDate
-            enddatefield.text = endDate
-            navigationBar.title = "Edit Trip"
-        }
-        
-        
-        // Do any additional setup after loading the view.
+        startdatefield.text = formatter.string(from: Date())
+        navigationBar.title = "New Trip"
     }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-            //print("Working?")
         if textField.tag == 0 || textField.tag == 1{
             let inputView = UIView(frame: CGRect(x:0, y:0, width:self.view.frame.width, height:240))
             

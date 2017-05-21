@@ -43,13 +43,6 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             tripTab.tripEntries = journalEntries
         }
         
-//        if journalEntries.managedObjectContext.hasChanges || (tripTab.tripEntries?.managedObjectContext.hasChanges)!{
-//            print ("Has Changed!!!!!!")
-//            initializeFetchResultsController()
-//        } else {
-//            print("no changes!!!!!!")
-//        }
-        
         if type != .oneTrip {
             initializeFetchResultsController()
         }
@@ -234,26 +227,6 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
             destination.journalEntryDetails = journalEntry
             destination.journalEntries = journalEntries
             destination.hidesBottomBarWhenPushed = true
-            
-        case "EditTrip":
-            guard let destination = segue.destination as? NewTripViewController else {
-                fatalError("Unexpected sender: \(String(describing: sender))")
-            }
-            
-            if (self.trip != nil){
-                if (self.trip?.startDate == nil || self.trip?.endDate == nil){
-                    
-                    destination.type = .update((self.trip?.tripName)!, "", "")
-                }
-                else{
-                destination.type = .update((self.trip?.tripName)!, (self.trip?.startDate)!, (self.trip?.endDate)!)
-                
-                }
-                destination.callback = { (tripName, startDate, endDate) in
-                    self.journalEntries.updateTrip(oldTrip: self.trip!,tripName: tripName,startDate: startDate,endDate: endDate)
-                }
-            }
-            
 
         
         case "ViewMap":
