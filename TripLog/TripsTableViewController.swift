@@ -168,7 +168,7 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
                     
                     // Create the controller using our moc
                     let moc = self.tripEntries?.managedObjectContext
-                    var newFetchedResultsController  = NSFetchedResultsController(fetchRequest: entryRequest, managedObjectContext: moc!, sectionNameKeyPath: nil, cacheName: nil)
+                    let newFetchedResultsController  = NSFetchedResultsController(fetchRequest: entryRequest, managedObjectContext: moc!, sectionNameKeyPath: nil, cacheName: nil)
                     newFetchedResultsController.delegate = self
                     do {
                         try newFetchedResultsController.performFetch()

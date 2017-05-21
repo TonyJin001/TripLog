@@ -37,8 +37,8 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         
-        var navController = self.tabBarController?.viewControllers?[1] as! UINavigationController
-        var tripTab = navController.viewControllers.first as! TripsTableViewController
+        let navController = self.tabBarController?.viewControllers?[1] as! UINavigationController
+        let tripTab = navController.viewControllers.first as! TripsTableViewController
         if tripTab.tripEntries == nil {
             tripTab.tripEntries = journalEntries
         }

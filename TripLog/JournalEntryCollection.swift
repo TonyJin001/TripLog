@@ -127,7 +127,6 @@ class JournalEntryCollection{
         oldTrip.tripName = tripName
         oldTrip.startDate = startDate
         oldTrip.endDate = endDate
-        print(oldTrip.journalEntries)
         self.saveChanges()
     }
     
