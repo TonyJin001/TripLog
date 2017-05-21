@@ -11,7 +11,12 @@ import UIKit
 import CoreData
 import MessageUI
 
-
+// This is the file for the view of a single journal entry.
+// It has a segue to the edit journal entry view,
+// and has the delete and share entry functionality.
+// The single journal entry view can be reached by 
+// clicking on the journalentrycell from
+// either the single trips table or from the journalentries tab
 
 class JournalDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
@@ -137,7 +142,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
         self.present(alertController, animated: true, completion: nil)
     }
 
-    
+    //Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
@@ -165,10 +170,7 @@ class JournalDetailViewController: UIViewController, MFMailComposeViewController
                 if let text = self.journalEntryDetails?.text {
                     self.textTextView.attributedText = text as! NSAttributedString
                 }
-            } catch {
-                print("Cannot find journal entry")
             }
-            
         }
         
     }

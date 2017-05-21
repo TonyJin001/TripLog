@@ -8,6 +8,10 @@
 
 import UIKit
 
+//this is the file for the cells for single journal entries
+//you can see these cells when viewing individual trip's journal entries
+//or when viewing all the journal entries together
+
 class JournalEntriesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var journalEntryTextLabel: UILabel!

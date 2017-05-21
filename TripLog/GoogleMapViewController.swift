@@ -11,7 +11,8 @@ import CoreData
 import GoogleMaps
 import GooglePlaces
 
-//This is file for the map, implemented with google maps.  
+//This is file for the map view, implemented with google maps.
+//You can view the map by looking at the view for a specific trip
 
 class GoogleMapViewController: UIViewController, GMSMapViewDelegate{
 
@@ -142,7 +143,7 @@ extension GoogleMapViewController: CLLocationManagerDelegate {
     // Handle incoming location events.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
-        print("Location: \(location)")
+        //print("Location: \(location)")
 
     }
     

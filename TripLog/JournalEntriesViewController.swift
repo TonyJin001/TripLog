@@ -5,8 +5,12 @@
 //  Created by Lyra Ding on 4/23/17.
 //  Copyright © 2017 CS466. All rights reserved.
 //
-//  This is the file for looking at all the journals in the journals tab, or looking at the journals for just one specific trip.
-//  It has segues to view each individual journal entry page, or to create a new journal
+//  This is the file for looking at all the journals in the journals tab,
+// or looking at the journals for just one specific trip.
+//  It has segues to view each individual journal entry page
+// or to create a new journal
+// if you are looking at journal entries for one trip, 
+// you can view the map from here
 
 import UIKit
 import CoreData
@@ -23,7 +27,7 @@ class JournalEntriesViewController: UIViewController, UITableViewDelegate, UITab
     var trip:Trip?
     
     private var journalEntries = JournalEntryCollection() {
-        print("Core Data Connected")
+        //print("Core Data Connected")
     }
     
     @IBOutlet weak var journalEntriesTableView: UITableView!

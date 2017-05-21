@@ -8,8 +8,9 @@
 
 import UIKit
 
-//This is the file for creating a new trip 
-// and editing an old trip
+//This is the file for creating a new trip
+//After creating a new trip, it will segue 
+//back to the trips table view
 
 class NewTripViewController: UIViewController {
     
@@ -68,20 +69,17 @@ class NewTripViewController: UIViewController {
             doneButton.addTarget(self, action: #selector(doneButton(_:)), for: UIControlEvents.touchUpInside) // set button click event
             
             if textField.tag == 0 {
-            
                 textField.inputView = inputView
                 datePickerView.addTarget(self, action: #selector(handleStartDatePicker(_:)), for: UIControlEvents.valueChanged)
             
-                handleStartDatePicker(datePickerView) // Set the date on start.
+                handleStartDatePicker(datePickerView) // Set the start date
             }
             
             if textField.tag == 1{
-                print(textField.tag)
-
                 textField.inputView = inputView
                 datePickerView.addTarget(self, action: #selector(handleEndDatePicker(_:)), for: UIControlEvents.valueChanged)
                 
-                handleEndDatePicker(datePickerView) // Set the date on start.
+                handleEndDatePicker(datePickerView) // Set the end date.
             }
         }
     }
@@ -95,7 +93,27 @@ class NewTripViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
-        startdatefield.text = dateFormatter.string(from: sender.date)
+        if (enddatefield.text != ""){ //enddate filled in
+            let enddate = dateFormatter.date(from: enddatefield.text!)
+            
+            print((enddate?.timeIntervalSince1970)!)
+            print(sender.date.timeIntervalSince1970)
+            
+            if ((enddate?.timeIntervalSince1970)! >= sender.date.timeIntervalSince1970){ //start date is before enddate
+                
+                startdatefield.text = dateFormatter.string(from: sender.date)
+            }
+            
+            else{ //startdate is set to enddate since it can't be later
+                startdatefield.text = enddatefield.text
+            }
+            
+        }
+            
+        else{ //enddate not filled in
+            startdatefield.text = dateFormatter.string(from: sender.date)
+        }
+        
     }
     
     
@@ -103,7 +121,17 @@ class NewTripViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
-        enddatefield.text = dateFormatter.string(from: sender.date)
+        let startdate = dateFormatter.date(from: startdatefield.text!)
+        
+        if ((startdate?.timeIntervalSince1970)! <= sender.date.timeIntervalSince1970){ //enddate is after start date
+            
+            enddatefield.text = dateFormatter.string(from: sender.date)
+        }
+        
+        else{ //enddate gets startdate since it can't be before startdate
+            enddatefield.text = startdatefield.text
+        }
+
     }
     
     func doneButton(_ sender:UIButton)
@@ -131,26 +159,26 @@ class NewTripViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let button = sender as? UIBarButtonItem, button === saveButton else{
-            print("The save button was not pressed")
+            //print("The save button was not pressed")
             return
         }
-        let tripName = tripnamefield.text ?? "Unnamed Trip"
-        let startDate = startdatefield.text ?? ""
-        let endDate = enddatefield.text ?? ""
         
-        if callback != nil{
-            callback!(tripName, startDate, endDate)
+        if (tripnamefield.text != ""){ //if no trippname is entered, trip is not saved
+        
+            let tripName = tripnamefield.text ?? "Unnamed Trip"
+        
+        
+            let startDate = startdatefield.text ?? ""
+            let endDate = enddatefield.text ?? ""
+        
+            if callback != nil{
+                callback!(tripName, startDate, endDate)
+            }
         }
     }
 }

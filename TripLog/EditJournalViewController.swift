@@ -10,6 +10,14 @@ import UIKit
 import CoreData
 import GooglePlaces
 
+// This is the file for the edit journal view.
+// From this page you can make new journal entries,
+// or edit an old one and save your changes
+// From this view, you can add new photos in the camera roll
+// Or you can go to the camera and take a photo to add it
+
+
+
 class EditJournalViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var dateTextField: UITextField!
@@ -58,6 +66,9 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         tripNameTextField.delegate = self
         journalTextView.delegate = self
         
+        // these tags are for the different input functionality
+        // there are different tags for different images retrieval
+        //and for date picker, trips picker, and google maps api
         
         cameraButton.tag = 0
         uploadButton.tag = 1
@@ -174,9 +185,9 @@ class EditJournalViewController: UIViewController, UINavigationControllerDelegat
         
         // Decide whether the user wants to take a photo or select it from the photo library
         switch sender.tag{
-        case 0:
+        case 0: //camera
             image.sourceType = UIImagePickerControllerSourceType.camera
-        case 1:
+        case 1: //image library
             image.sourceType = UIImagePickerControllerSourceType.photoLibrary
         default:
             print("Source type for image picker unknown")

@@ -8,6 +8,8 @@
 
 import UIKit
 
+//This is the file for the cells in the trips table view
+
 class TripsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var tripNameLabel: UILabel!

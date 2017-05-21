@@ -22,43 +22,44 @@ class ModalViewController: UIViewController {
     
     @IBOutlet weak var previousbutton: UIButton!
     @IBOutlet weak var nextbutton: UIButton!
+    
     @IBAction func next(_ sender: Any) {
-        if (page == textpages.count - 2){
+        if (page == textpages.count - 2){ //second to last page
             page += 1
             previousbutton.alpha = 1.0
             nextbutton.alpha = 0.5
             modaltext.text = textpages[page]
         }
-        if (page < textpages.count - 2){
+        if (page < textpages.count - 2){ //before second to last page
             page += 1
             previousbutton.alpha = 1.0
             nextbutton.alpha = 1.0
             modaltext.text = textpages[page]
         }
-        //print(page)
         
     }
     
     
     @IBAction func previous(_ sender: Any) {
-        if (page == 1){
+        if (page == 1){ //second page
             page -= 1
             nextbutton.alpha = 1.0
             previousbutton.alpha = 0.5
             modaltext.text = textpages[page]
         }
-        if (page > 1){
+        if (page > 1){ //after second page
             page -= 1
             nextbutton.alpha = 1.0
             previousbutton.alpha = 1.0
             modaltext.text = textpages[page]
         }
-        //print(page)
+        
     }
     
     @IBAction func dismissButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         modaltext.text = textpages[0]
@@ -70,15 +71,5 @@ class ModalViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

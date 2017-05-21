@@ -251,12 +251,14 @@ class TripsTableViewController: UIViewController,UITableViewDelegate, UITableVie
             guard let currentTrip = fetchedResultsController?.object(at:indexPath) as? Trip else {
                 fatalError("fetched object was not a JournalEntry")
             }
-
+            
+            //alter some of the destination variables
+            //so the journalentriesviewcontroller looks and works correctly
             destination.type = .oneTrip
             destination.trip = currentTrip
             destination.title = currentTrip.tripName
             destination.hidesBottomBarWhenPushed = true
-            print("End of view trip")
+            //print("End of view trip")
             
         default:
             fatalError("Unexpected segue identifier")
