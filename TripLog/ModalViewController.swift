@@ -14,7 +14,7 @@ import UIKit
 
 class ModalViewController: UIViewController {
     
-    let textpages = ["In TripLog, you can write journal entries when you are travelling, and these journal entries will be automatically grouped by trips.", "The \"Journal Entries\" tab shows you all the journal entries you have. Click on the \"Trips\" tab view the entries organized by trips.", "Thanks for reading!"]
+    let textpages = ["In TripLog, you can write journal entries when you are travelling, and these journal entries will be automatically grouped by trips.", "The \"Journal Entries\" tab shows you all the journal entries you have. Click on the \"Trips\" tab to view the entries organized by trips.", "Enjoy your trips and the app!"]
     
     var page = 0
     
